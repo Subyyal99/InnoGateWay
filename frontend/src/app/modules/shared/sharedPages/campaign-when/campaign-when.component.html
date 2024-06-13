@@ -1,0 +1,252 @@
+<div class="mt-5 mb-5 container-fluid">
+  <div class="row">
+    <div class="col-md-1 ss text-center step4">Step 04</div>
+    <div class="col-md-10 step4D">
+      <p class="para ml-5">
+        "Send it now" will make sure your Campaign goes out immediately once you
+        finalise and review on the next step.<br />
+        "Scedule for later" allows you to select a time in the future to send
+        the entire Campaign.<br />
+        "Staager my Campaign" allows you to send your campaign in a stagged
+        manner
+      </p>
+    </div>
+
+    <div class="col-md-10 text-end">
+      <a href="#" class="help"
+        ><i class="fas fa-info-circle"></i>Still Need Help?</a
+      >
+    </div>
+  </div>
+</div>
+
+<div class="bg">
+  <div class="row">
+    <div class="col-md-12 col-lg-12 col-xl-12 col-xxl-12 text-left mt-3 para">
+      <p>* When do you want to send your campaign?</p>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-md-12 col-lg-8 col-xl-10 col-xxl-12">
+        <app-select-button
+          [options]="items"
+          (button)="contactData($event)"
+        ></app-select-button>
+      </div>
+    </div>
+  </div>
+  <div
+    class="row"
+    *ngIf="
+      this.campaignWhenInfo.sendType &&
+      (this.campaignWhenInfo.sendType == 'Schedule for later' ||
+        this.campaignWhenInfo.sendType == 'Schedule For Later')
+    "
+  >
+    <div class="row justify-content-center px-8">
+      <div class="col-md-12 col-lg-12 col-xl-12 col-xxl-12 mt-4">
+        <div class="row seperator">
+          <div class="col-md-4 col-lg-2 col-xl-2 col-xxl-1 label">
+            {{ this.inputInfo[0].label }}
+          </div>
+          <div class="col-md-8 col-lg-10 col-xl-10 col-xxl-11">
+            <app-calender
+              [accessFrom]="'campaignWhen'"
+              [inputInfo]="this.inputInfo[0]"
+              [changeFlag]="this.changeFlag"
+              *ngIf="this.inputInfo[0] && this.inputInfo[0].type == 'calender'"
+              (updateData)="updateData($event, this.inputInfo[0].modelName)"
+              (preSubmit)="preSubmit()"
+              (submit)="onSubmit()"
+            ></app-calender>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12 col-lg-12 col-xl-12 col-xxl-12 mt-4">
+        <div class="row">
+          <div class="col-md-4 col-lg-2 col-xl-2 col-xxl-1 label">
+            {{ this.inputInfo[1].label }}
+          </div>
+          <div class="col-md-8 col-lg-10 col-xl-10 col-xxl-11">
+            <app-calender
+              [accessFrom]="'campaignWhen'"
+              [inputInfo]="this.inputInfo[1]"
+              [changeFlag]="this.changeFlag"
+              *ngIf="this.inputInfo[1] && this.inputInfo[1].type == 'calender'"
+              (updateData)="updateData($event, this.inputInfo[1].modelName)"
+              (preSubmit)="preSubmit()"
+              (submit)="onSubmit()"
+            ></app-calender>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="row"
+    *ngIf="
+      this.campaignWhenInfo.sendType &&
+      this.campaignWhenInfo.sendType == 'Stagger my campaign'
+    "
+  >
+    <div class="row justify-content-center px-8">
+      <div class="col-md-12 col-lg-12 col-xl-12 col-xxl-12 mt-4">
+        <div class="row seperator">
+          <div class="col-md-2 col-lg-2 col-xl-2 col-xxl-1 label">
+            {{ this.inputInfo[0].label }}
+          </div>
+          <div class="col-md-10 col-lg-10 col-xl-10 col-xxl-11">
+            <app-calender
+              [accessFrom]="'campaignWhen'"
+              [inputInfo]="this.inputInfo[0]"
+              [changeFlag]="this.changeFlag"
+              *ngIf="this.inputInfo[0] && this.inputInfo[0].type == 'calender'"
+              (updateData)="updateData($event, this.inputInfo[0].modelName)"
+              (preSubmit)="preSubmit()"
+              (submit)="onSubmit()"
+            ></app-calender>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12 col-lg-12 col-xl-12 col-xxl-12 mt-4">
+        <div class="row">
+          <div class="col-md-2 col-lg-2 col-xl-2 col-xxl-1 label">
+            {{ this.inputInfo[1].label }}
+          </div>
+          <div class="col-md-10 col-lg-10 col-xl-10 col-xxl-11">
+            <app-calender
+              [accessFrom]="'campaignWhen'"
+              [inputInfo]="this.inputInfo[1]"
+              [changeFlag]="this.changeFlag"
+              *ngIf="this.inputInfo[1] && this.inputInfo[1].type == 'calender'"
+              (updateData)="updateData($event, this.inputInfo[1].modelName)"
+              (preSubmit)="preSubmit()"
+              (submit)="onSubmit()"
+            ></app-calender>
+          </div>
+        </div>
+        <div class="row seperator mt-2">
+          <div class="col-md-2 col-lg-2 col-xl-2 col-xxl-1 label mt-2">
+            {{ this.inputInfo[2].label }}
+          </div>
+          <div class="col-md-10 col-lg-10 col-xl-10 col-xxl-11">
+            <app-text-box
+              [inputInfo]="this.inputInfo[2]"
+              [changeFlag]="this.changeFlag"
+              *ngIf="this.inputInfo[2] && this.inputInfo[2].type == 'text2'"
+              (updateData)="updateData($event, this.inputInfo[2].modelName)"
+              (preSubmit)="preSubmit()"
+              (submit)="onSubmit()"
+            >
+            </app-text-box>
+          </div>
+        </div>
+        <div class="row seperator justify-content-between">
+          <div class="col-md-2 col-lg-2 col-xl-2 col-xxl-1 label">
+            {{ this.inputInfo[3].label }}
+          </div>
+          <div class="col-md-5 col-lg-5 col-xl-5 col-xxl-5">
+            <app-text-box
+              [inputInfo]="this.inputInfo[3]"
+              [changeFlag]="this.changeFlag"
+              *ngIf="this.inputInfo[3] && this.inputInfo[3].type == 'text2'"
+              (updateData)="updateData($event, this.inputInfo[3].modelName)"
+              (preSubmit)="preSubmit()"
+              (submit)="onSubmit()"
+            >
+            </app-text-box>
+          </div>
+          <div class="col-md-5 col-lg-5 col-xl-5 col-xxl-5">
+            <app-text-box
+              [inputInfo]="this.inputInfo[4]"
+              [changeFlag]="this.changeFlag"
+              *ngIf="this.inputInfo[4] && this.inputInfo[4].type == 'text2'"
+              (updateData)="updateData($event, this.inputInfo[4].modelName)"
+              (preSubmit)="preSubmit()"
+              (submit)="onSubmit()"
+            >
+            </app-text-box>
+          </div>
+        </div>
+        <div class="row seperator">
+          <div class="col-md-2 col-lg-2 col-xl-2 col-xxl-1 label">
+            {{ this.inputInfo[5].label }}
+          </div>
+          <div class="col-md-10 col-lg-10 col-xl-10 col-xxl-11">
+            <app-drop-down
+              [inputInfo]="this.inputInfo[5]"
+              [changeFlag]="this.changeFlag"
+              [data]="this.inputInfo[5].data"
+              [scrollHeight]="'200px'"
+              *ngIf="this.inputInfo[5] && this.inputInfo[5].type == 'dropDown'"
+              (updateData)="updateData($event, this.inputInfo[5].modelName)"
+              (preSubmit)="preSubmit()"
+              (submit)="onSubmit()"
+            ></app-drop-down>
+          </div>
+        </div>
+        <div class="row seperator" *ngIf="this.dontSendAfterInputInfo[0]">
+          <div class="col-md-2 col-lg-2 col-xl-2 col-xxl-1 label">
+            {{ this.dontSendAfterInputInfo[0].label }}
+          </div>
+          <div class="col-md-10 col-lg-10 col-xl-10 col-xxl-11">
+            <app-drop-down
+              [inputInfo]="this.dontSendAfterInputInfo[0]"
+              [changeFlag]="this.changeFlag"
+              [data]="this.messageAfter"
+              [scrollHeight]="'200px'"
+              *ngIf="
+                this.dontSendAfterInputInfo[0] &&
+                this.dontSendAfterInputInfo[0].type == 'dropDown'
+              "
+              (updateData)="
+                updateData($event, this.dontSendAfterInputInfo[0].modelName)
+              "
+              (preSubmit)="preSubmit()"
+              (submit)="onSubmit()"
+            ></app-drop-down>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row justify-content-end mt-3 mr-7">
+    <div class="col-md-2 col-lg-2 col-xl-1">
+      <app-button
+        [label]="'Back'"
+        [bgColor]="'#2466A9'"
+        [color]="'#ffff'"
+        (button)="back()"
+      ></app-button>
+    </div>
+
+    <div class="col-md-2 col-lg-2 col-xl-1">
+      <app-button
+        [label]="'Next'"
+        [bgColor]="'#2466A9'"
+        *ngIf="
+          this.campaignWhenInfo.sendType &&
+          (this.campaignWhenInfo.sendType == 'Schedule for later' ||
+            this.campaignWhenInfo.sendType == 'Schedule For Later' ||
+            this.campaignWhenInfo.sendType == 'Stagger my campaign' ||
+            this.campaignWhenInfo.sendType == 'Stagger My Campaign')
+        "
+        [color]="'#ffff'"
+        (button)="preSubmit()"
+      ></app-button>
+      <app-button
+        [label]="'Next'"
+        [bgColor]="'#2466A9'"
+        *ngIf="this.campaignWhenInfo.sendType == 'Send it now'"
+        [color]="'#ffff'"
+        (button)="sendData()"
+      ></app-button>
+      <app-button
+        [label]="'Next'"
+        [bgColor]="'#2466A9'"
+        *ngIf="!this.campaignWhenInfo.sendType"
+        [color]="'#ffff'"
+        (button)="checkSendType()"
+      ></app-button>
+    </div>
+  </div>
+</div>

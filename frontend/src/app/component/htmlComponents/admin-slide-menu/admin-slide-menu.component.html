@@ -1,0 +1,386 @@
+<!-- <ng-sidenav-container>
+  <ng-sidenav
+    [expanded]="true"
+    [drawerWidth]="'250px'"
+    [drawerWidthCollapsed]="'250px'"
+    [color]="'#f2f2f2'"
+  >
+    <div class="side-nav container-fluid mt-5 h-100">
+      <h4 class="text-center">Super Admin</h4>
+      <p-slideMenu
+        [viewportHeight]="700"
+        [model]="items"
+        styleClass="mt-5"
+      ></p-slideMenu>
+      <div class="row">
+        <a href="#" [routerLink]="'/client-tiered-menu'" class="text-center"
+          >Admin</a
+        >
+      </div>
+      <div class="row">
+        <a href="#" [routerLink]="'/side-panel'" class="text-center">Client</a>
+      </div>
+    </div>
+  </ng-sidenav>
+  <ng-sidenav-content> Main content </ng-sidenav-content>
+</ng-sidenav-container> -->
+<div class="d-flex">
+  <div
+    class="d-flex flex-column vh-100 flex-shrink-0 pt-3 text-white main"
+    style="width: 250px"
+    [ngClass]="this.showFlag == true ? 'd-flex' : 'd-none'"
+  >
+    <a
+      href="/"
+      class="d-flex align-items-center mb-md-0 me-md-auto text-white text-decoration-none"
+    >
+      <img class="ml-8" src="assets/logo.png" width="80" height="120" />
+    </a>
+    <hr />
+    <h6 class="text-center">Admin</h6>
+    <!-- <p-panelMenu [model]="items" class="menu"></p-panelMenu> -->
+    <ul class="nav nav-pills flex-column mb-auto mt-1 p-2">
+      <!-- <li (click)="hideShow('dash')" id="dash">
+        <a class="nav-link text-white" id="dashSelect"
+          ><i class="fas fa-chart-line"></i><span class="ms-2">Dashboard</span>
+        </a>
+      </li> -->
+
+      <li (click)="hideShow('userManagement')">
+        <a class="nav-link text-white" id="userManagementSelect">
+          <i class="fas fa-users"></i><span class="ms-2">User Management</span>
+        </a>
+      </li>
+      <div class="row borderLeft" id="userManagement">
+        <div class="col-12 pt-0 pb-0 listItems">
+          <ul class="mt-2">
+            <li
+              [ngClass]="this.router.url == '/admin/add-client' ? 'active' : ''"
+            >
+              <a class="smTxt" routerLink="add-client">Add Client</a>
+            </li>
+
+            <li
+              [ngClass]="
+                this.router.url == '/admin/manage-client' ? 'active' : ''
+              "
+            >
+              <a class="smTxt" routerLink="manage-client">Manage Client</a>
+            </li>
+
+            <!-- <li>
+              <a class="smTxt">Transaction History</a>
+            </li> -->
+          </ul>
+        </div>
+      </div>
+      <li (click)="hideShow('dataManagement')">
+        <a class="nav-link text-white" id="dataManagementSelect">
+          <i class="fas fa-users"></i><span class="ms-2">Data Management</span>
+        </a>
+      </li>
+      <div class="row borderLeft" id="dataManagement">
+        <div class="col-12 pt-0 pb-0 listItems">
+          <ul class="mt-2">
+            <li
+              [ngClass]="
+                this.router.url == '/admin/add-shortCode' ? 'active' : ''
+              "
+            >
+              <a class="smTxt" routerLink="add-shortCode">Add Short Code</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <li (click)="hideShow('rpt')">
+        <a class="nav-link text-white" id="rptSelect">
+          <i class="fas fa-exclamation-circle"></i
+          ><span class="ms-2">Reporting</span>
+        </a>
+      </li>
+      <div class="row borderLeft" id="rpt">
+        <div class="col-12 pt-0 pb-0 listItems">
+          <ul class="mt-2">
+            <li [ngClass]="this.router.url == '/admin/by-ip' ? 'active' : ''">
+              <a class="smTxt" routerLink="by-ip" id="byIp">Blacklist by Ip</a>
+            </li>
+            <li
+              [ngClass]="this.router.url == '/admin/by-msisdn' ? 'active' : ''"
+            >
+              <a class="smTxt" routerLink="by-msisdn">Blacklist by Msisdn</a>
+            </li>
+            <li [ngClass]="this.router.url == '/admin/logs' ? 'active' : ''">
+              <a class="smTxt" routerLink="logs">Logs</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <!-- <li (click)="hideShow('sms')">
+        <a
+          class="nav-link text-white"
+          id="smsSelect"
+          routerLink="/side-panel/dashboard"
+        >
+          <i class="far fa-comment-alt"></i><span class="ms-2">SMS</span>
+        </a>
+      </li>
+
+      <div class="row borderLeft" id="sms">
+        <div class="col-12 pt-0 pb-0 listItems">
+          <ul class="mt-2">
+            <li
+              [ngClass]="
+                this.router.url == '/side-panel/single-sms' ? 'active' : ''
+              "
+            >
+              <a class="smTxt" routerLink="single-sms" id="singleSms"
+                >Single SMS</a
+              >
+            </li>
+            <li
+              [ngClass]="
+                this.router.url == '/side-panel/bulk-sms' ? 'active' : ''
+              "
+            >
+              <a class="smTxt" routerLink="bulk-sms">Bulk SMS</a>
+            </li>
+            <li
+              [ngClass]="
+                this.router.url == '/side-panel/mergeSend' ? 'active' : ''
+              "
+            >
+              <a class="smTxt" routerLink="mergeSend">Merge Send</a>
+            </li>
+            <li>
+              <a class="smTxt">In Queue</a>
+            </li>
+            <li>
+              <a class="smTxt">Schedules</a>
+            </li>
+            <li>
+              <a class="smTxt">Templates</a>
+            </li>
+            <li>
+              <a class="smTxt">Opt-Out of campaigns</a>
+            </li>
+            <li
+              [ngClass]="
+                this.router.url == '/side-panel/create-campaign' ? 'active' : ''
+              "
+            >
+              <a class="smTxt" routerLink="create-campaign">Campaigns</a>
+            </li>
+            <li
+              [ngClass]="
+                this.router.url == '/side-panel/contact-lists' ? 'active' : ''
+              "
+            >
+              <a class="smTxt" routerLink="contact-lists">ContactLists</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <li (click)="hideShow('rpt')">
+        <a class="nav-link text-white" id="rptSelect">
+          <i class="fas fa-exclamation-circle"></i
+          ><span class="ms-2">Reporting</span>
+        </a>
+      </li>
+      <div class="row borderLeft" id="rpt">
+        <div class="col-12 pt-0 pb-0">
+          <ul class="mt-2">
+            <li
+              [ngClass]="this.router.url == '/side-panel/by-ip' ? 'active' : ''"
+            >
+              <a class="smTxt" routerLink="by-ip" id="byIp">Blacklist by Ip</a>
+            </li>
+            <li
+              [ngClass]="
+                this.router.url == '/side-panel/by-msisdn' ? 'active' : ''
+              "
+            >
+              <a class="smTxt" routerLink="by-msisdn">Blacklist by Msisdn</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <li (click)="hideShow('smsPlus')">
+        <a
+          class="nav-link text-white"
+          id="smsPlusSelect"
+          routerLink="sms-plus/smsPlus-dashboard"
+        >
+          <i class="fas fa-comment-alt"></i><span class="ms-2">SMS Plus</span>
+        </a>
+      </li>
+      <div class="row borderLeft" id="smsPlus">
+        <div class="col-12 pt-0 pb-0">
+          <ul class="mt-2">
+          
+            <li
+              [ngClass]="
+                this.router.url == '/side-panel/sms-plus/received-messages'
+                  ? 'active'
+                  : ''
+              "
+            >
+              <a class="smTxt" routerLink="sms-plus/received-messages"
+                >Received Messages</a
+              >
+            </li>
+            <li
+              [ngClass]="
+                this.router.url == '/side-panel/sms-plus/check-keyword'
+                  ? 'active'
+                  : ''
+              "
+            >
+              <a class="smTxt" routerLink="sms-plus/check-keyword"
+                >Check Keyword</a
+              >
+            </li>
+            <li
+              [ngClass]="
+                this.router.url == '/side-panel/sms-plus/balance-deduction'
+                  ? 'active'
+                  : ''
+              "
+            >
+              <a class="smTxt" routerLink="sms-plus/balance-deduction"
+                >Balance Deduction</a
+              >
+            </li>
+            <li
+              [ngClass]="
+                this.router.url == '/side-panel/sms-plus/successful-message'
+                  ? 'active'
+                  : ''
+              "
+            >
+              <a class="smTxt" routerLink="sms-plus/successful-message"
+                >Successfull Message</a
+              >
+            </li>
+            <li
+              [ngClass]="
+                this.router.url == '/side-panel/sms-plus/sent-message'
+                  ? 'active'
+                  : ''
+              "
+            >
+              <a class="smTxt" routerLink="sms-plus/sent-message"
+                >Sent Message</a
+              >
+            </li>
+            <li
+              [ngClass]="
+                this.router.url == '/side-panel/sms-plus/custom-message'
+                  ? 'active'
+                  : ''
+              "
+            >
+              <a class="smTxt" routerLink="sms-plus/custom-message"
+                >Custom Message</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+      <li (click)="hideShow('televoting')">
+        <a class="nav-link text-white" id="televotingSelect">
+          <i class="fas fa-poll"></i><span class="ms-2">Televoting</span>
+        </a>
+      </li>
+      <div class="row borderLeft" id="televoting">
+        <div class="col-12 pt-0 pb-0">
+          <ul class="mt-2">
+            <li
+              [ngClass]="
+                this.router.url == '/side-panel/televoting/received-messages'
+                  ? 'active'
+                  : ''
+              "
+            >
+              <a class="smTxt" routerLink="televoting/received-messages"
+                >Received Messages</a
+              >
+            </li>
+            <li
+              [ngClass]="
+                this.router.url == '/side-panel/televoting/check-keyword'
+                  ? 'active'
+                  : ''
+              "
+            >
+              <a class="smTxt" routerLink="televoting/check-keyword"
+                >Check Keyword</a
+              >
+            </li>
+            <li
+              [ngClass]="
+                this.router.url == '/side-panel/televoting/balance-deduction'
+                  ? 'active'
+                  : ''
+              "
+            >
+              <a class="smTxt" routerLink="televoting/balance-deduction"
+                >Balance Deduction</a
+              >
+            </li>
+            <li
+              [ngClass]="
+                this.router.url == '/side-panel/televoting/successful-message'
+                  ? 'active'
+                  : ''
+              "
+            >
+              <a class="smTxt" routerLink="televoting/successful-message"
+                >Successfull Message</a
+              >
+            </li>
+            <li
+              [ngClass]="
+                this.router.url == '/side-panel/televoting/sent-message'
+                  ? 'active'
+                  : ''
+              "
+            >
+              <a class="smTxt" routerLink="televoting/sent-message"
+                >Sent Message</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+      <li (click)="hideShow('recMsg')">
+        <a class="nav-link text-white" id="recMsgSelect">
+          <i class="fas fa-comment"></i
+          ><span class="ms-2">Received Message</span>
+        </a>
+      </li>
+      <div class="row borderLeft" id="recMsg">
+        <div class="col-12 pt-0 pb-0">
+          <ul class="mt-2">
+            <li
+              [ngClass]="
+                this.router.url == '/side-panel/received-message'
+                  ? 'active'
+                  : ''
+              "
+            >
+              <a class="smTxt" routerLink="received-message"
+                >Received Messages</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div> -->
+    </ul>
+  </div>
+  <!-- <p-panelMenu [model]="items" [style]="{ width: '300px' }"></p-panelMenu> -->
+  <div style="width: 100%" [ngClass]="this.showFlag == true ? 'content' : ''">
+    <app-header (sidepanelBtn)="this.sideBar()"></app-header>
+    <router-outlet></router-outlet>
+  </div>
+</div>

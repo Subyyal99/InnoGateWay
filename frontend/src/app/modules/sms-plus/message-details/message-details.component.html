@@ -1,0 +1,70 @@
+<div class="bg">
+  <h4>Received Message</h4>
+  <div *ngIf="this.recievedMessageTableInfo">
+    <app-table
+      [cols]="
+        this.rErrorMessageFlag
+          ? this.errorMessageTableHeaders
+          : this.recievedMessageTableHeaders
+      "
+      [col]="this.recievedMessageTableInfo"
+      [type]="'justData'"
+    ></app-table>
+  </div>
+</div>
+<div class="bg">
+  <h4>Check Keyword Message</h4>
+  <div *ngIf="this.checkKeywordMessageTableInfo">
+    <app-table
+      [cols]="
+        this.cErrorMessageFlag
+          ? this.errorMessageTableHeaders
+          : this.checkKeywordMessageTableHeaders
+      "
+      [col]="this.checkKeywordMessageTableInfo"
+      [type]="'justData'"
+    ></app-table>
+  </div>
+</div>
+<div class="bg">
+  <h4>Balance Deduction Message</h4>
+  <div *ngIf="this.balanceDeductionMessageTableInfo">
+    <app-table
+      [cols]="
+        this.bErrorMessageFlag
+          ? this.errorMessageTableHeaders
+          : this.balanceDeductionMessageTableHeaders
+      "
+      [col]="this.balanceDeductionMessageTableInfo"
+      [type]="'justData'"
+    ></app-table>
+  </div>
+</div>
+<div class="bg">
+  <h4>Successfull Message</h4>
+  <div *ngIf="this.successfullMessageTableInfo">
+    <app-table
+      [cols]="
+        this.sErrorMessageFlag
+          ? this.errorMessageTableHeaders
+          : this.successfullMessageTableHeaders
+      "
+      [col]="this.successfullMessageTableInfo"
+      [type]="'justData'"
+    ></app-table>
+  </div>
+</div>
+<div class="bg">
+  <h4>Sent Message</h4>
+  <div *ngIf="this.sentMessageTableInfo">
+    <app-table
+      [cols]="
+        this.errorMessageFlag
+          ? this.errorMessageTableHeaders
+          : this.sentMessageTableHeaders
+      "
+      [col]="this.sentMessageTableInfo"
+      [type]="'justData'"
+    ></app-table>
+  </div>
+</div>

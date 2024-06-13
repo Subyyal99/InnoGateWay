@@ -1,0 +1,25 @@
+<p-dialog
+  [modal]="true"
+  [(visible)]="importContact"
+  [breakpoints]="{ '960px': '50vw', '640px': '75vw' }"
+  [style]="{ width: '55vw' }"
+  [draggable]="false"
+  [resizable]="false"
+  [closeOnEscape]="false"
+>
+  <div class="modal-content modalpayment">
+    <div class="modal-header">
+      <h5 class="modal-title">Import Contact</h5>
+      <button
+        type="button"
+        class="close"
+        data-bs-dismiss="modal"
+        aria-label="Close"
+        (click)="closeModal()"
+      >
+        <img src="assets/close.png" alt="" />
+      </button>
+    </div>
+    <app-upload-file (closeModal)="closeModal()"></app-upload-file>
+  </div>
+</p-dialog>

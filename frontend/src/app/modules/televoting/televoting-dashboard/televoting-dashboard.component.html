@@ -1,0 +1,170 @@
+<div class="container-fluid">
+  <div class="row text-left">
+    <div class="col-md-12">
+      <h3 class="ml-5 pb-3 pt-2 text-center">Televoting Dashboard</h3>
+      <div class="row text-left">
+        <div
+          class="card col-md-12 ml-6 mt-4 cd hov"
+          (click)="
+            getGraphData('smsPlusRecievedMessage'); route('received-messages')
+          "
+          style="width: 18rem"
+        >
+          <div class="card-horizontal">
+            <div class="img-square-wrapper">
+              <i class="fas fa-inbox fa-3x"></i>
+            </div>
+            <div class="card-body">
+              <h6 class="card-title">Received</h6>
+              <p class="card-text">{{ this.allCounts.receivedMessageCount }}</p>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="card col-md-12 ml-6 mt-4 cd hov"
+          style="width: 18rem"
+          (click)="route('check-keyword')"
+        >
+          <div class="card-horizontal">
+            <div class="img-square-wrapper">
+              <i class="fas fa-users fa-3x"></i>
+            </div>
+            <div class="card-body">
+              <h6 class="card-title">Check Keywords</h6>
+              <p class="card-text">
+                {{ this.allCounts.checkKeywordMessageCount }}
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="card col-md-12 ml-6 mt-4 cd hov"
+          style="width: 18rem"
+          (click)="route('balance-deduction')"
+        >
+          <div class="card-horizontal">
+            <div class="img-square-wrapper">
+              <i class="fas fa-dollar-sign fa-3x pl-5 pr-4"></i>
+            </div>
+            <div class="card-body">
+              <h6 class="card-title">Balance Deduction</h6>
+              <p class="card-text">
+                {{ this.allCounts.balanceDeductionMessageCount }}
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="card col-md-12 ml-6 mt-4 cd hov"
+          style="width: 18rem"
+          (click)="route('successful-message')"
+        >
+          <div class="card-horizontal">
+            <div class="img-square-wrapper">
+              <i class="fas fa-check fa-3x"></i>
+            </div>
+            <div class="card-body">
+              <h6 class="card-title">Successfull</h6>
+              <p class="card-text">
+                {{ this.allCounts.successfullMessageCount }}
+              </p>
+            </div>
+          </div>
+        </div>
+        <div
+          class="card col-md-12 ml-6 mt-4 cd hov"
+          style="width: 18rem"
+          (click)="route('sent-message')"
+        >
+          <div class="card-horizontal">
+            <div class="img-square-wrapper">
+              <i class="fas fa-paper-plane fa-3x"></i>
+            </div>
+            <div class="card-body">
+              <h6 class="card-title">Sent</h6>
+              <p class="card-text">{{ this.allCounts.sentMessageCount }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid mt-5 px-7 mb-4">
+  <div class="row cd">
+    <div class="col-md-12 col-lg-7 col-xl-7">
+      <app-line-chart
+        [chartData]="this.chartData"
+        [chartOptions]="this.chartOptions"
+        [graphLabel]="this.graphLabel"
+      ></app-line-chart>
+    </div>
+    <div class="col-md-12 col-lg-5 col-xl-5">
+      <div
+        class="row mb-3"
+        *ngIf="
+          this.radioInputInfo[0] && this.radioInputInfo[0].type == 'radioButton'
+        "
+      >
+        <div class="col-md-2 col-lg-4 col-xl-2 label pt-4">
+          {{ this.radioInputInfo[0].label | capitalization }}:
+        </div>
+        <div class="col-md-10 col-lg-8 col-xl-9 mt-2">
+          <app-radio-button
+            [inputInfo]="this.radioInputInfo[0]"
+            [changeFlag]="this.changeFlag"
+            *ngIf="
+              this.radioInputInfo[0] &&
+              this.radioInputInfo[0].type == 'radioButton'
+            "
+            (updateData)="
+              updateData($event, this.radioInputInfo[0].modelName, $event)
+            "
+            (preSubmit)="preSubmit()"
+            (submit)="onSubmit()"
+          >
+          </app-radio-button>
+        </div>
+      </div>
+      <div class="row mb-3" *ngFor="let box of this.inputInfo">
+        <div class="col-md-2 col-lg-4 col-xl-2 label pt-4">
+          {{ box.label | capitalization }}:
+        </div>
+        <div class="col-md-10 col-lg-8 col-xl-9 mt-2">
+          <app-radio-button
+            [inputInfo]="box"
+            [changeFlag]="this.changeFlag"
+            *ngIf="box && box.type == 'radioButton'"
+            (updateData)="updateData($event, box.modelName, $event)"
+            (preSubmit)="preSubmit()"
+            (submit)="onSubmit()"
+          >
+          </app-radio-button>
+          <app-drop-down
+            [inputInfo]="box"
+            [changeFlag]="this.changeFlag"
+            [scrollHeight]="box.scrollHeight"
+            *ngIf="box && box.type == 'dropDown'"
+            [data]="box.data"
+            (updateData)="updateData($event, box.label)"
+            (preSubmit)="preSubmit()"
+            (submit)="onSubmit()"
+          ></app-drop-down>
+          <app-calender
+            [accessFrom]="'smsPlusDashBoard'"
+            [inputInfo]="box"
+            [changeFlag]="this.changeFlag"
+            *ngIf="box && box.type == 'calender'"
+            (updateData)="updateData($event, box.modelName)"
+            (preSubmit)="preSubmit()"
+            (submit)="onSubmit()"
+          ></app-calender>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

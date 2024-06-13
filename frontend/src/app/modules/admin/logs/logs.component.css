@@ -1,0 +1,9 @@
+.bg {
+  background-color: #f3f3ff;
+  padding: 15px;
+  margin: 50px 50px;
+}
+.label p {
+  margin-top: 18px;
+  font-weight: 500;
+}

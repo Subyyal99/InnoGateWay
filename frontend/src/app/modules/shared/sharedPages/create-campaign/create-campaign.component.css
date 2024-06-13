@@ -1,0 +1,28 @@
+.txt {
+  font-size: 20px;
+  font-weight: 100;
+}
+
+h4 {
+  margin-left: 20px;
+}
+@media (max-width: 768px) {
+  .col-md-4 {
+    margin-left: 22px;
+  }
+}
+@media (max-width: 1024px) {
+  .col-lg-3 {
+    margin-left: 22px;
+    max-width: 11rem;
+  }
+}
+@media (min-width: 1025px) {
+  .col-xl-3 {
+    margin-left: 22px;
+    max-width: 11rem;
+  }
+}
+.campaignTable {
+  padding: 30px;
+}

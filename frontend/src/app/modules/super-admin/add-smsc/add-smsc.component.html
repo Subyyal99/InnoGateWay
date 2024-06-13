@@ -1,0 +1,43 @@
+<div class="row text-center">
+  <div class="col-12">
+    <h3>Add Smsc</h3>
+  </div>
+</div>
+<div class="container-fluid login-page">
+  <div class="row justify-content-center">
+    <div class="col-md-12 col-lg-12 col-xl-8 box">
+      <div class="dataBox">
+        <div class="row mt-4" *ngFor="let box of this.inputInfo">
+          <div class="col-md-3">
+            <label class="label">{{ box.label | capitalization }}</label>
+          </div>
+          <div class="col-md-9">
+            <app-text-box
+              [inputInfo]="box"
+              [changeFlag]="this.changeFlag"
+              *ngIf="box.type == 'text2'"
+              (updateData)="updateData($event, box.modelName)"
+              (preSubmit)="preSubmit()"
+              (submit)="onSubmit()"
+            ></app-text-box>
+          </div>
+        </div>
+        <div class="row justify-content-center">
+          <div class="col-md-3 mt-4">
+            <app-button
+              [label]="'Submit'"
+              [padding]="'5px 0'"
+              [borderRadius]="'0px'"
+              [color]="'#fff'"
+              [type]="'login'"
+              [bgColor]="'#3283F6'"
+              (button)="preSubmit()"
+              [fontSize]="'14px'"
+            >
+            </app-button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,46 @@
+.bg {
+  background-color: #f3f3ff;
+  padding: 15px;
+  /* margin: 25px; */
+  border-radius: 15px;
+
+}
+.dateFilter {
+  cursor: pointer;
+}
+.reportBox {
+  height: 120px;
+  border-top: 1px solid black;
+  margin: auto;
+  display: flex;
+  padding: 20px;
+}
+.icon {
+  font-size: 30px;
+  width: 30px;
+}
+.msgRpt {
+  padding-left: 50px;
+}
+
+::ng-deep .p-datepicker table td {
+  padding: 0.2rem !important;
+}
+
+::ng-deep .p-datepicker table td > span {
+  width: 1.7rem;
+  height: 1.7rem;
+}
+
+::ng-deep .p-datepicker table {
+  font-size: 10pt;
+  margin: -0.143rem 0;
+}
+
+::ng-deep .p-datepicker .p-datepicker-header {
+  padding: 0.2rem;
+}
+::ng-deep .p-datepicker .p-datepicker-header .p-datepicker-title {
+  margin: 0;
+  order: 2;
+}

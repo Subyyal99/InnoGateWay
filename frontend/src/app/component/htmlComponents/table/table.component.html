@@ -1,0 +1,2539 @@
+<p-table
+  #dt1
+  [columns]="cols"
+  [value]="col"
+  dataKey="_id"
+  responsiveLayout="scroll"
+  editMode="row"
+  [rows]="10"
+  [paginator]="true"
+  [showCurrentPageReport]="true"
+  styleClass="p-datatable-gridlines"
+  *ngIf="this.type == 'sms-plus'"
+  currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+  [globalFilterFields]="this.searchFields"
+  id="excel-table"
+>
+  <ng-template pTemplate="caption">
+    <div class="flex">
+      <button
+        pButton
+        label="Clear"
+        class="p-button-outlined"
+        icon="pi pi-filter-slash"
+        (click)="clear(dt1); clearFilter()"
+      ></button
+      ><button
+        pButton
+        label="download"
+        class="p-button-outlined ml-3"
+        icon="pi pi-download"
+        (click)="exportExcel()"
+      ></button>
+      <span class="p-input-icon-left ml-auto">
+        <i class="pi pi-search"></i>
+        <input
+          pInputText
+          type="text"
+          (input)="
+            dt1.filterGlobal($event.target.value, 'contains');
+            searchPrint($event)
+          "
+          placeholder="Search Table"
+        />
+      </span>
+    </div>
+  </ng-template>
+
+  <ng-template pTemplate="header" let-columns>
+    <tr>
+      <th *ngFor="let col of columns">
+        <div class="p-d-flex p-jc-between p-ai-center text-center">
+          <!-- <p-tableHeaderCheckbox
+            *ngIf="col.header == 'Name'"
+            [value]="this.headerName"
+          ></p-tableHeaderCheckbox> -->
+          {{ col.header }}
+          <!-- <p-columnFilter
+            type="text"
+            field="{{ col.field }}"
+            display="menu"
+            *ngIf="!(col.field == 'dateTime')"
+          ></p-columnFilter> -->
+          <i
+            [ngClass]="
+              this.designFlag
+                ? 'pi pi-filter filterBtn'
+                : 'pi pi-filter dateFilterBtn'
+            "
+            *ngIf="col.field == 'dateTime'"
+            (click)="op.toggle($event)"
+            id="dateFilterBtn"
+          ></i>
+          <p-overlayPanel #op>
+            <ng-template pTemplate>
+              <app-calender
+                [accessFrom]="'smsPlus'"
+                [inputInfo]="this.inputInfo[0]"
+                [changeFlag]="this.changeFlag"
+                [selectionMode]="'range'"
+                [inLine]="true"
+                (updateData)="dateFilter($event)"
+                (preSubmit)="preSubmit()"
+                (submit)="onSubmit()"
+              ></app-calender>
+            </ng-template>
+          </p-overlayPanel>
+        </div>
+      </th>
+    </tr>
+  </ng-template>
+
+  <ng-template
+    pTemplate="body"
+    let-rowData
+    let-columns="columns"
+    let-editing="editing"
+    let-ri="rowIndex"
+  >
+    <tr [pEditableRow]="rowData" (click)="sendId(rowData.recievedSmsId)">
+      <ng-container *ngFor="let col of columns">
+        <td *ngIf="col.type == 'text'">
+          <p-cellEditor>
+            <ng-template pTemplate="output">
+              <div class="row justify-content-center">
+                <!-- <div class="col-md-1" *ngIf="col.field == 'name'">
+                  <app-check-box
+                    [inputInfo]="this.inputInfo[0]"
+                    [changeFlag]="changeFlag"
+                    (updateData)="updateData($event, this.inputInfo[0].label)"
+                    *ngIf="
+                      this.inputInfo[0] && this.inputInfo[0].type == 'checkBox'
+                    "
+                    (preSubmit)="preSubmit()"
+                    (submit)="onSubmit()"
+                  ></app-check-box>
+                </div> -->
+                <div class="col-md-11 mt-1 text-center">
+                  {{ rowData[col.field] }}
+                </div>
+              </div>
+            </ng-template>
+            <ng-template pTemplate="input">
+              <input
+                pInputText
+                type="text"
+                [(ngModel)]="rowData[col.field]"
+                *ngIf="col.edit == 'true'"
+              />
+              <ng-container *ngIf="col.edit == 'false'">
+                {{ rowData[col.field] }}
+              </ng-container>
+            </ng-template>
+          </p-cellEditor>
+        </td>
+
+        <td *ngIf="col.type == 'date'" class="text-center">
+          <p-cellEditor>
+            <ng-template pTemplate="output" class="text-center">
+              Date: {{ rowData[col.field] | date : "dd/MM/yyyy" }}<br />
+              Time: {{ rowData[col.field] | date : "HH:mm " }}
+            </ng-template>
+            <ng-template pTemplate="input">
+              <input
+                pInputText
+                type="text"
+                [(ngModel)]="rowData[col.field]"
+                *ngIf="col.edit == 'true'"
+              />
+              <ng-container *ngIf="col.edit == 'false'" class="text-center">
+                {{ rowData[col.field] | date : "dd/MM/yyyy" }}
+              </ng-container>
+            </ng-template>
+          </p-cellEditor>
+        </td>
+
+        <td *ngIf="col.type == 'number'">
+          <p-cellEditor>
+            <ng-template
+              pTemplate="output"
+              *ngIf="rowData.purpose == 'transfer'"
+            >
+              <span class="txtClr text-center">
+                {{
+                  rowData[col.field] | currency : rowData[col.field].currency
+                }}
+              </span> </ng-template
+            ><ng-template
+              pTemplate="output"
+              *ngIf="rowData.purpose == 'payment'"
+              class="text-center"
+            >
+              {{ rowData[col.field] | currency : rowData[col.field].currency }}
+            </ng-template>
+            <ng-template pTemplate="input">
+              <ng-container>
+                <input
+                  pInputText
+                  type="text"
+                  [(ngModel)]="col.edit"
+                  *ngIf="col.edit == 'true'"
+                />
+              </ng-container>
+
+              <ng-container *ngIf="col.edit == 'false'">
+                {{ rowData[col.field] | number }}
+              </ng-container>
+            </ng-template>
+          </p-cellEditor>
+        </td>
+        <td *ngIf="col.type == 'checkbox'">
+          <p-cellEditor>
+            <ng-template pTemplate="output" class="text-center">
+              {{ rowData[col.field] }}
+            </ng-template>
+            <ng-template pTemplate="input">
+              <!-- <p-checkbox
+                  [value]="rowData[col.field]"
+                  [(ngModel)]="rowData[col.field]"
+                  *ngIf="col.edit == 'true'"
+                ></p-checkbox> -->
+              <p-inputSwitch
+                [trueValue]="'true'"
+                [falseValue]="'false'"
+                [(ngModel)]="rowData[col.field]"
+              ></p-inputSwitch>
+              <ng-container *ngIf="col.edit == 'false'">
+                {{ rowData[col.field] }}
+              </ng-container>
+            </ng-template>
+          </p-cellEditor>
+        </td>
+        <td *ngIf="col.type == 'currency'">
+          <p-cellEditor>
+            <ng-template pTemplate="output" class="text-center">
+              {{ rowData[col.field] | currency : "USD" }}
+            </ng-template>
+            <ng-template pTemplate="input">
+              <input
+                pInputText
+                type="text"
+                [(ngModel)]="rowData[col.field]"
+                *ngIf="col.edit == 'true'"
+              />
+              <ng-container *ngIf="col.edit == 'false'">
+                {{ rowData[col.field] | currency : "USD" }}
+              </ng-container>
+            </ng-template>
+          </p-cellEditor>
+        </td>
+        <td *ngIf="col.type == 'amountWithCurrency'">
+          <p-cellEditor>
+            <ng-template pTemplate="output" class="text-center">
+              {{
+                rowData[col.field]
+                  | currency : rowData["currency"].toUpperCase()
+              }}
+            </ng-template>
+            <!-- <ng-template pTemplate="input">
+                <input
+                  pInputText
+                  type="text"
+                  [(ngModel)]="rowData[col.field]"
+                  *ngIf="col.edit == 'true'"
+                />
+                <ng-container *ngIf="col.edit == 'false'">
+                  {{ rowData[col.field] | currency: "USD" }}
+                </ng-container>
+              </ng-template> -->
+          </p-cellEditor>
+        </td>
+        <td *ngIf="col.type == 'obj'">
+          <p-cellEditor>
+            <ng-template pTemplate="output" class="text-center">
+              {{ rowData[col.field]["name"] }}
+            </ng-template>
+            <ng-template pTemplate="input">
+              <input
+                pInputText
+                type="text"
+                [(ngModel)]="rowData[col.field]"
+                *ngIf="col.edit == 'true'"
+              />
+              <ng-container *ngIf="col.edit == 'false'">
+                {{ rowData[col.field]["name"] }}
+              </ng-container>
+            </ng-template>
+          </p-cellEditor>
+        </td>
+      </ng-container>
+      <td style="text-align: center; width: 20%" *ngIf="this.action">
+        <!-- <button
+          pButton
+          pRipple
+          type="button"
+          *ngIf="!this.cols[0].justDelete"
+          icon="fas fa-phone-alt"
+          (click)="onCall(rowData)"
+          class="p-button-rounded p-button-text callBtn"
+        ></button> -->
+
+        <button
+          pButton
+          pRipple
+          type="button"
+          *ngIf="!this.cols[0].justDelete"
+          icon="fal fa-comment"
+          (click)="onMessage(rowData)"
+          class="p-button-rounded p-button-text callBtn"
+        ></button>
+
+        <button
+          pButton
+          pRipple
+          type="button"
+          *ngIf="!this.cols[0].justDelete"
+          icon="fas fa-edit"
+          (click)="onEdit(rowData)"
+          class="p-button-rounded p-button-text p-button-info"
+        ></button>
+        <button
+          pButton
+          pRipple
+          type="button"
+          *ngIf="this.cols[0].justDelete || !this.cols[0].justDelete"
+          icon="fas fa-trash-alt"
+          (click)="onDelete(rowData, ri, this.cols[0].justDelete)"
+          class="p-button-rounded p-button-text p-button-danger"
+        ></button>
+      </td>
+    </tr> </ng-template
+></p-table>
+<p-table
+  #dt1
+  [columns]="cols"
+  [value]="col"
+  dataKey="_id"
+  responsiveLayout="scroll"
+  editMode="row"
+  [showCurrentPageReport]="true"
+  styleClass="p-datatable-gridlines"
+  *ngIf="this.type == 'justData'"
+>
+  <ng-template pTemplate="header" let-columns>
+    <tr>
+      <th *ngFor="let col of columns">
+        <div class="p-d-flex p-jc-between p-ai-center text-center">
+          {{ col.header }}
+        </div>
+      </th>
+    </tr>
+  </ng-template>
+
+  <ng-template
+    pTemplate="body"
+    let-rowData
+    let-columns="columns"
+    let-editing="editing"
+    let-ri="rowIndex"
+  >
+    <tr [pEditableRow]="rowData">
+      <ng-container *ngFor="let col of columns">
+        <td *ngIf="col.type == 'text'">
+          <p-cellEditor>
+            <ng-template pTemplate="output">
+              <div class="row justify-content-center">
+                <!-- <div class="col-md-1" *ngIf="col.field == 'name'">
+                  <app-check-box
+                    [inputInfo]="this.inputInfo[0]"
+                    [changeFlag]="changeFlag"
+                    (updateData)="updateData($event, this.inputInfo[0].label)"
+                    *ngIf="
+                      this.inputInfo[0] && this.inputInfo[0].type == 'checkBox'
+                    "
+                    (preSubmit)="preSubmit()"
+                    (submit)="onSubmit()"
+                  ></app-check-box>
+                </div> -->
+                <div class="col-md-11 mt-1 text-center">
+                  {{ rowData[col.field] }}
+                </div>
+              </div>
+            </ng-template>
+            <ng-template pTemplate="input">
+              <input
+                pInputText
+                type="text"
+                [(ngModel)]="rowData[col.field]"
+                *ngIf="col.edit == 'true'"
+              />
+              <ng-container *ngIf="col.edit == 'false'">
+                {{ rowData[col.field] }}
+              </ng-container>
+            </ng-template>
+          </p-cellEditor>
+        </td>
+
+        <td *ngIf="col.type == 'date'" class="text-center">
+          <p-cellEditor>
+            <ng-template pTemplate="output" class="text-center">
+              Date: {{ rowData[col.field] | date : "dd/MM/yyyy" }}<br />
+              Time: {{ rowData[col.field] | date : "HH:mm " }}
+            </ng-template>
+            <ng-template pTemplate="input">
+              <input
+                pInputText
+                type="text"
+                [(ngModel)]="rowData[col.field]"
+                *ngIf="col.edit == 'true'"
+              />
+              <ng-container *ngIf="col.edit == 'false'" class="text-center">
+                {{ rowData[col.field] | date : "dd/MM/yyyy" }}
+              </ng-container>
+            </ng-template>
+          </p-cellEditor>
+        </td>
+
+        <td *ngIf="col.type == 'number'">
+          <p-cellEditor>
+            <ng-template
+              pTemplate="output"
+              *ngIf="rowData.purpose == 'transfer'"
+            >
+              <span class="txtClr text-center">
+                {{
+                  rowData[col.field] | currency : rowData[col.field].currency
+                }}
+              </span> </ng-template
+            ><ng-template
+              pTemplate="output"
+              *ngIf="rowData.purpose == 'payment'"
+              class="text-center"
+            >
+              {{ rowData[col.field] | currency : rowData[col.field].currency }}
+            </ng-template>
+            <ng-template pTemplate="input">
+              <ng-container>
+                <input
+                  pInputText
+                  type="text"
+                  [(ngModel)]="col.edit"
+                  *ngIf="col.edit == 'true'"
+                />
+              </ng-container>
+
+              <ng-container *ngIf="col.edit == 'false'">
+                {{ rowData[col.field] | number }}
+              </ng-container>
+            </ng-template>
+          </p-cellEditor>
+        </td>
+        <td *ngIf="col.type == 'checkbox'">
+          <p-cellEditor>
+            <ng-template pTemplate="output" class="text-center">
+              {{ rowData[col.field] }}
+            </ng-template>
+            <ng-template pTemplate="input">
+              <!-- <p-checkbox
+                  [value]="rowData[col.field]"
+                  [(ngModel)]="rowData[col.field]"
+                  *ngIf="col.edit == 'true'"
+                ></p-checkbox> -->
+              <p-inputSwitch
+                [trueValue]="'true'"
+                [falseValue]="'false'"
+                [(ngModel)]="rowData[col.field]"
+              ></p-inputSwitch>
+              <ng-container *ngIf="col.edit == 'false'">
+                {{ rowData[col.field] }}
+              </ng-container>
+            </ng-template>
+          </p-cellEditor>
+        </td>
+        <td *ngIf="col.type == 'currency'">
+          <p-cellEditor>
+            <ng-template pTemplate="output" class="text-center">
+              {{ rowData[col.field] | currency : "USD" }}
+            </ng-template>
+            <ng-template pTemplate="input">
+              <input
+                pInputText
+                type="text"
+                [(ngModel)]="rowData[col.field]"
+                *ngIf="col.edit == 'true'"
+              />
+              <ng-container *ngIf="col.edit == 'false'">
+                {{ rowData[col.field] | currency : "USD" }}
+              </ng-container>
+            </ng-template>
+          </p-cellEditor>
+        </td>
+        <td *ngIf="col.type == 'amountWithCurrency'">
+          <p-cellEditor>
+            <ng-template pTemplate="output" class="text-center">
+              {{
+                rowData[col.field]
+                  | currency : rowData["currency"].toUpperCase()
+              }}
+            </ng-template>
+            <!-- <ng-template pTemplate="input">
+                <input
+                  pInputText
+                  type="text"
+                  [(ngModel)]="rowData[col.field]"
+                  *ngIf="col.edit == 'true'"
+                />
+                <ng-container *ngIf="col.edit == 'false'">
+                  {{ rowData[col.field] | currency: "USD" }}
+                </ng-container>
+              </ng-template> -->
+          </p-cellEditor>
+        </td>
+        <td *ngIf="col.type == 'obj'">
+          <p-cellEditor>
+            <ng-template pTemplate="output" class="text-center">
+              {{ rowData[col.field]["name"] }}
+            </ng-template>
+            <ng-template pTemplate="input">
+              <input
+                pInputText
+                type="text"
+                [(ngModel)]="rowData[col.field]"
+                *ngIf="col.edit == 'true'"
+              />
+              <ng-container *ngIf="col.edit == 'false'">
+                {{ rowData[col.field]["name"] }}
+              </ng-container>
+            </ng-template>
+          </p-cellEditor>
+        </td>
+      </ng-container>
+      <td style="text-align: center; width: 20%" *ngIf="this.action">
+        <button
+          pButton
+          pRipple
+          type="button"
+          *ngIf="!this.cols[0].justDelete"
+          icon="fas fa-phone-alt"
+          (click)="onCall(rowData)"
+          class="p-button-rounded p-button-text callBtn"
+        ></button>
+
+        <button
+          pButton
+          pRipple
+          type="button"
+          *ngIf="!this.cols[0].justDelete"
+          icon="fal fa-comment"
+          (click)="onMessage(rowData)"
+          class="p-button-rounded p-button-text callBtn"
+        ></button>
+
+        <button
+          pButton
+          pRipple
+          type="button"
+          *ngIf="!this.cols[0].justDelete"
+          icon="fas fa-edit"
+          (click)="onEdit(rowData)"
+          class="p-button-rounded p-button-text p-button-info"
+        ></button>
+        <button
+          pButton
+          pRipple
+          type="button"
+          *ngIf="this.cols[0].justDelete || !this.cols[0].justDelete"
+          icon="fas fa-trash-alt"
+          (click)="onDelete(rowData, ri, this.cols[0].justDelete)"
+          class="p-button-rounded p-button-text p-button-danger"
+        ></button>
+      </td>
+    </tr> </ng-template
+></p-table>
+<p-table
+  #dt1
+  [columns]="cols"
+  [value]="col"
+  dataKey="name"
+  responsiveLayout="scroll"
+  editMode="row"
+  [rows]="10"
+  [paginator]="true"
+  [showCurrentPageReport]="true"
+  styleClass="p-datatable-gridlines"
+  *ngIf="this.type == 'manage-clients'"
+  currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+  [globalFilterFields]="this.searchFields"
+  id="excel-table"
+>
+  <ng-template pTemplate="caption">
+    <div class="flex">
+      <button
+        pButton
+        label="Clear"
+        class="p-button-outlined"
+        icon="pi pi-filter-slash"
+        (click)="clear(dt1); clearFilter()"
+      ></button
+      ><button
+        pButton
+        label="download"
+        class="p-button-outlined ml-3"
+        icon="pi pi-download"
+        (click)="exportExcel()"
+      ></button>
+      <span class="p-input-icon-left ml-auto">
+        <i class="pi pi-search"></i>
+        <input
+          pInputText
+          type="text"
+          (input)="
+            dt1.filterGlobal($event.target.value, 'contains');
+            searchPrint($event)
+          "
+          placeholder="Search Table"
+        />
+      </span>
+    </div>
+  </ng-template>
+
+  <ng-template pTemplate="header" let-columns>
+    <tr>
+      <th *ngFor="let col of columns">
+        <div class="p-d-flex p-jc-between p-ai-center text-center">
+          {{ col.header }}
+          <!-- <p-columnFilter
+            type="text"
+            field="{{ col.field }}"
+            display="menu"
+            *ngIf="!(col.field == 'dateTime')"
+          ></p-columnFilter> -->
+          <i
+            [ngClass]="
+              this.designFlag
+                ? 'pi pi-filter filterBtn'
+                : 'pi pi-filter dateFilterBtn'
+            "
+            *ngIf="col.field == 'dateTime'"
+            (click)="op.toggle($event)"
+            id="dateFilterBtn"
+          ></i>
+          <p-overlayPanel #op>
+            <ng-template pTemplate>
+              <app-calender
+                [accessFrom]="'smsPlus'"
+                [inputInfo]="this.inputInfo[0]"
+                [changeFlag]="this.changeFlag"
+                [selectionMode]="'range'"
+                [inLine]="true"
+                (updateData)="dateFilter($event)"
+                (preSubmit)="preSubmit()"
+                (submit)="onSubmit()"
+              ></app-calender>
+            </ng-template>
+          </p-overlayPanel>
+        </div>
+      </th>
+    </tr>
+  </ng-template>
+
+  <ng-template
+    pTemplate="body"
+    let-rowData
+    let-columns="columns"
+    let-expanded="expanded"
+  >
+    <tr [pEditableRow]="rowData">
+      <ng-container *ngFor="let col of columns">
+        <td *ngIf="col.type == 'text'">
+          <p-cellEditor>
+            <ng-template pTemplate="output">
+              <div class="row justify-content-center">
+                <div class="col-md-11 mt-1 text-center">
+                  {{ rowData[col.field] }}
+                </div>
+              </div>
+            </ng-template>
+            <!-- <ng-template pTemplate="input">
+              <input
+                pInputText
+                type="text"
+                [(ngModel)]="rowData[col.field]"
+                *ngIf="col.edit == 'true'"
+              />
+              <ng-container *ngIf="col.edit == 'false'">
+                {{ rowData[col.field] }}
+              </ng-container>
+            </ng-template> -->
+          </p-cellEditor>
+        </td>
+
+        <td *ngIf="col.type == 'date'" class="text-center">
+          <p-cellEditor>
+            <ng-template pTemplate="output" class="text-center">
+              Date: {{ rowData[col.field] | date : "dd/MM/yyyy" }}<br />
+              Time: {{ rowData[col.field] | date : "HH:mm " }}
+            </ng-template>
+            <!-- <ng-template pTemplate="input">
+              <input
+                pInputText
+                type="text"
+                [(ngModel)]="rowData[col.field]"
+                *ngIf="col.edit == 'true'"
+              />
+              <ng-container *ngIf="col.edit == 'false'" class="text-center">
+                {{ rowData[col.field] | date: "dd/MM/yyyy" }}
+              </ng-container>
+            </ng-template> -->
+          </p-cellEditor>
+        </td>
+
+        <td *ngIf="col.type == 'number'">
+          <p-cellEditor>
+            <ng-template
+              pTemplate="output"
+              *ngIf="rowData.purpose == 'transfer'"
+            >
+              <span class="txtClr text-center">
+                {{
+                  rowData[col.field] | currency : rowData[col.field].currency
+                }}
+              </span> </ng-template
+            ><ng-template
+              pTemplate="output"
+              *ngIf="rowData.purpose == 'payment'"
+              class="text-center"
+            >
+              {{ rowData[col.field] | currency : rowData[col.field].currency }}
+            </ng-template>
+            <!-- <ng-template pTemplate="input">
+              <ng-container>
+                <input
+                  pInputText
+                  type="text"
+                  [(ngModel)]="col.edit"
+                  *ngIf="col.edit == 'true'"
+                />
+              </ng-container>
+
+              <ng-container *ngIf="col.edit == 'false'">
+                {{ rowData[col.field] | number }}
+              </ng-container>
+            </ng-template> -->
+          </p-cellEditor>
+        </td>
+        <td *ngIf="col.type == 'currency'">
+          <p-cellEditor>
+            <ng-template pTemplate="output" class="text-center">
+              {{ rowData[col.field] | currency : "USD" }}
+            </ng-template>
+            <!-- <ng-template pTemplate="input">
+              <input
+                pInputText
+                type="text"
+                [(ngModel)]="rowData[col.field]"
+                *ngIf="col.edit == 'true'"
+              />
+              <ng-container *ngIf="col.edit == 'false'">
+                {{ rowData[col.field] | currency: "USD" }}
+              </ng-container>
+            </ng-template> -->
+          </p-cellEditor>
+        </td>
+        <td *ngIf="col.type == 'amountWithCurrency'">
+          <p-cellEditor>
+            <ng-template pTemplate="output" class="text-center">
+              {{
+                rowData[col.field]
+                  | currency : rowData["currency"].toUpperCase()
+              }}
+            </ng-template>
+            <!-- <ng-template pTemplate="input">
+                <input
+                  pInputText
+                  type="text"
+                  [(ngModel)]="rowData[col.field]"
+                  *ngIf="col.edit == 'true'"
+                />
+                <ng-container *ngIf="col.edit == 'false'">
+                  {{ rowData[col.field] | currency: "USD" }}
+                </ng-container>
+              </ng-template> -->
+          </p-cellEditor>
+        </td>
+        <td *ngIf="col.type == 'obj'">
+          <p-cellEditor>
+            <ng-template pTemplate="output" class="text-center">
+              {{ rowData[col.field]["name"] }}
+            </ng-template>
+            <!-- <ng-template pTemplate="input">
+              <input
+                pInputText
+                type="text"
+                [(ngModel)]="rowData[col.field]"
+                *ngIf="col.edit == 'true'"
+              />
+              <ng-container *ngIf="col.edit == 'false'">
+                {{ rowData[col.field]["name"] }}
+              </ng-container>
+            </ng-template> -->
+          </p-cellEditor>
+        </td>
+      </ng-container>
+      <td style="text-align: center; width: 20%" *ngIf="this.action">
+        <button
+          pButton
+          pRipple
+          type="button"
+          *ngIf="!this.cols[0].justDelete && !this.deleteButtonFlag"
+          icon="fad fa-user-edit"
+          (click)="onEditUser(rowData)"
+          class="p-button-rounded p-button-text p-button-info"
+        ></button>
+        <button
+          pButton
+          pRipple
+          type="button"
+          *ngIf="!this.cols[0].justDelete && !this.deleteButtonFlag"
+          icon="fad fa-edit"
+          (click)="onEditService(rowData)"
+          class="p-button-rounded p-button-text p-button-info"
+        ></button>
+        <!-- <button
+          pButton
+          pRipple
+          type="button"
+          *ngIf="!this.cols[0].justDelete"
+          icon="fas fa-edit"
+          (click)="onEdit(rowData)"
+          class="p-button-rounded p-button-text p-button-info"
+        ></button> -->
+        <button
+          pButton
+          pRipple
+          type="button"
+          *ngIf="
+            (this.cols[0].justDelete || !this.cols[0].justDelete) &&
+            !this.deleteButtonFlag
+          "
+          icon="fas fa-trash-alt"
+          (click)="onDeleteButton()"
+          class="p-button-rounded p-button-text p-button-danger"
+        ></button>
+        <button
+          pButton
+          pRipple
+          type="button"
+          *ngIf="!this.cols[0].justDelete && this.deleteButtonFlag"
+          icon="fas fa-check"
+          (click)="onDelete(rowData, ri, this.cols[0].justDelete)"
+          class="p-button-rounded p-button-text p-button-success"
+        ></button>
+        <button
+          pButton
+          pRipple
+          type="button"
+          *ngIf="!this.cols[0].justDelete && this.deleteButtonFlag"
+          icon="fas fa-times"
+          (click)="onDeleteButton()"
+          class="p-button-rounded p-button-text p-button-danger"
+        ></button>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
+<p-table
+  #dt1
+  [columns]="cols"
+  [value]="col"
+  dataKey="_id"
+  responsiveLayout="scroll"
+  editMode="row"
+  [rows]="10"
+  [paginator]="true"
+  [showCurrentPageReport]="true"
+  styleClass="p-datatable-gridlines"
+  *ngIf="this.type == 'add-service'"
+  currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+  [globalFilterFields]="this.searchFields"
+  id="excel-table"
+>
+  <ng-template pTemplate="caption">
+    <div class="flex">
+      <button
+        pButton
+        label="Clear"
+        class="p-button-outlined"
+        icon="pi pi-filter-slash"
+        (click)="clear(dt1); clearFilter()"
+      ></button
+      ><button
+        pButton
+        label="download"
+        class="p-button-outlined ml-3"
+        icon="pi pi-download"
+        (click)="exportExcel()"
+      ></button>
+      <span class="p-input-icon-left ml-auto">
+        <i class="pi pi-search"></i>
+        <input
+          pInputText
+          type="text"
+          (input)="
+            dt1.filterGlobal($event.target.value, 'contains');
+            searchPrint($event)
+          "
+          placeholder="Search Table"
+        />
+      </span>
+    </div>
+  </ng-template>
+
+  <ng-template pTemplate="header" let-columns>
+    <tr>
+      <th *ngFor="let col of columns">
+        <div class="p-d-flex p-jc-between p-ai-center text-center">
+          {{ col.header }}
+          <!-- <p-columnFilter
+            type="text"
+            field="{{ col.field }}"
+            display="menu"
+            *ngIf="!(col.field == 'dateTime')"
+          ></p-columnFilter> -->
+          <i
+            [ngClass]="
+              this.designFlag
+                ? 'pi pi-filter filterBtn'
+                : 'pi pi-filter dateFilterBtn'
+            "
+            *ngIf="col.field == 'dateTime'"
+            (click)="op.toggle($event)"
+            id="dateFilterBtn"
+          ></i>
+          <p-overlayPanel #op>
+            <ng-template pTemplate>
+              <app-calender
+                [accessFrom]="'smsPlus'"
+                [inputInfo]="this.inputInfo[0]"
+                [changeFlag]="this.changeFlag"
+                [selectionMode]="'range'"
+                [inLine]="true"
+                (updateData)="dateFilter($event)"
+                (preSubmit)="preSubmit()"
+                (submit)="onSubmit()"
+              ></app-calender>
+            </ng-template>
+          </p-overlayPanel>
+        </div>
+      </th>
+    </tr>
+  </ng-template>
+
+  <ng-template
+    pTemplate="body"
+    let-rowData
+    let-columns="columns"
+    let-editing="editing"
+    let-ri="rowIndex"
+  >
+    <tr [pEditableRow]="rowData">
+      <ng-container *ngFor="let col of columns">
+        <td *ngIf="col.type == 'text'">
+          <p-cellEditor>
+            <ng-template pTemplate="output">
+              <div class="row justify-content-center">
+                <div class="col-md-11 mt-1 text-center">
+                  {{ rowData[col.field] }}
+                </div>
+              </div>
+            </ng-template>
+            <ng-template pTemplate="input" *ngIf="col.field == 'status'">
+              <!-- <p-dropdown
+                [options]="status"
+                [(ngModel)]="rowData[col.field]"
+                optionLabel=""
+              ></p-dropdown> -->
+              <!-- <div class="row justify-content-center">
+                <div class="col-md-12 col-lg-12 col-xl-3">
+                  <p-radioButton
+                    name="groupname"
+                    value="Allowed"
+                    [(ngModel)]="rowData[col.field]"
+                    label="Allowed"
+                  ></p-radioButton>
+                </div>
+                <div class="col-md-12 col-lg-12 col-xl-9">
+                  <p-radioButton
+                    name="groupname"
+                    value="Not Allowed"
+                    [(ngModel)]="rowData[col.field]"
+                    label="Not Allowed"
+                  ></p-radioButton>
+                </div>
+              </div> -->
+              <p-radioButton
+                name="groupname"
+                value="Allowed"
+                [(ngModel)]="rowData[col.field]"
+                label="Allowed"
+                *ngIf="rowData.status != 'Expired'"
+              ></p-radioButton>
+              <p-radioButton
+                class="radio"
+                name="groupname"
+                value="Not Allowed"
+                [(ngModel)]="rowData[col.field]"
+                label="Not Allowed"
+                *ngIf="rowData.status != 'Expired'"
+              ></p-radioButton>
+              <p *ngIf="rowData.status == 'Expired'" class="text-center">
+                Expired
+              </p>
+              <ng-container *ngIf="col.edit == 'false'">
+                {{ rowData[col.field] }}
+              </ng-container>
+            </ng-template>
+            <ng-template pTemplate="input" *ngIf="col.field != 'status'">
+              <input
+                pInputText
+                type="text"
+                [(ngModel)]="rowData[col.field]"
+                *ngIf="col.edit == 'true'"
+                style="width: 100px"
+              />
+              <ng-container class="text-center" *ngIf="col.edit == 'false'">
+                {{ rowData[col.field] }}
+              </ng-container>
+            </ng-template>
+          </p-cellEditor>
+        </td>
+
+        <td *ngIf="col.type == 'date'" class="text-center">
+          <p-cellEditor>
+            <ng-template pTemplate="output" class="text-center">
+              Date: {{ rowData[col.field] | date : "dd/MM/yyyy" }}<br />
+              Time: {{ rowData[col.field] | date : "HH:mm " }}
+            </ng-template>
+            <ng-template pTemplate="input">
+              <input
+                pInputText
+                type="text"
+                [(ngModel)]="rowData[col.field]"
+                *ngIf="col.edit == 'true'"
+              />
+              <ng-container *ngIf="col.edit == 'false'" class="text-center">
+                {{ rowData[col.field] | date : "dd/MM/yyyy" }}
+              </ng-container>
+            </ng-template>
+          </p-cellEditor>
+        </td>
+
+        <td *ngIf="col.type == 'number'">
+          <p-cellEditor>
+            <ng-template
+              pTemplate="output"
+              *ngIf="rowData.purpose == 'transfer'"
+            >
+              <span class="txtClr text-center">
+                {{
+                  rowData[col.field] | currency : rowData[col.field].currency
+                }}
+              </span> </ng-template
+            ><ng-template
+              pTemplate="output"
+              *ngIf="rowData.purpose == 'payment'"
+              class="text-center"
+            >
+              {{ rowData[col.field] | currency : rowData[col.field].currency }}
+            </ng-template>
+            <ng-template pTemplate="input">
+              <ng-container>
+                <input
+                  pInputText
+                  type="text"
+                  [(ngModel)]="col.edit"
+                  *ngIf="col.edit == 'true'"
+                />
+              </ng-container>
+
+              <ng-container *ngIf="col.edit == 'false'">
+                {{ rowData[col.field] | number }}
+              </ng-container>
+            </ng-template>
+          </p-cellEditor>
+        </td>
+
+        <td *ngIf="col.type == 'currency'">
+          <p-cellEditor>
+            <ng-template pTemplate="output" class="text-center">
+              {{ rowData[col.field] | currency : "USD" }}
+            </ng-template>
+            <ng-template pTemplate="input">
+              <input
+                pInputText
+                type="text"
+                [(ngModel)]="rowData[col.field]"
+                *ngIf="col.edit == 'true'"
+              />
+              <ng-container *ngIf="col.edit == 'false'">
+                {{ rowData[col.field] | currency : "USD" }}
+              </ng-container>
+            </ng-template>
+          </p-cellEditor>
+        </td>
+        <td *ngIf="col.type == 'obj'">
+          <p-cellEditor>
+            <ng-template pTemplate="output" class="text-center">
+              {{ rowData[col.field]["name"] }}
+            </ng-template>
+            <ng-template pTemplate="input">
+              <input
+                pInputText
+                type="text"
+                [(ngModel)]="rowData[col.field]"
+                *ngIf="col.edit == 'true'"
+              />
+              <ng-container *ngIf="col.edit == 'false'">
+                {{ rowData[col.field]["name"] }}
+              </ng-container>
+            </ng-template>
+          </p-cellEditor>
+        </td>
+      </ng-container>
+      <td style="text-align: center; width: 20%" *ngIf="this.action">
+        <button
+          *ngIf="!editing"
+          pButton
+          pRipple
+          type="button"
+          pInitEditableRow
+          icon="pi pi-pencil"
+          (click)="onRowEditInit2(rowData, ri)"
+          class="p-button-rounded p-button-text"
+        ></button>
+        <button
+          *ngIf="editing"
+          pButton
+          pRipple
+          type="button"
+          pSaveEditableRow
+          icon="pi pi-check"
+          (click)="onRowEditSave(rowData)"
+          class="p-button-rounded p-button-text p-button-success mr-2"
+        ></button>
+        <button
+          *ngIf="editing"
+          pButton
+          pRipple
+          type="button"
+          pCancelEditableRow
+          icon="pi pi-times"
+          (click)="onRowEditCancel(rowData, ri)"
+          class="p-button-rounded p-button-text p-button-danger"
+        ></button>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
+<p-table
+  #dt1
+  [columns]="cols"
+  [value]="col"
+  dataKey="_id"
+  responsiveLayout="scroll"
+  editMode="row"
+  [rows]="10"
+  [paginator]="true"
+  [showCurrentPageReport]="true"
+  styleClass="p-datatable-gridlines"
+  *ngIf="this.type == 'viewShortCodeApprovalRequest'"
+  currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+  [globalFilterFields]="this.searchFields"
+  id="excel-table"
+>
+  <ng-template pTemplate="caption">
+    <div class="flex">
+      <button
+        pButton
+        label="Clear"
+        class="p-button-outlined"
+        icon="pi pi-filter-slash"
+        (click)="clear(dt1); clearFilter()"
+      ></button
+      ><button
+        pButton
+        label="download"
+        class="p-button-outlined ml-3"
+        icon="pi pi-download"
+        (click)="exportExcel()"
+      ></button>
+      <span class="p-input-icon-left ml-auto">
+        <i class="pi pi-search"></i>
+        <input
+          pInputText
+          type="text"
+          (input)="
+            dt1.filterGlobal($event.target.value, 'contains');
+            searchPrint($event)
+          "
+          placeholder="Search Table"
+        />
+      </span>
+    </div>
+  </ng-template>
+
+  <ng-template pTemplate="header" let-columns>
+    <tr>
+      <th *ngFor="let col of columns">
+        <div class="p-d-flex p-jc-between p-ai-center text-center">
+          {{ col.header }}
+          <!-- <p-columnFilter
+            type="text"
+            field="{{ col.field }}"
+            display="menu"
+            *ngIf="!(col.field == 'dateTime')"
+          ></p-columnFilter> -->
+          <i
+            [ngClass]="
+              this.designFlag
+                ? 'pi pi-filter filterBtn'
+                : 'pi pi-filter dateFilterBtn'
+            "
+            *ngIf="col.field == 'dateTime'"
+            (click)="op.toggle($event)"
+            id="dateFilterBtn"
+          ></i>
+          <p-overlayPanel #op>
+            <ng-template pTemplate>
+              <app-calender
+                [accessFrom]="'smsPlus'"
+                [inputInfo]="this.inputInfo[0]"
+                [changeFlag]="this.changeFlag"
+                [selectionMode]="'range'"
+                [inLine]="true"
+                (updateData)="dateFilter($event)"
+                (preSubmit)="preSubmit()"
+                (submit)="onSubmit()"
+              ></app-calender>
+            </ng-template>
+          </p-overlayPanel>
+        </div>
+      </th>
+    </tr>
+  </ng-template>
+
+  <ng-template
+    pTemplate="body"
+    let-rowData
+    let-columns="columns"
+    let-editing="editing"
+    let-ri="rowIndex"
+  >
+    <tr [pEditableRow]="rowData" (click)="onEditUser(rowData)">
+      <ng-container *ngFor="let col of columns">
+        <td *ngIf="col.type == 'text'">
+          <p-cellEditor>
+            <ng-template pTemplate="output">
+              <div class="row justify-content-center">
+                <div class="col-md-11 mt-1 text-center">
+                  {{ rowData[col.field] }}
+                </div>
+              </div>
+            </ng-template>
+          </p-cellEditor>
+        </td>
+
+        <td *ngIf="col.type == 'date'" class="text-center">
+          <p-cellEditor>
+            <ng-template pTemplate="output" class="text-center">
+              Date: {{ rowData[col.field] | date : "dd/MM/yyyy" }}<br />
+              Time: {{ rowData[col.field] | date : "HH:mm " }}
+            </ng-template>
+            <ng-template pTemplate="input">
+              <input
+                pInputText
+                type="text"
+                [(ngModel)]="rowData[col.field]"
+                *ngIf="col.edit == 'true'"
+              />
+              <ng-container *ngIf="col.edit == 'false'" class="text-center">
+                {{ rowData[col.field] | date : "dd/MM/yyyy" }}
+              </ng-container>
+            </ng-template>
+          </p-cellEditor>
+        </td>
+      </ng-container>
+    </tr>
+  </ng-template>
+</p-table>
+<p-table
+  #dt1
+  [columns]="cols"
+  [value]="col"
+  dataKey="_id"
+  responsiveLayout="scroll"
+  editMode="row"
+  [rows]="10"
+  [paginator]="true"
+  [showCurrentPageReport]="true"
+  styleClass="p-datatable-gridlines"
+  *ngIf="this.type == 'sms-reporting'"
+  currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+  [globalFilterFields]="this.searchFields"
+  id="excel-table"
+>
+  <ng-template pTemplate="caption">
+    <div class="flex">
+      <button
+        pButton
+        label="Clear"
+        class="p-button-outlined"
+        icon="pi pi-filter-slash"
+        (click)="clear(dt1); clearFilter()"
+      ></button
+      ><button
+        pButton
+        label="download"
+        class="p-button-outlined ml-3"
+        icon="pi pi-download"
+        (click)="exportExcel()"
+      ></button>
+      <span class="p-input-icon-left ml-auto">
+        <i class="pi pi-search"></i>
+        <input
+          pInputText
+          type="text"
+          (input)="
+            dt1.filterGlobal($event.target.value, 'contains');
+            searchPrint($event)
+          "
+          placeholder="Search Table"
+        />
+      </span>
+    </div>
+  </ng-template>
+
+  <ng-template pTemplate="header" let-columns>
+    <tr>
+      <th *ngFor="let col of columns">
+        <div class="p-d-flex p-jc-between p-ai-center text-center">
+          <!-- <p-tableHeaderCheckbox
+            *ngIf="col.header == 'Name'"
+            [value]="this.headerName"
+          ></p-tableHeaderCheckbox> -->
+          {{ col.header }}
+          <!-- <p-columnFilter
+            type="text"
+            field="{{ col.field }}"
+            display="menu"
+            *ngIf="!(col.field == 'dateTime')"
+          ></p-columnFilter> -->
+          <i
+            [ngClass]="
+              this.designFlag
+                ? 'pi pi-filter filterBtn'
+                : 'pi pi-filter dateFilterBtn'
+            "
+            *ngIf="col.field == 'dateTime'"
+            (click)="date.toggle($event)"
+            id="dateFilterBtn"
+          ></i
+          ><i
+            [ngClass]="
+              this.designFlag2
+                ? 'pi pi-filter filterBtn'
+                : 'pi pi-filter dateFilterBtn'
+            "
+            *ngIf="col.field == 'shortCode'"
+            (click)="sc.toggle($event)"
+            id="dateFilterBtn"
+          ></i>
+          <p-overlayPanel #date>
+            <ng-template pTemplate>
+              <app-calender
+                [accessFrom]="'smsPlus'"
+                [inputInfo]="this.inputInfo[0]"
+                [changeFlag]="this.changeFlag"
+                [selectionMode]="'range'"
+                [inLine]="true"
+                (updateData)="dateFilter($event)"
+                (preSubmit)="preSubmit()"
+                (submit)="onSubmit()"
+              ></app-calender>
+            </ng-template>
+          </p-overlayPanel>
+          <p-overlayPanel #sc>
+            <ng-template pTemplate>
+              <app-drop-down
+                [inputInfo]="this.inputInfo2[0]"
+                [changeFlag]="this.changeFlag"
+                [scrollHeight]="this.inputInfo2[0].scrollHeight"
+                *ngIf="
+                  this.inputInfo2[0] && this.inputInfo2[0].type == 'dropDown'
+                "
+                [data]="this.inputInfo2[0].data"
+                (updateData)="shortCodeFilter($event)"
+                (preSubmit)="preSubmit()"
+                (submit)="onSubmit()"
+              ></app-drop-down>
+            </ng-template>
+          </p-overlayPanel>
+        </div>
+      </th>
+    </tr>
+  </ng-template>
+
+  <ng-template
+    pTemplate="body"
+    let-rowData
+    let-columns="columns"
+    let-editing="editing"
+    let-ri="rowIndex"
+  >
+    <tr [pEditableRow]="rowData" (click)="sendId(rowData.recievedSmsId)">
+      <ng-container *ngFor="let col of columns">
+        <td *ngIf="col.type == 'text'">
+          <p-cellEditor>
+            <ng-template pTemplate="output">
+              <div class="row justify-content-center">
+                <!-- <div class="col-md-1" *ngIf="col.field == 'name'">
+                  <app-check-box
+                    [inputInfo]="this.inputInfo[0]"
+                    [changeFlag]="changeFlag"
+                    (updateData)="updateData($event, this.inputInfo[0].label)"
+                    *ngIf="
+                      this.inputInfo[0] && this.inputInfo[0].type == 'checkBox'
+                    "
+                    (preSubmit)="preSubmit()"
+                    (submit)="onSubmit()"
+                  ></app-check-box>
+                </div> -->
+                <div class="col-md-11 mt-1 text-center">
+                  {{ rowData[col.field] }}
+                </div>
+              </div>
+            </ng-template>
+            <ng-template pTemplate="input">
+              <input
+                pInputText
+                type="text"
+                [(ngModel)]="rowData[col.field]"
+                *ngIf="col.edit == 'true'"
+              />
+              <ng-container *ngIf="col.edit == 'false'">
+                {{ rowData[col.field] }}
+              </ng-container>
+            </ng-template>
+          </p-cellEditor>
+        </td>
+
+        <td *ngIf="col.type == 'date'" class="text-center">
+          <p-cellEditor>
+            <ng-template pTemplate="output" class="text-center">
+              Date: {{ rowData[col.field] | date : "dd/MM/yyyy" }}<br />
+              Time: {{ rowData[col.field] | date : "HH:mm " }}
+            </ng-template>
+            <ng-template pTemplate="input">
+              <input
+                pInputText
+                type="text"
+                [(ngModel)]="rowData[col.field]"
+                *ngIf="col.edit == 'true'"
+              />
+              <ng-container *ngIf="col.edit == 'false'" class="text-center">
+                {{ rowData[col.field] | date : "dd/MM/yyyy" }}
+              </ng-container>
+            </ng-template>
+          </p-cellEditor>
+        </td>
+
+        <td *ngIf="col.type == 'number'">
+          <p-cellEditor>
+            <ng-template
+              pTemplate="output"
+              *ngIf="rowData.purpose == 'transfer'"
+            >
+              <span class="txtClr text-center">
+                {{
+                  rowData[col.field] | currency : rowData[col.field].currency
+                }}
+              </span> </ng-template
+            ><ng-template
+              pTemplate="output"
+              *ngIf="rowData.purpose == 'payment'"
+              class="text-center"
+            >
+              {{ rowData[col.field] | currency : rowData[col.field].currency }}
+            </ng-template>
+            <ng-template pTemplate="input">
+              <ng-container>
+                <input
+                  pInputText
+                  type="text"
+                  [(ngModel)]="col.edit"
+                  *ngIf="col.edit == 'true'"
+                />
+              </ng-container>
+
+              <ng-container *ngIf="col.edit == 'false'">
+                {{ rowData[col.field] | number }}
+              </ng-container>
+            </ng-template>
+          </p-cellEditor>
+        </td>
+        <td *ngIf="col.type == 'checkbox'">
+          <p-cellEditor>
+            <ng-template pTemplate="output" class="text-center">
+              {{ rowData[col.field] }}
+            </ng-template>
+            <ng-template pTemplate="input">
+              <!-- <p-checkbox
+                  [value]="rowData[col.field]"
+                  [(ngModel)]="rowData[col.field]"
+                  *ngIf="col.edit == 'true'"
+                ></p-checkbox> -->
+              <p-inputSwitch
+                [trueValue]="'true'"
+                [falseValue]="'false'"
+                [(ngModel)]="rowData[col.field]"
+              ></p-inputSwitch>
+              <ng-container *ngIf="col.edit == 'false'">
+                {{ rowData[col.field] }}
+              </ng-container>
+            </ng-template>
+          </p-cellEditor>
+        </td>
+        <td *ngIf="col.type == 'currency'">
+          <p-cellEditor>
+            <ng-template pTemplate="output" class="text-center">
+              {{ rowData[col.field] | currency : "USD" }}
+            </ng-template>
+            <ng-template pTemplate="input">
+              <input
+                pInputText
+                type="text"
+                [(ngModel)]="rowData[col.field]"
+                *ngIf="col.edit == 'true'"
+              />
+              <ng-container *ngIf="col.edit == 'false'">
+                {{ rowData[col.field] | currency : "USD" }}
+              </ng-container>
+            </ng-template>
+          </p-cellEditor>
+        </td>
+        <td *ngIf="col.type == 'amountWithCurrency'">
+          <p-cellEditor>
+            <ng-template pTemplate="output" class="text-center">
+              {{
+                rowData[col.field]
+                  | currency : rowData["currency"].toUpperCase()
+              }}
+            </ng-template>
+            <!-- <ng-template pTemplate="input">
+                <input
+                  pInputText
+                  type="text"
+                  [(ngModel)]="rowData[col.field]"
+                  *ngIf="col.edit == 'true'"
+                />
+                <ng-container *ngIf="col.edit == 'false'">
+                  {{ rowData[col.field] | currency: "USD" }}
+                </ng-container>
+              </ng-template> -->
+          </p-cellEditor>
+        </td>
+        <td *ngIf="col.type == 'obj'">
+          <p-cellEditor>
+            <ng-template pTemplate="output" class="text-center">
+              {{ rowData[col.field]["name"] }}
+            </ng-template>
+            <ng-template pTemplate="input">
+              <input
+                pInputText
+                type="text"
+                [(ngModel)]="rowData[col.field]"
+                *ngIf="col.edit == 'true'"
+              />
+              <ng-container *ngIf="col.edit == 'false'">
+                {{ rowData[col.field]["name"] }}
+              </ng-container>
+            </ng-template>
+          </p-cellEditor>
+        </td>
+      </ng-container>
+      <td style="text-align: center; width: 20%" *ngIf="this.action">
+        <!-- <button
+          pButton
+          pRipple
+          type="button"
+          *ngIf="!this.cols[0].justDelete"
+          icon="fas fa-phone-alt"
+          (click)="onCall(rowData)"
+          class="p-button-rounded p-button-text callBtn"
+        ></button> -->
+
+        <button
+          pButton
+          pRipple
+          type="button"
+          *ngIf="!this.cols[0].justDelete"
+          icon="fal fa-comment"
+          (click)="onMessage(rowData)"
+          class="p-button-rounded p-button-text callBtn"
+        ></button>
+
+        <button
+          pButton
+          pRipple
+          type="button"
+          *ngIf="!this.cols[0].justDelete"
+          icon="fas fa-edit"
+          (click)="onEdit(rowData)"
+          class="p-button-rounded p-button-text p-button-info"
+        ></button>
+        <button
+          pButton
+          pRipple
+          type="button"
+          *ngIf="this.cols[0].justDelete || !this.cols[0].justDelete"
+          icon="fas fa-trash-alt"
+          (click)="onDelete(rowData, ri, this.cols[0].justDelete)"
+          class="p-button-rounded p-button-text p-button-danger"
+        ></button>
+      </td>
+    </tr> </ng-template
+></p-table>
+<p-table
+  #dt1
+  [columns]="cols"
+  [value]="col"
+  dataKey="name"
+  responsiveLayout="scroll"
+  editMode="row"
+  [rows]="10"
+  [paginator]="true"
+  [showCurrentPageReport]="true"
+  styleClass="p-datatable-gridlines"
+  *ngIf="this.type == 'campaigns'"
+  currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+  [globalFilterFields]="this.searchFields"
+  id="excel-table"
+>
+  <ng-template pTemplate="caption">
+    <div class="flex">
+      <button
+        pButton
+        label="Clear"
+        class="p-button-outlined"
+        icon="pi pi-filter-slash"
+        (click)="clear(dt1); clearFilter()"
+      ></button
+      ><button
+        pButton
+        label="download"
+        class="p-button-outlined ml-3"
+        icon="pi pi-download"
+        (click)="exportExcel()"
+      ></button>
+      <span class="p-input-icon-left ml-auto">
+        <i class="pi pi-search"></i>
+        <input
+          pInputText
+          type="text"
+          (input)="
+            dt1.filterGlobal($event.target.value, 'contains');
+            searchPrint($event)
+          "
+          placeholder="Search Table"
+        />
+      </span>
+    </div>
+  </ng-template>
+
+  <ng-template pTemplate="header" let-columns>
+    <tr>
+      <th *ngFor="let col of columns">
+        <div class="p-d-flex p-jc-between p-ai-center text-center">
+          {{ col.header }}
+          <!-- <p-columnFilter
+            type="text"
+            field="{{ col.field }}"
+            display="menu"
+            *ngIf="!(col.field == 'dateTime')"
+          ></p-columnFilter> -->
+          <i
+            [ngClass]="
+              this.designFlag
+                ? 'pi pi-filter filterBtn'
+                : 'pi pi-filter dateFilterBtn'
+            "
+            *ngIf="col.field == 'dateTime'"
+            (click)="op.toggle($event)"
+            id="dateFilterBtn"
+          ></i>
+          <p-overlayPanel #op>
+            <ng-template pTemplate>
+              <app-calender
+                [accessFrom]="'smsPlus'"
+                [inputInfo]="this.inputInfo[0]"
+                [changeFlag]="this.changeFlag"
+                [selectionMode]="'range'"
+                [inLine]="true"
+                (updateData)="dateFilter($event)"
+                (preSubmit)="preSubmit()"
+                (submit)="onSubmit()"
+              ></app-calender>
+            </ng-template>
+          </p-overlayPanel>
+        </div>
+      </th>
+    </tr>
+  </ng-template>
+
+  <ng-template
+    pTemplate="body"
+    let-rowData
+    let-columns="columns"
+    let-expanded="expanded"
+  >
+    <tr [pEditableRow]="rowData">
+      <ng-container *ngFor="let col of columns">
+        <td *ngIf="col.type == 'text'">
+          <p-cellEditor>
+            <ng-template pTemplate="output">
+              <div class="row justify-content-center">
+                <div class="col-md-11 mt-1 text-center">
+                  {{ rowData[col.field] }}
+                </div>
+              </div>
+            </ng-template>
+            <!-- <ng-template pTemplate="input">
+              <input
+                pInputText
+                type="text"
+                [(ngModel)]="rowData[col.field]"
+                *ngIf="col.edit == 'true'"
+              />
+              <ng-container *ngIf="col.edit == 'false'">
+                {{ rowData[col.field] }}
+              </ng-container>
+            </ng-template> -->
+          </p-cellEditor>
+        </td>
+
+        <td *ngIf="col.type == 'date'" class="text-center">
+          <p-cellEditor>
+            <ng-template pTemplate="output" class="text-center">
+              Date: {{ rowData[col.field] | date : "dd/MM/yyyy" }}<br />
+              Time: {{ rowData[col.field] | date : "HH:mm " }}
+            </ng-template>
+            <!-- <ng-template pTemplate="input">
+              <input
+                pInputText
+                type="text"
+                [(ngModel)]="rowData[col.field]"
+                *ngIf="col.edit == 'true'"
+              />
+              <ng-container *ngIf="col.edit == 'false'" class="text-center">
+                {{ rowData[col.field] | date: "dd/MM/yyyy" }}
+              </ng-container>
+            </ng-template> -->
+          </p-cellEditor>
+        </td>
+
+        <td *ngIf="col.type == 'number'">
+          <p-cellEditor>
+            <ng-template
+              pTemplate="output"
+              *ngIf="rowData.purpose == 'transfer'"
+            >
+              <span class="txtClr text-center">
+                {{
+                  rowData[col.field] | currency : rowData[col.field].currency
+                }}
+              </span> </ng-template
+            ><ng-template
+              pTemplate="output"
+              *ngIf="rowData.purpose == 'payment'"
+              class="text-center"
+            >
+              {{ rowData[col.field] | currency : rowData[col.field].currency }}
+            </ng-template>
+            <!-- <ng-template pTemplate="input">
+              <ng-container>
+                <input
+                  pInputText
+                  type="text"
+                  [(ngModel)]="col.edit"
+                  *ngIf="col.edit == 'true'"
+                />
+              </ng-container>
+
+              <ng-container *ngIf="col.edit == 'false'">
+                {{ rowData[col.field] | number }}
+              </ng-container>
+            </ng-template> -->
+          </p-cellEditor>
+        </td>
+        <td *ngIf="col.type == 'currency'">
+          <p-cellEditor>
+            <ng-template pTemplate="output" class="text-center">
+              {{ rowData[col.field] | currency : "USD" }}
+            </ng-template>
+            <!-- <ng-template pTemplate="input">
+              <input
+                pInputText
+                type="text"
+                [(ngModel)]="rowData[col.field]"
+                *ngIf="col.edit == 'true'"
+              />
+              <ng-container *ngIf="col.edit == 'false'">
+                {{ rowData[col.field] | currency: "USD" }}
+              </ng-container>
+            </ng-template> -->
+          </p-cellEditor>
+        </td>
+        <td *ngIf="col.type == 'amountWithCurrency'">
+          <p-cellEditor>
+            <ng-template pTemplate="output" class="text-center">
+              {{
+                rowData[col.field]
+                  | currency : rowData["currency"].toUpperCase()
+              }}
+            </ng-template>
+            <!-- <ng-template pTemplate="input">
+                <input
+                  pInputText
+                  type="text"
+                  [(ngModel)]="rowData[col.field]"
+                  *ngIf="col.edit == 'true'"
+                />
+                <ng-container *ngIf="col.edit == 'false'">
+                  {{ rowData[col.field] | currency: "USD" }}
+                </ng-container>
+              </ng-template> -->
+          </p-cellEditor>
+        </td>
+        <td *ngIf="col.type == 'obj'">
+          <p-cellEditor>
+            <ng-template pTemplate="output" class="text-center">
+              {{ rowData[col.field]["name"] }}
+            </ng-template>
+            <!-- <ng-template pTemplate="input">
+              <input
+                pInputText
+                type="text"
+                [(ngModel)]="rowData[col.field]"
+                *ngIf="col.edit == 'true'"
+              />
+              <ng-container *ngIf="col.edit == 'false'">
+                {{ rowData[col.field]["name"] }}
+              </ng-container>
+            </ng-template> -->
+          </p-cellEditor>
+        </td>
+      </ng-container>
+      <td style="text-align: center; width: 20%" *ngIf="this.action">
+        <button
+          pButton
+          pRipple
+          type="button"
+          *ngIf="!this.cols[0].justDelete && !this.deleteButtonFlag"
+          icon="fad fa-edit"
+          (click)="onEdit(rowData)"
+          class="p-button-rounded p-button-text p-button-info"
+        ></button>
+        <button
+          pButton
+          pRipple
+          type="button"
+          *ngIf="!this.cols[0].justDelete && !this.deleteButtonFlag"
+          icon="fad fa-chart-bar"
+          (click)="onReport(rowData)"
+          class="p-button-rounded p-button-text p-button-info"
+        ></button>
+        <!-- <button
+          pButton
+          pRipple
+          type="button"
+          *ngIf="!this.cols[0].justDelete"
+          icon="fas fa-edit"
+          (click)="onEdit(rowData)"
+          class="p-button-rounded p-button-text p-button-info"
+        ></button> -->
+        <button
+          pButton
+          pRipple
+          type="button"
+          *ngIf="
+            (this.cols[0].justDelete || !this.cols[0].justDelete) &&
+            !this.deleteButtonFlag
+          "
+          icon="fas fa-trash-alt"
+          (click)="onDeleteButton()"
+          class="p-button-rounded p-button-text p-button-danger"
+        ></button>
+        <button
+          pButton
+          pRipple
+          type="button"
+          *ngIf="!this.cols[0].justDelete && this.deleteButtonFlag"
+          icon="fas fa-check"
+          (click)="onDelete(rowData, ri, this.cols[0].justDelete)"
+          class="p-button-rounded p-button-text p-button-success"
+        ></button>
+        <button
+          pButton
+          pRipple
+          type="button"
+          *ngIf="!this.cols[0].justDelete && this.deleteButtonFlag"
+          icon="fas fa-times"
+          (click)="onDeleteButton()"
+          class="p-button-rounded p-button-text p-button-danger"
+        ></button>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
+<p-table
+  #dt1
+  [columns]="cols"
+  [value]="col"
+  dataKey="_id"
+  responsiveLayout="scroll"
+  editMode="row"
+  [rows]="10"
+  [paginator]="true"
+  [showCurrentPageReport]="true"
+  styleClass="p-datatable-gridlines"
+  *ngIf="this.type == 'Logs'"
+  currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+  [globalFilterFields]="this.searchFields"
+  id="excel-table"
+>
+  <ng-template pTemplate="caption">
+    <div class="flex">
+      <button
+        pButton
+        label="Clear"
+        class="p-button-outlined"
+        icon="pi pi-filter-slash"
+        (click)="clear(dt1); clearFilter()"
+      ></button
+      ><button
+        pButton
+        label="download"
+        class="p-button-outlined ml-3"
+        icon="pi pi-download"
+        (click)="exportExcel()"
+      ></button>
+      <span class="p-input-icon-left ml-auto">
+        <i class="pi pi-search"></i>
+        <input
+          pInputText
+          type="text"
+          (input)="
+            dt1.filterGlobal($event.target.value, 'contains');
+            searchPrint($event)
+          "
+          placeholder="Search Table"
+        />
+      </span>
+    </div>
+  </ng-template>
+
+  <ng-template pTemplate="header" let-columns>
+    <tr>
+      <th *ngFor="let col of columns">
+        <div class="p-d-flex p-jc-between p-ai-center text-center">
+          {{ col.header }}
+          <!-- <p-columnFilter
+            type="text"
+            field="{{ col.field }}"
+            display="menu"
+            *ngIf="col.field == 'type'"
+          ></p-columnFilter> -->
+          <i
+            [ngClass]="
+              this.designFlag
+                ? 'pi pi-filter filterBtn'
+                : 'pi pi-filter dateFilterBtn'
+            "
+            *ngIf="col.field == 'dateTime'"
+            (click)="op.toggle($event)"
+            id="dateFilterBtn"
+          ></i>
+          <p-overlayPanel #op>
+            <ng-template pTemplate>
+              <app-calender
+                [accessFrom]="'smsPlus'"
+                [inputInfo]="this.inputInfo[0]"
+                [changeFlag]="this.changeFlag"
+                [selectionMode]="'range'"
+                [inLine]="true"
+                (updateData)="dateFilter($event)"
+                (preSubmit)="preSubmit()"
+                (submit)="onSubmit()"
+              ></app-calender>
+            </ng-template>
+          </p-overlayPanel>
+          <i
+            [ngClass]="
+              this.designFlag2
+                ? 'pi pi-filter filterBtn'
+                : 'pi pi-filter dateFilterBtn'
+            "
+            *ngIf="col.field == 'type'"
+            (click)="op1.toggle($event)"
+            id="dateFilterBtn"
+          ></i>
+          <p-overlayPanel #op1>
+            <ng-template pTemplate>
+              <p-dropdown
+                [options]="logTypes"
+                [(ngModel)]="selectedCity"
+                optionLabel="name"
+                (onChange)="logTypeFilter($event)"
+              ></p-dropdown>
+            </ng-template>
+          </p-overlayPanel>
+        </div>
+      </th>
+    </tr>
+  </ng-template>
+
+  <ng-template
+    pTemplate="body"
+    let-rowData
+    let-columns="columns"
+    let-editing="editing"
+    let-ri="rowIndex"
+  >
+    <tr [pEditableRow]="rowData" (click)="sendId(rowData.recievedSmsId)">
+      <ng-container *ngFor="let col of columns">
+        <td *ngIf="col.type == 'text'">
+          <p-cellEditor>
+            <ng-template pTemplate="output">
+              <div class="row justify-content-center">
+                <!-- <div class="col-md-1" *ngIf="col.field == 'name'">
+                  <app-check-box
+                    [inputInfo]="this.inputInfo[0]"
+                    [changeFlag]="changeFlag"
+                    (updateData)="updateData($event, this.inputInfo[0].label)"
+                    *ngIf="
+                      this.inputInfo[0] && this.inputInfo[0].type == 'checkBox'
+                    "
+                    (preSubmit)="preSubmit()"
+                    (submit)="onSubmit()"
+                  ></app-check-box>
+                </div> -->
+                <div class="col-md-11 mt-1 text-center">
+                  {{ rowData[col.field] }}
+                </div>
+              </div>
+            </ng-template>
+            <ng-template pTemplate="input">
+              <input
+                pInputText
+                type="text"
+                [(ngModel)]="rowData[col.field]"
+                *ngIf="col.edit == 'true'"
+              />
+              <ng-container *ngIf="col.edit == 'false'">
+                {{ rowData[col.field] }}
+              </ng-container>
+            </ng-template>
+          </p-cellEditor>
+        </td>
+
+        <td *ngIf="col.type == 'dateTime'" class="text-center">
+          <p-cellEditor>
+            <ng-template pTemplate="output" class="text-center">
+              Date: {{ rowData[col.field] | date : "dd/MM/yyyy" }}<br />
+              Time: {{ rowData[col.field] | date : "HH:mm " }}
+            </ng-template>
+            <ng-template pTemplate="input">
+              <input
+                pInputText
+                type="text"
+                [(ngModel)]="rowData[col.field]"
+                *ngIf="col.edit == 'true'"
+              />
+              <ng-container *ngIf="col.edit == 'false'" class="text-center">
+                {{ rowData[col.field] | date : "dd/MM/yyyy" }}
+              </ng-container>
+            </ng-template>
+          </p-cellEditor>
+        </td>
+
+        <td *ngIf="col.type == 'number'">
+          <p-cellEditor>
+            <ng-template
+              pTemplate="output"
+              *ngIf="rowData.purpose == 'transfer'"
+            >
+              <span class="txtClr text-center">
+                {{
+                  rowData[col.field] | currency : rowData[col.field].currency
+                }}
+              </span> </ng-template
+            ><ng-template
+              pTemplate="output"
+              *ngIf="rowData.purpose == 'payment'"
+              class="text-center"
+            >
+              {{ rowData[col.field] | currency : rowData[col.field].currency }}
+            </ng-template>
+            <ng-template pTemplate="input">
+              <ng-container>
+                <input
+                  pInputText
+                  type="text"
+                  [(ngModel)]="col.edit"
+                  *ngIf="col.edit == 'true'"
+                />
+              </ng-container>
+
+              <ng-container *ngIf="col.edit == 'false'">
+                {{ rowData[col.field] | number }}
+              </ng-container>
+            </ng-template>
+          </p-cellEditor>
+        </td>
+        <td *ngIf="col.type == 'checkbox'">
+          <p-cellEditor>
+            <ng-template pTemplate="output" class="text-center">
+              {{ rowData[col.field] }}
+            </ng-template>
+            <ng-template pTemplate="input">
+              <!-- <p-checkbox
+                  [value]="rowData[col.field]"
+                  [(ngModel)]="rowData[col.field]"
+                  *ngIf="col.edit == 'true'"
+                ></p-checkbox> -->
+              <p-inputSwitch
+                [trueValue]="'true'"
+                [falseValue]="'false'"
+                [(ngModel)]="rowData[col.field]"
+              ></p-inputSwitch>
+              <ng-container *ngIf="col.edit == 'false'">
+                {{ rowData[col.field] }}
+              </ng-container>
+            </ng-template>
+          </p-cellEditor>
+        </td>
+        <td *ngIf="col.type == 'currency'">
+          <p-cellEditor>
+            <ng-template pTemplate="output" class="text-center">
+              {{ rowData[col.field] | currency : "USD" }}
+            </ng-template>
+            <ng-template pTemplate="input">
+              <input
+                pInputText
+                type="text"
+                [(ngModel)]="rowData[col.field]"
+                *ngIf="col.edit == 'true'"
+              />
+              <ng-container *ngIf="col.edit == 'false'">
+                {{ rowData[col.field] | currency : "USD" }}
+              </ng-container>
+            </ng-template>
+          </p-cellEditor>
+        </td>
+        <td *ngIf="col.type == 'amountWithCurrency'">
+          <p-cellEditor>
+            <ng-template pTemplate="output" class="text-center">
+              {{
+                rowData[col.field]
+                  | currency : rowData["currency"].toUpperCase()
+              }}
+            </ng-template>
+            <!-- <ng-template pTemplate="input">
+                <input
+                  pInputText
+                  type="text"
+                  [(ngModel)]="rowData[col.field]"
+                  *ngIf="col.edit == 'true'"
+                />
+                <ng-container *ngIf="col.edit == 'false'">
+                  {{ rowData[col.field] | currency: "USD" }}
+                </ng-container>
+              </ng-template> -->
+          </p-cellEditor>
+        </td>
+        <td *ngIf="col.type == 'obj'">
+          <p-cellEditor>
+            <ng-template pTemplate="output" class="text-center">
+              {{ rowData[col.field]["name"] }}
+            </ng-template>
+            <ng-template pTemplate="input">
+              <input
+                pInputText
+                type="text"
+                [(ngModel)]="rowData[col.field]"
+                *ngIf="col.edit == 'true'"
+              />
+              <ng-container *ngIf="col.edit == 'false'">
+                {{ rowData[col.field]["name"] }}
+              </ng-container>
+            </ng-template>
+          </p-cellEditor>
+        </td>
+      </ng-container>
+      <!-- <td style="text-align: center; width: 20%" *ngIf="this.action">
+         <button
+          pButton
+          pRipple
+          type="button"
+          *ngIf="this.cols[0].justDelete || !this.cols[0].justDelete"
+          icon="fas fa-trash-alt"
+          (click)="onDelete(rowData, ri, this.cols[0].justDelete)"
+          class="p-button-rounded p-button-text p-button-danger"
+        ></button>
+      </td>-->
+    </tr>
+  </ng-template></p-table
+>
+<p-table
+  #dt1
+  [columns]="cols"
+  [value]="col"
+  dataKey="_id"
+  responsiveLayout="scroll"
+  editMode="row"
+  [rows]="10"
+  [paginator]="false"
+  [showCurrentPageReport]="true"
+  styleClass="p-datatable-gridlines"
+  *ngIf="this.type == 'contacts'"
+  currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+  [globalFilterFields]="this.searchFields"
+  id="excel-table"
+>
+  <ng-template pTemplate="caption">
+    <div class="flex">
+      <button
+        pButton
+        label="Clear"
+        class="p-button-outlined"
+        icon="pi pi-filter-slash"
+        (click)="clear(dt1); clearFilter()"
+      ></button
+      ><button
+        pButton
+        label="download"
+        class="p-button-outlined ml-3"
+        icon="pi pi-download"
+        (click)="exportExcel()"
+      ></button>
+      <span class="p-input-icon-left ml-auto">
+        <i class="pi pi-search"></i>
+        <input
+          pInputText
+          type="text"
+          (input)="
+            dt1.filterGlobal($event.target.value, 'contains');
+            searchPrint($event)
+          "
+          placeholder="Search Table"
+        />
+      </span>
+    </div>
+  </ng-template>
+
+  <ng-template pTemplate="header" let-columns>
+    <tr>
+      <th *ngFor="let col of columns">
+        <div class="p-d-flex p-jc-between p-ai-center text-center">
+          <!-- <p-tableHeaderCheckbox
+            *ngIf="col.header == 'Name'"
+            [value]="this.headerName"
+          ></p-tableHeaderCheckbox> -->
+          {{ col.header }}
+          <!-- <p-columnFilter
+            type="text"
+            field="{{ col.field }}"
+            display="menu"
+            *ngIf="!(col.field == 'dateTime')"
+          ></p-columnFilter> -->
+          <i
+            [ngClass]="
+              this.designFlag
+                ? 'pi pi-filter filterBtn'
+                : 'pi pi-filter dateFilterBtn'
+            "
+            *ngIf="col.field == 'dateTime'"
+            (click)="op.toggle($event)"
+            id="dateFilterBtn"
+          ></i>
+          <p-overlayPanel #op>
+            <ng-template pTemplate>
+              <app-calender
+                [accessFrom]="'smsPlus'"
+                [inputInfo]="this.inputInfo[0]"
+                [changeFlag]="this.changeFlag"
+                [selectionMode]="'range'"
+                [inLine]="true"
+                (updateData)="dateFilter($event)"
+                (preSubmit)="preSubmit()"
+                (submit)="onSubmit()"
+              ></app-calender>
+            </ng-template>
+          </p-overlayPanel>
+        </div>
+      </th>
+    </tr>
+  </ng-template>
+
+  <ng-template
+    pTemplate="body"
+    let-rowData
+    let-columns="columns"
+    let-editing="editing"
+    let-ri="rowIndex"
+  >
+    <tr [pEditableRow]="rowData" (click)="sendId(rowData.recievedSmsId)">
+      <ng-container *ngFor="let col of columns">
+        <td *ngIf="col.type == 'text'">
+          <p-cellEditor>
+            <ng-template pTemplate="output">
+              <div class="row justify-content-center">
+                <!-- <div class="col-md-1" *ngIf="col.field == 'name'">
+                  <app-check-box
+                    [inputInfo]="this.inputInfo[0]"
+                    [changeFlag]="changeFlag"
+                    (updateData)="updateData($event, this.inputInfo[0].label)"
+                    *ngIf="
+                      this.inputInfo[0] && this.inputInfo[0].type == 'checkBox'
+                    "
+                    (preSubmit)="preSubmit()"
+                    (submit)="onSubmit()"
+                  ></app-check-box>
+                </div> -->
+                <div class="text-center">
+                  {{ rowData[col.field] }}
+                </div>
+              </div>
+            </ng-template>
+            <ng-template pTemplate="input">
+              <input
+                pInputText
+                type="text"
+                [(ngModel)]="rowData[col.field]"
+                *ngIf="col.edit == 'true'"
+              />
+              <ng-container *ngIf="col.edit == 'false'">
+                {{ rowData[col.field] }}
+              </ng-container>
+            </ng-template>
+          </p-cellEditor>
+        </td>
+        <td *ngIf="col.type == 'email'">
+          <p-cellEditor>
+            <ng-template pTemplate="output">
+              <div class="row justify-content-center">
+                <div class="text-center">
+                  {{ rowData[col.field] }}
+                </div>
+              </div>
+            </ng-template>
+            <ng-template pTemplate="input">
+              <input
+                pInputText
+                type="text"
+                [(ngModel)]="rowData[col.field]"
+                *ngIf="col.edit == 'true'"
+              />
+              <ng-container *ngIf="col.edit == 'false'">
+                {{ rowData[col.field] }}
+              </ng-container>
+            </ng-template>
+          </p-cellEditor>
+        </td>
+
+        <td *ngIf="col.type == 'date'" class="text-center">
+          <p-cellEditor>
+            <ng-template pTemplate="output" class="text-center">
+              Date: {{ rowData[col.field] | date : "dd/MM/yyyy" }}<br />
+              Time: {{ rowData[col.field] | date : "HH:mm " }}
+            </ng-template>
+            <ng-template pTemplate="input">
+              <input
+                pInputText
+                type="text"
+                [(ngModel)]="rowData[col.field]"
+                *ngIf="col.edit == 'true'"
+              />
+              <ng-container *ngIf="col.edit == 'false'" class="text-center">
+                {{ rowData[col.field] | date : "dd/MM/yyyy" }}
+              </ng-container>
+            </ng-template>
+          </p-cellEditor>
+        </td>
+
+        <td *ngIf="col.type == 'number'">
+          <p-cellEditor>
+            <ng-template
+              pTemplate="output"
+              *ngIf="rowData.purpose == 'transfer'"
+            >
+              <span class="txtClr text-center">
+                {{
+                  rowData[col.field] | currency : rowData[col.field].currency
+                }}
+              </span> </ng-template
+            ><ng-template
+              pTemplate="output"
+              *ngIf="rowData.purpose == 'payment'"
+              class="text-center"
+            >
+              {{ rowData[col.field] | currency : rowData[col.field].currency }}
+            </ng-template>
+            <ng-template pTemplate="input">
+              <ng-container>
+                <input
+                  pInputText
+                  type="text"
+                  [(ngModel)]="col.edit"
+                  *ngIf="col.edit == 'true'"
+                />
+              </ng-container>
+
+              <ng-container *ngIf="col.edit == 'false'">
+                {{ rowData[col.field] | number }}
+              </ng-container>
+            </ng-template>
+          </p-cellEditor>
+        </td>
+        <td *ngIf="col.type == 'checkbox'">
+          <p-cellEditor>
+            <ng-template pTemplate="output" class="text-center">
+              {{ rowData[col.field] }}
+            </ng-template>
+            <ng-template pTemplate="input">
+              <!-- <p-checkbox
+                  [value]="rowData[col.field]"
+                  [(ngModel)]="rowData[col.field]"
+                  *ngIf="col.edit == 'true'"
+                ></p-checkbox> -->
+              <p-inputSwitch
+                [trueValue]="'true'"
+                [falseValue]="'false'"
+                [(ngModel)]="rowData[col.field]"
+              ></p-inputSwitch>
+              <ng-container *ngIf="col.edit == 'false'">
+                {{ rowData[col.field] }}
+              </ng-container>
+            </ng-template>
+          </p-cellEditor>
+        </td>
+        <td *ngIf="col.type == 'currency'">
+          <p-cellEditor>
+            <ng-template pTemplate="output" class="text-center">
+              {{ rowData[col.field] | currency : "USD" }}
+            </ng-template>
+            <ng-template pTemplate="input">
+              <input
+                pInputText
+                type="text"
+                [(ngModel)]="rowData[col.field]"
+                *ngIf="col.edit == 'true'"
+              />
+              <ng-container *ngIf="col.edit == 'false'">
+                {{ rowData[col.field] | currency : "USD" }}
+              </ng-container>
+            </ng-template>
+          </p-cellEditor>
+        </td>
+        <td *ngIf="col.type == 'amountWithCurrency'">
+          <p-cellEditor>
+            <ng-template pTemplate="output" class="text-center">
+              {{
+                rowData[col.field]
+                  | currency : rowData["currency"].toUpperCase()
+              }}
+            </ng-template>
+            <!-- <ng-template pTemplate="input">
+                <input
+                  pInputText
+                  type="text"
+                  [(ngModel)]="rowData[col.field]"
+                  *ngIf="col.edit == 'true'"
+                />
+                <ng-container *ngIf="col.edit == 'false'">
+                  {{ rowData[col.field] | currency: "USD" }}
+                </ng-container>
+              </ng-template> -->
+          </p-cellEditor>
+        </td>
+        <td *ngIf="col.type == 'obj'">
+          <p-cellEditor>
+            <ng-template pTemplate="output" class="text-center">
+              {{ rowData[col.field]["name"] }}
+            </ng-template>
+            <ng-template pTemplate="input">
+              <input
+                pInputText
+                type="text"
+                [(ngModel)]="rowData[col.field]"
+                *ngIf="col.edit == 'true'"
+              />
+              <ng-container *ngIf="col.edit == 'false'">
+                {{ rowData[col.field]["name"] }}
+              </ng-container>
+            </ng-template>
+          </p-cellEditor>
+        </td>
+      </ng-container>
+      <td style="text-align: center; width: 20%" *ngIf="this.action">
+        <!-- <button
+          pButton
+          pRipple
+          type="button"
+          *ngIf="!this.cols[0].justDelete"
+          icon="fas fa-phone-alt"
+          (click)="onCall(rowData)"
+          class="p-button-rounded p-button-text callBtn"
+        ></button> -->
+
+        <button
+          pButton
+          pRipple
+          type="button"
+          *ngIf="!this.cols[0].justDelete"
+          icon="fal fa-comment"
+          (click)="onMessage(rowData)"
+          class="p-button-rounded p-button-text callBtn"
+        ></button>
+
+        <button
+          pButton
+          pRipple
+          type="button"
+          *ngIf="!this.cols[0].justDelete"
+          icon="fas fa-edit"
+          (click)="onEdit(rowData)"
+          class="p-button-rounded p-button-text p-button-info"
+        ></button>
+        <button
+          pButton
+          pRipple
+          type="button"
+          *ngIf="this.cols[0].justDelete || !this.cols[0].justDelete"
+          icon="fas fa-trash-alt"
+          (click)="onDelete(rowData, ri, this.cols[0].justDelete)"
+          class="p-button-rounded p-button-text p-button-danger"
+        ></button>
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template class="footer" pTemplate="footer">
+    <div class="paginator-container">
+      <app-paginator
+        [limit]="10"
+        [totalRecords]="totalNoOfRecords"
+        (paginatorValuesChange)="updatePaginator($event)"
+      ></app-paginator>
+    </div>
+  </ng-template>
+</p-table>

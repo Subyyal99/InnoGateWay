@@ -1,0 +1,154 @@
+<div class="contact-list-conatiner">
+  <div class="row">
+    <div class="col-12 text-center pb-0">
+      <h3>Contact lists</h3>
+    </div>
+  </div>
+  <div class="bg">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <app-text-box
+          [inputInfo]="this.inputInfo[0]"
+          [changeFlag]="this.changeFlag"
+          *ngIf="this.inputInfo[0].type == 'text2'"
+          (updateData)="updateData($event, this.inputInfo[0].label)"
+          (preSubmit)="preSubmit()"
+          (submit)="onSubmit()"
+        ></app-text-box>
+      </div>
+      <div class="col-md-8">
+        <app-drop-down
+          [inputInfo]="this.inputInfo[1]"
+          [changeFlag]="this.changeFlag"
+          [scrollHeight]="'100px'"
+          *ngIf="this.inputInfo[1].type == 'dropDown'"
+          [data]="this.inputInfo[1].data"
+          (updateData)="updateData($event, this.inputInfo[1].label)"
+          (preSubmit)="preSubmit()"
+          (submit)="onSubmit()"
+        ></app-drop-down>
+      </div>
+
+      <div class="col-md-8 text-end">
+        <app-button
+          [icon]="' fas fa-search'"
+          [iconPos]="'center'"
+          [type]="'type'"
+          [bgColor]="'#FFFF'"
+          [color]="'#000'"
+          (button)="preSubmit()"
+        ></app-button>
+      </div>
+      <div class="col-md-8 pr-8 text-start">
+        <p>
+          <i class="fas fa-exclamation-circle"></i>Please Enter Maximum 2
+          characters to search
+        </p>
+      </div>
+      <div class="col-md-8 text-start">
+        <div class="row">
+          <div class="col-md-8 col-lg-8 col-xl-6 mr-2 cnc-btn">
+            <app-button
+              [icon]="' fad fa-book-open'"
+              [label]="'Create New Contact List'"
+              [iconPos]="'left'"
+              [type]="'type'"
+              [bgColor]="'#55A8FD'"
+              [color]="'#fff'"
+              (button)="createNewContactList()"
+            ></app-button>
+          </div>
+          <div class="col-md-3 col-xl-2 imp-btn">
+            <app-button
+              [icon]="'fas fa-file-import'"
+              [label]="'Import'"
+              [iconPos]="'center'"
+              [type]="'type'"
+              [bgColor]="'#55A8FD'"
+              [color]="'#fff'"
+              (button)="import()"
+            ></app-button>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-12"></div>
+    </div>
+  </div>
+  <div class="bg2 mt-1" *ngIf="this.groupContactListsInfo.length > 0">
+    <div class="row">
+      <div class="col-lg-12">
+        <p-accordion
+          [multiple]="false"
+          (onOpen)="openContactListAccordian($event)"
+        >
+          <p-accordionTab
+            *ngFor="let box of this.groupContactListsInfo"
+            icon="'pi-delete-left'"
+            [transitionOptions]="'100ms'"
+          >
+            <ng-template pTemplate="header">
+              {{ box.name | titlecase
+              }}<i
+                class="deleteContactList pi pi-trash"
+                (click)="
+                  contactListId = box.id; this.deleteContactListFlag = true
+                "
+              ></i>
+              <!-- <i
+                *ngIf="!this.deleteContactListFlag"
+                *ngIf="box.deleteFlag"
+                class="deleteContactListCheck pi pi-check"
+                (click)="deleteContactList(box.id)"
+              ></i
+              ><i
+                *ngIf="box.deleteFlag"
+                class="deleteContactList pi pi-times"
+                (click)="box.deleteFlag = false"
+              ></i> -->
+            </ng-template>
+            <div *ngIf="this.spinnerFlags == 'loaded'">
+              <span *ngIf="this.tableInfo.length > 0"
+                ><app-table
+                  [cols]="this.tableHeaders"
+                  [col]="this.tableInfo"
+                  [action]="'yes'"
+                  [totalNoOfRecords]="totalContactListContactsRecords"
+                  [type]="'contacts'"
+                  (updatedData)="onDelete($event)"
+                  (paginator)="updateContactGroupsContacts($event)"
+                ></app-table
+              ></span>
+              <span *ngIf="this.tableInfo.length == 0"
+                ><p>No Contacts Avaiable</p></span
+              >
+            </div>
+            <div class="d-flex" *ngIf="this.spinnerFlags == 'loading'">
+              <div>
+                <p-progressSpinner
+                  [style]="{ width: '20px', height: '20px' }"
+                  class="pt-1"
+                ></p-progressSpinner>
+              </div>
+              <div class="ml-2">
+                <p>Loading...</p>
+              </div>
+            </div>
+          </p-accordionTab>
+          <!-- <p-accordionTab header="Header 2"> Content 2 </p-accordionTab>
+          <p-accordionTab header="Header 3"> Content 3 </p-accordionTab> --> </p-accordion
+        ><app-paginator
+          [limit]="10"
+          [totalRecords]="totalContactListRecords"
+          (paginatorValuesChange)="updateContactGroups($event)"
+        ></app-paginator>
+      </div>
+    </div>
+  </div>
+  <app-dialog
+    [type]="'contactList'"
+    [openDialog]="this.deleteContactListFlag"
+    (close)="this.deleteContactListFlag = false"
+    (updateData)="updatedDialog($event, contactListId)"
+  ></app-dialog>
+</div>

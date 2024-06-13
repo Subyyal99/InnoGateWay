@@ -1,0 +1,75 @@
+<div class="bg">
+  <div class="row" *ngFor="let box of this.inputInfo">
+    <div class="col-md-2 pt-3 label">{{ box.label | capitalization }}</div>
+    <div class="col-md-10">
+      <app-text-box
+        [inputInfo]="box"
+        [changeFlag]="this.changeFlag"
+        *ngIf="box.type == 'text2'"
+        (updateData)="updateData($event, box.modelName)"
+        (preSubmit)="preSubmit()"
+        (submit)="onSubmit()"
+      ></app-text-box>
+      <!-- <app-drop-down
+        [inputInfo]="box"
+        [changeFlag]="this.changeFlag"
+        *ngIf="box.type == 'dropDown'"
+        [data]="box.data"
+        (updateData)="updateData($event.name, box.modelName)"
+        (submit)="onSubmit()"
+        (preSubmit)="preSubmit()"
+      >
+      </app-drop-down>
+      <app-check-box
+        [inputInfo]="box"
+        [changeFlag]="changeFlag"
+        (updateData)="updateData($event, box)"
+        *ngIf="box.type == 'checkBox'"
+        (preSubmit)="preSubmit()"
+        (submit)="onSubmit()"
+      ></app-check-box> -->
+    </div>
+  </div>
+  <div class="mt-4">
+    <h4 class="line pb-2">Custom Fields</h4>
+    <p>You can add some custom fields that apply to contacts in this List.</p>
+    <p class="mt-2">All Lists always include the following Fields:</p>
+    <ul>
+      <!-- <li>Family Name</li>
+      <li>Given Name</li> -->
+      <li>Name</li>
+      <li>Mobile Number</li>
+      <li>Email Address</li>
+    </ul>
+  </div>
+  <div *ngIf="this.inputTableInfo.length > 0">
+    <app-input-table
+      [changeFlag]="changeTableFlag"
+      [cols]="this.inputTableHeaders"
+      [col]="this.inputTableInfo"
+      [textAreaFlag]="this.textAreaFlag"
+      (update)="this.updateTable($event)"
+      (submit)="onTableSubmit()"
+      (updatedData)="data($event)"
+    ></app-input-table>
+  </div>
+  <div class="mt-5">
+    <app-split-button
+      [label]="'Add Field'"
+      [items]="this.items"
+      [bgColor]="'#fff'"
+      [icon]="'fas fa-plus'"
+    ></app-split-button>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col-md-12 col-xl-4 col-lg-4 add-btn">
+      <app-button
+        [label]="'Add Contact List'"
+        [bgColor]="'#2196F3'"
+        [fontSize]="'12px'"
+        [color]="'#ffff'"
+        (button)="preSubmit()"
+      ></app-button>
+    </div>
+  </div>
+</div>

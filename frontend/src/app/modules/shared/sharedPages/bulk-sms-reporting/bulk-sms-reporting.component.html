@@ -1,0 +1,12 @@
+<div class="bg">
+  <h4 class="text-center"> Bulk Sms</h4>
+  <div *ngIf="this.tableInfo">
+    <app-table
+      [cols]="this.tableHeaders"
+      [col]="this.tableInfo"
+      [type]="'sms-reporting'"
+      [fileName]="'Single Sms.xlsx'"
+      [inputInfo2]="this.inputInfo"
+    ></app-table>
+  </div>
+</div>

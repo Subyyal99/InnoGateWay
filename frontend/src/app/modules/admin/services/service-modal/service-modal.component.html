@@ -1,0 +1,113 @@
+<div class="container-fluid main-wrapper">
+  <div class="row">
+    <p-dialog
+      [modal]="true"
+      [(visible)]="visible"
+      [breakpoints]="{ '960px': '50vw', '640px': '75vw' }"
+      [style]="{ width: '65vw', height: '34vw' }"
+      [draggable]="false"
+      [resizable]="false"
+      [closeOnEscape]="false"
+    >
+      <div class="customModal">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal_header">
+              <div class="media-body">
+                <h4>
+                  Add Service
+                  <span class="close" (click)="closeModel()"
+                    ><i><img src="assets/closeBlue.svg" alt="" /></i
+                  ></span>
+                </h4>
+                <div class="col-md-12 col-lg-12 col-xl-12 box">
+                  <div class="dataBox">
+                    <div
+                      class="row mt-4"
+                      *ngIf="
+                        this.serviceInputInfo &&
+                        this.serviceInputInfo.length > 0
+                      "
+                    >
+                      <div class="col-md-3 col-lg-3 col-xl-2">
+                        <label class="label">{{
+                          this.serviceInputInfo[0].label | capitalization
+                        }}</label>
+                      </div>
+                      <div class="col-md-9 col-lg-9 col-xl-10">
+                        <app-drop-down
+                          [inputInfo]="this.serviceInputInfo[0]"
+                          [changeFlag]="this.changeFlag"
+                          *ngIf="this.serviceInputInfo[0].type == 'multiSelect'"
+                          [data]="this.serviceInputInfo[0].data"
+                          [scrollHeight]="this.serviceInputInfo[0].scrollHeight"
+                          (updateData)="
+                            updateData(
+                              $event,
+                              this.serviceInputInfo[0].modelName,
+                              this.updateFlag
+                            )
+                          "
+                          (preSubmit)="preSubmit()"
+                          (submit)="onSubmit()"
+                        ></app-drop-down>
+                      </div>
+                    </div>
+                    <div *ngIf="this.inputInfo && this.inputInfo.length > 0">
+                      <div class="row mt-4" *ngFor="let box of this.inputInfo">
+                        <div class="col-md-3 col-lg-3 col-xl-2">
+                          <label class="label">{{
+                            box.label | capitalization
+                          }}</label>
+                        </div>
+                        <div class="col-md-9 col-lg-9 col-xl-10">
+                          <app-text-box
+                            [inputInfo]="box"
+                            [changeFlag]="this.changeFlag"
+                            *ngIf="box.type == 'text2'"
+                            (updateData)="
+                              updateData($event, box.modelName, this.updateFlag)
+                            "
+                            (preSubmit)="preSubmit()"
+                            (submit)="onSubmit()"
+                          ></app-text-box>
+                          <app-drop-down
+                            [inputInfo]="box"
+                            [changeFlag]="this.changeFlag"
+                            *ngIf="box.type == 'multiSelect'"
+                            [data]="box.data"
+                            [scrollHeight]="box.scrollHeight"
+                            (updateData)="
+                              updateData($event, box.modelName, this.updateFlag)
+                            "
+                            (preSubmit)="preSubmit()"
+                            (submit)="onSubmit()"
+                          ></app-drop-down>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row justify-content-center">
+                      <div class="col-md-3 mt-4">
+                        <app-button
+                          [label]="'Submit'"
+                          [padding]="'5px 0'"
+                          [borderRadius]="'0px'"
+                          [color]="'#fff'"
+                          [type]="'login'"
+                          [bgColor]="'#3283F6'"
+                          (button)="preSubmit()"
+                          [fontSize]="'14px'"
+                        >
+                        </app-button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </p-dialog>
+  </div>
+</div>

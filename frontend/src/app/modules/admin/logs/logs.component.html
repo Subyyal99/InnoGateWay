@@ -1,0 +1,12 @@
+<div class="bg" *ngIf="this.tableInfo.length > 0">
+  <div>
+    <app-table
+      [cols]="this.tableHeaders"
+      [col]="this.tableInfo"
+      [action]="'yes'"
+      [type]="'Logs'"
+      [fileName]="'Logs'"
+      (updatedData)="onDelete($event)"
+    ></app-table>
+  </div>
+</div>

@@ -1,0 +1,33 @@
+.dataBox {
+  background-color: #f3f3ff;
+  padding: 10px 30px;
+  margin-top: 50px;
+  padding-bottom: 35px;
+  margin-bottom: 30px;
+  border-radius: 15px;
+}
+.label {
+  font-weight: 600;
+  font-size: 14px;
+  color: #6c757d;
+  padding-top: 23px;
+}
+
+@media (max-width:768px) {
+  .label{
+    font-size: 12px;
+  }
+  ::ng-deep .p-inputtext::placeholder {
+    font-size: 12px;
+  }
+}
+::ng-deep.p-inputtext {
+  border-radius: 8px;
+}
+::ng-deep.p-dropdown {
+  border-radius: 8px;
+}
+::ng-deep.p-multiselect {
+  border-radius: 8px;
+}
+

@@ -1,0 +1,101 @@
+<div class="d-flex">
+  <div
+    class="d-flex flex-column vh-100 flex-shrink-0 pt-3 text-white main"
+    style="width: 250px"
+    [ngClass]="this.showFlag == true ? 'd-flex' : 'd-none'"
+  >
+    <a
+      href="/"
+      class="d-flex align-items-center mb-md-0 me-md-auto text-white text-decoration-none"
+    >
+      <img class="ml-8" src="assets/logo.png" width="80" height="120" />
+    </a>
+    <hr />
+    <h6 class="text-center">Super Admin</h6>
+    <ul class="nav nav-pills flex-column mb-auto mt-1 p-2">
+      <li (click)="hideShow('adminManagement')">
+        <a class="nav-link text-white" id="adminManagementSelect">
+          <i class="fas fa-users"></i><span class="ms-2">Admin Management</span>
+        </a>
+      </li>
+      <div class="row borderLeft" id="adminManagement">
+        <div class="col-12 pt-0 pb-0 listItems">
+          <ul class="mt-2">
+            <li
+              [ngClass]="
+                this.router.url == '/super-admin/add-admin' ? 'active' : ''
+              "
+            >
+              <a class="smTxt" routerLink="add-admin">Add Admin</a>
+            </li>
+
+            <li
+              [ngClass]="
+                this.router.url == '/super-admin/manage-admin' ? 'active' : ''
+              "
+            >
+              <a class="smTxt" routerLink="manage-admin">Manage Admin</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <li (click)="hideShow('smscManagement')">
+        <a class="nav-link text-white" id="smscManagementSelect">
+          <i class="fas fa-users"></i><span class="ms-2">Smsc Management</span>
+        </a>
+      </li>
+      <div class="row borderLeft" id="smscManagement">
+        <div class="col-12 pt-0 pb-0 listItems">
+          <ul class="mt-2">
+            <li
+              [ngClass]="
+                this.router.url == '/super-admin/add-smsc' ? 'active' : ''
+              "
+            >
+              <a class="smTxt" routerLink="add-smsc">Add Smsc</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <li (click)="hideShow('shortCodeRequests')">
+        <a class="nav-link text-white" id="shortCodeRequestsSelect">
+          <i class="fas fa-file"></i
+          ><span class="ms-2">Shortcode Requests</span>
+        </a>
+      </li>
+      <div class="row borderLeft" id="shortCodeRequests">
+        <div class="col-12 pt-0 pb-0 listItems">
+          <ul class="mt-2">
+            <li
+              [ngClass]="
+                this.router.url == '/super-admin/short-code-approval-requests'
+                  ? 'active'
+                  : ''
+              "
+            >
+              <a class="smTxt" routerLink="short-code-approval-requests"
+                >Admin Requests</a
+              >
+            </li>
+            <li
+              [ngClass]="
+                this.router.url == '/super-admin/short-code-request-status'
+                  ? 'active'
+                  : ''
+              "
+            >
+              <a class="smTxt" routerLink="short-code-request-status"
+                >Request Status</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </ul>
+  </div>
+  <div style="width: 100%" [ngClass]="this.showFlag == true ? 'content' : ''">
+    <app-header (sidepanelBtn)="this.sideBar()"></app-header>
+    <router-outlet></router-outlet>
+  </div>
+</div>

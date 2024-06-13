@@ -1,0 +1,38 @@
+.txt {
+  font-size: 20px;
+  font-weight: 100;
+}
+.txt2 {
+  font-size: 20px;
+  font-weight: 400;
+}
+
+h4 {
+  margin-left: 20px;
+}
+.bg {
+  background-color: #f3f3ff;
+  padding: 15px;
+  margin: 50px 50px;
+}
+.label {
+  font-weight: 600;
+  color: #6c757d;
+}
+.icon {
+  cursor: pointer;
+}
+
+::ng-deep.tableWidth {
+  width: 87%;
+}
+@media (min-width: 1400px) {
+  .container,
+  .container-lg,
+  .container-md,
+  .container-sm,
+  .container-xl,
+  .container-xxl {
+    max-width: 1600px;
+  }
+}

@@ -1,0 +1,200 @@
+<div class="container-fluid" *ngIf="this.inputInfo">
+  <div class="row justify-content-center">
+    <div class="col-12 text-center pb-4">
+      <h3>Bulk Sms</h3>
+    </div>
+    <div class="col-lg-7 col-md-9 message">
+      <!-- <div class="row">
+        <div class="col-md-3 koko">
+          <label class="ml-2">Send this message as:</label>
+        </div>
+        <div class="col-md-4">
+          <app-select-button
+            [options]="this.options"
+            (button)="messageType($event)"
+          ></app-select-button>
+        </div>
+      </div> -->
+      <div class="row" *ngIf="this.inputInfo[0]">
+        <div class="col-lg-2 col-xl-2 label pt-3">
+          {{ this.inputInfo[0].label | capitalization }}:
+        </div>
+        <div class="col-lg-10 col-xl-10">
+          <app-drop-down
+            [inputInfo]="this.inputInfo[0]"
+            [changeFlag]="this.changeFlag"
+            [scrollHeight]="this.inputInfo[0].scrollHeight"
+            *ngIf="this.inputInfo[0] && this.inputInfo[0].type == 'dropDown'"
+            [data]="this.inputInfo[0].data"
+            (updateData)="updateData($event, this.inputInfo[0].label)"
+            (preSubmit)="preSubmit()"
+            (submit)="onSubmit()"
+          ></app-drop-down>
+          <div class="mt-2" *ngIf="this.noOfMessagesAllowed">
+            Number of Allowed Messages:
+            {{ this.noOfMessagesAllowed }} , Number of sent Messages:
+            {{ this.sentMessages }}
+          </div>
+          <div class="mt-2" *ngIf="this.noOfMessagesAllowed == 0">
+            Packages not available
+          </div>
+        </div>
+      </div>
+      <div class="row mt-2" *ngIf="this.inputInfo[1] && this.inputInfo[2]">
+        <div class="col-lg-2 col-xl-2 label">
+          {{ this.inputInfo[1].label | capitalization }}:
+        </div>
+        <div class="col-lg-10 col-xl-10">
+          <app-input-chips-special
+            [inputInfo]="this.inputInfo[1]"
+            [changeFlag]="this.changeFlag"
+            *ngIf="this.inputInfo[1].type == 'chips'"
+            (updateData)="updateData($event, this.inputInfo[1].modelName)"
+            (preSubmit)="preSubmit()"
+            (submit)="onSubmit()"
+          >
+          </app-input-chips-special>
+
+          <app-multi-select
+            [inputInfo]="this.inputInfo[2]"
+            [changeFlag]="this.changeFlag"
+            *ngIf="this.inputInfo[2].type == 'multiSelect'"
+            [data]="this.inputInfo[2].data"
+            (updateData)="updateData($event, this.inputInfo[2].modelName)"
+            (preSubmit)="preSubmit()"
+            (submit)="onSubmit()"
+          ></app-multi-select>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-md-12 col-lg-8 col-xl-10 textr size">
+          <i class="fas fa-info-circle"></i>
+          Enter 2 or more characters to search for contacts. Press Enter to save
+          the numbers
+        </div>
+      </div>
+      <div class="row mt-3" *ngIf="this.inputInfo[3]">
+        <div class="col-lg-2 col-xl-2 label pt-3">
+          {{ this.inputInfo[3].label | capitalization }}:
+        </div>
+        <div class="col-lg-10 col-xl-10 mt-2 refix">
+          <app-text-area
+            [inputInfo]="this.inputInfo[3]"
+            [changeFlag]="this.changeFlag"
+            [value]="this.characterCountPercentage"
+            *ngIf="this.inputInfo[3] && this.inputInfo[3].type == 'textArea'"
+            (updateData)="updateData($event, this.inputInfo[3].label)"
+            (preSubmit)="preSubmit()"
+            (submit)="onSubmit()"
+          ></app-text-area>
+        </div>
+      </div>
+      <div class="row justify-content-end">
+        <div class="col-md-12 col-lg-12 col-xl-4">
+          <app-button
+            [label]="'Save the Template'"
+            [type]="'A'"
+            [bgColor]="'#AFAEAE'"
+            [icon]="'pr-2 fas fa-save'"
+            [iconPos]="'left'"
+            [color]="'#ffff'"
+            (button)="saveTemplate()"
+          ></app-button>
+        </div>
+      </div>
+      <div
+        class="row justify-content-center sr mt-5"
+        *ngIf="this.inputInfo[4] && this.inputInfo[5]"
+      >
+        <div class="col-md-12 s">
+          <div class="col-md-12 txt-box mt-3">
+            <app-check-box
+              [inputInfo]="this.inputInfo[4]"
+              [changeFlag]="changeFlag"
+              (updateData)="updateData($event, this.inputInfo[4].label)"
+              *ngIf="this.inputInfo[4].type == 'checkBox'"
+              (preSubmit)="preSubmit()"
+              (submit)="onSubmit()"
+            ></app-check-box>
+          </div>
+          <div class="col-md-12 txt-box mt-3">
+            <app-check-box
+              [inputInfo]="this.inputInfo[5]"
+              [changeFlag]="changeFlag"
+              (updateData)="updateData($event, this.inputInfo[5].label)"
+              *ngIf="this.inputInfo[5].type == 'checkBox'"
+              (preSubmit)="preSubmit()"
+              (submit)="onSubmit()"
+            ></app-check-box>
+          </div>
+        </div>
+      </div>
+      <!-- <div class="row justify-content-end align">
+        <div class="col-md-12 text-left size">
+          <span>0 Total reecipients</span>
+          <span class="ml-5">0 Estimated cost</span>
+          <span class="ml-5">recalculate</span>
+        </div>
+      </div> -->
+      <div class="row justify-content-end mt-3">
+        <div class="col-md-12 col-lg-12 col-xl-3">
+          <app-button
+            [label]="'Send Message'"
+            [bgColor]="'#55A8FD'"
+            [color]="'#ffff'"
+            (button)="preSubmit()"
+          ></app-button>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-4 col-md-10 pt-0 preview">
+      <div class="row justify-content-center">
+        <div class="col-10 p-0 prevHead">
+          <i class="far fa-comment-alt"></i>
+          <p>Preview Message</p>
+        </div>
+        <div class="col-10 pt-0">
+          <div class="messageBox">
+            <div class="d-flex mt-2">
+              <p class="prevLabel">From:</p>
+              <p *ngIf="!this.userFrom">Select from</p>
+              <p *ngIf="this.userFrom">{{ this.userFrom }}</p>
+            </div>
+            <span
+              *ngIf="!this.previewMessage || this.previewMessage.length == 0"
+            >
+              <p class="prevLabel">Message Preview(0 message):</p>
+              <div>
+                <div class="messageDiv mt-2">
+                  <p></p>
+                </div>
+              </div>
+            </span>
+            <span *ngIf="this.previewMessage && this.previewMessage.length > 0">
+              <p class="prevLabel">
+                Message Preview({{ this.previewMessage.length
+                }}<span *ngIf="this.previewMessage.length == 1"> message</span
+                ><span *ngIf="this.previewMessage.length > 1"> messages</span>):
+              </p>
+              <div>
+                <div
+                  class="messageDiv mt-2"
+                  *ngFor="let box of this.previewMessage"
+                >
+                  <p>{{ box }}</p>
+                </div>
+              </div>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<app-dialog
+  [inputInfo]="this.templateInputInfo"
+  [openDialog]="this.openDialog"
+  [type]="'sms'"
+  (close)="this.openDialog = false"
+  (updateData)="saveTemplate($event, 'name')"
+></app-dialog>

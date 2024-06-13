@@ -1,0 +1,78 @@
+<div class="container-fluid main-wrapper">
+  <div class="row">
+    <p-dialog
+      [modal]="true"
+      [(visible)]="visible"
+      [breakpoints]="{ '960px': '50vw', '640px': '75vw' }"
+      [style]="{ width: '65vw', height: '25vw' }"
+      [draggable]="false"
+      [resizable]="false"
+      [closeOnEscape]="false"
+    >
+      <div class="customModal">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal_header">
+              <div class="media-body">
+                <h4>
+                  Add Smsc
+                  <span class="close" (click)="closeModel()"
+                    ><i><img src="assets/closeBlue.svg" alt="" /></i
+                  ></span>
+                </h4>
+                <div class="col-md-12 col-lg-12 col-xl-12 box">
+                  <div class="dataBox">
+                    <div
+                      class="row mt-4"
+                      *ngIf="
+                        this.smscInputInfo && this.smscInputInfo.length > 0
+                      "
+                    >
+                      <div class="col-md-3 col-lg-3 col-xl-2">
+                        <label class="label">{{
+                          this.smscInputInfo[0].label | capitalization
+                        }}</label>
+                      </div>
+                      <div class="col-md-9 col-lg-9 col-xl-10">
+                        <app-multi-select
+                          [inputInfo]="this.smscInputInfo[0]"
+                          [changeFlag]="this.changeFlag"
+                          *ngIf="this.smscInputInfo[0].type == 'multiSelect'"
+                          [data]="this.smscInputInfo[0].data"
+                          (updateData)="
+                            updateData(
+                              $event,
+                              this.smscInputInfo[0].modelName,
+                              this.updateFlag
+                            )
+                          "
+                          (preSubmit)="preSubmit()"
+                          (submit)="onSubmit()"
+                        ></app-multi-select>
+                      </div>
+                    </div>
+                    <div class="row justify-content-center">
+                      <div class="col-md-3 mt-4">
+                        <app-button
+                          [label]="'Submit'"
+                          [padding]="'5px 0'"
+                          [borderRadius]="'0px'"
+                          [color]="'#fff'"
+                          [type]="'login'"
+                          [bgColor]="'#3283F6'"
+                          (button)="preSubmit()"
+                          [fontSize]="'14px'"
+                        >
+                        </app-button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </p-dialog>
+  </div>
+</div>

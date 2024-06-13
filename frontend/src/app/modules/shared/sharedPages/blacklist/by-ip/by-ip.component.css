@@ -1,0 +1,21 @@
+.bg {
+  background-color: #f3f3ff;
+  padding: 15px;
+  margin: 50px 50px;
+  border-radius: 15px;
+
+}
+.label p {
+  margin-top: 18px;
+  font-weight: 500;
+}
+::ng-deep.p-inputtext {
+  border-radius: 8px;
+}
+::ng-deep.p-dropdown {
+  border-radius: 8px;
+}
+::ng-deep.p-multiselect {
+  border-radius: 8px;
+}
+

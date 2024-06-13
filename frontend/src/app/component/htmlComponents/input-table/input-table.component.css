@@ -1,0 +1,6 @@
+::ng-deep.p-datatable-responsive-scroll > .p-datatable-wrapper {
+  overflow-x: hidden !important;
+}
+.warning {
+  font-size: 12px;
+}

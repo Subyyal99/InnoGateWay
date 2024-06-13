@@ -1,0 +1,191 @@
+<div class="mt-5 mb-5 container-fluid">
+  <div class="row" *ngIf="this.step == 1">
+    <div class="col-md-1 h-25 ss3 text-center step">Step 01</div>
+    <div class="col-md-10 stepD">
+      <p class="para ml-2">
+        Lets's begin by picking a name for your Campaign.<br />This name will be
+        used in reporting to identify this campaign and for comparison against
+        other campaigns
+      </p>
+    </div>
+    <div class="col-md-11 text-end">
+      <a href="#" class="help"
+        ><i class="fas fa-info-circle"></i>Still Need Help?</a
+      >
+    </div>
+  </div>
+  <div class="row" *ngIf="this.step == 2">
+    <div class="col-md-1 ss3 text-center h-25 step2">Step 02</div>
+    <div class="col-md-10 step2D">
+      <p class="para ml-2">
+        Now select which contact lists you would like this campaign to go to.<br />You
+        can create a contact list or import contacts to an existing lisst using
+        the buttons provided.
+      </p>
+    </div>
+    <p class="text-end help">
+      <span class="mr-1"><i class="fas fa-info-circle"></i></span>Still need
+      help?
+    </p>
+  </div>
+
+  <div class="row" *ngIf="this.step == 3">
+    <div class="col-md-1 ss3 text-center h-25 step3">Step 03</div>
+
+    <div class="col-md-10 step3D">
+      <p class="para ml-2">
+        A From address (Sender Id) is the word or number your recipient will see
+        on their device when receiving your message.<br />If you select a custom
+        word, recipients will not be able to respond to your messages.<br />If
+        you select use Shared Numbers we will send your SMS from our hosted
+        numbers, this will ensure all responses are sent back to your
+        account.<br />A Virtual Number can be purchased if you would like your
+        messages all to appear from the same from address
+      </p>
+
+      <p class="text-end help">
+        <span class="mr-1"><i class="fas fa-info-circle"></i></span>Still need
+        help?
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="bg">
+  <div class="row" *ngFor="let box of this.inputInfo">
+    <div
+      class="col-md-2 col-lg-2 col-xl-1 text-left mt-2 label"
+      *ngIf="box && (box.type == 'text2' || box.type == 'multiSelect')"
+    >
+      {{ box.label | capitalization }}
+    </div>
+    <div class="col-md-10 col-lg-10 col-xl-11">
+      <!-- <app-text-box
+        [inputInfo]="box"
+        [changeFlag]="this.changeFlag"
+        *ngIf="box.type == 'text2'"
+        (updateData)="updateData($event, box.label)"
+        (click)="onClick(1)"
+      ></app-text-box> -->
+      <app-text-box
+        [inputInfo]="box"
+        [changeFlag]="this.changeFlag"
+        *ngIf="box && box.type == 'text2'"
+        (click)="onClick(1)"
+        (updateData)="updateData($event, box.label)"
+        (preSubmit)="preSubmit()"
+        (submit)="onSubmit()"
+      >
+      </app-text-box>
+      <!-- <app-multi-select
+        [inputInfo]="box"
+        *ngIf="box.type == 'multiSelect'"
+        [data]="toList"
+        (submit)="onSubmit()"
+        (updateData)="updateData($event, box.label)"
+        [name]="'Please select contact lists to send to'"
+        class="mt-5"
+        (click)="onClick(2)"
+      ></app-multi-select> -->
+      <app-multi-select
+        [inputInfo]="box"
+        [changeFlag]="this.changeFlag"
+        *ngIf="box && box.type == 'multiSelect'"
+        [data]="this.toList"
+        (click)="onClick(2)"
+        (updateData)="updateData($event, box.label)"
+        (preSubmit)="preSubmit()"
+        (submit)="onSubmit()"
+      ></app-multi-select>
+      <p
+        class="text-right txt"
+        *ngIf="box.type == 'text2' || box.type == 'multiSelect'"
+      >
+        {{ box.details }}
+      </p>
+    </div>
+  </div>
+  <div class="row justify-content-end">
+    <div class="col-md-4 col-lg-4 col-xl-4 groupBtn">
+      <app-button
+        [label]="'Forgot to create a new group?'"
+        [bgColor]="'#53A3F6'"
+        [type]="'#53A3F6'"
+        [fontSize]="'12px'"
+        [padding]="'8px 2px 8px 2px'"
+        [color]="'#ffff'"
+        (button)="createNewGorupModal()"
+      ></app-button>
+    </div>
+    <div class="col-md-4 col-lg-5 col-xl-4 importBtn">
+      <app-button
+        [label]="'Need to import contracts from a file?'"
+        [bgColor]="'#53A3F6'"
+        [fontSize]="'12px'"
+        [type]="'#53A3F6'"
+        [padding]="'8px 4px 8px 4px'"
+        [color]="'#ffff'"
+        (button)="importContactModal()"
+      ></app-button>
+    </div>
+  </div>
+  <div class="row mt-3">
+    <div
+      class="col-md-2 col-lg-2 col-xl-1 text-left mt-2 label"
+      *ngIf="this.inputInfo[2]"
+    >
+      {{ this.inputInfo[2].label | capitalization }}
+      <!-- From -->
+    </div>
+    <div class="col-md-10 col-lg-10 col-xl-11">
+      <!-- <app-drop-down
+        [inputInfo]="this.inputInfo[2]"
+        [data]="this.inputInfo[0].data"
+        (submit)="onSubmit()"
+        (updateData)="updateData($event, this.inputInfo[2].label)"
+        (click)="onClick(3)"
+        class="mt-5"
+      ></app-drop-down> -->
+      <app-drop-down
+        [inputInfo]="this.inputInfo[2]"
+        [changeFlag]="this.changeFlag"
+        [scrollHeight]="this.inputInfo[2].scrollHeight"
+        *ngIf="this.inputInfo[2] && this.inputInfo[2].type == 'dropDown'"
+        [data]="this.inputInfo[2].data"
+        (click)="onClick(3)"
+        (updateData)="updateData($event, this.inputInfo[2].label)"
+        (preSubmit)="preSubmit()"
+        (submit)="onSubmit()"
+      ></app-drop-down>
+      <div class="mt-2" *ngIf="this.noOfMessagesAllowed">
+        Number of Allowed Messages:
+        {{ this.noOfMessagesAllowed }} , Number of sent Messages:
+        {{ this.sentMessages }}
+      </div>
+      <div class="mt-2" *ngIf="this.noOfMessagesAllowed == 0">
+        Packages not available
+      </div>
+      <p class="text-right txt" *ngIf="this.inputInfo[2]">
+        {{ this.inputInfo[2].details }}
+      </p>
+    </div>
+  </div>
+  <div class="row justify-content-end">
+    <div class="col-md-2 col-lg-2 col-xl-1">
+      <app-button
+        [label]="'Next'"
+        [bgColor]="'#2466A9'"
+        [color]="'#ffff'"
+        (button)="preSubmit()"
+      ></app-button>
+    </div>
+  </div>
+</div>
+<app-create-new-group-modal
+  [createNewGroup]="this.createNewGroup"
+  (close)="createNewGorupModal()"
+></app-create-new-group-modal>
+<app-import-contact-modal
+  [importContact]="this.importContact"
+  (close)="importContactModal()"
+></app-import-contact-modal>

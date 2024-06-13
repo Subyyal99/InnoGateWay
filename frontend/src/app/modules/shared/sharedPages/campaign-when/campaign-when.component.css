@@ -1,0 +1,146 @@
+.para {
+  font-weight: bold;
+}
+.help {
+  font-size: 12px;
+  font-style: italic;
+  color: #7ca9d8;
+}
+.icon {
+  color: #0000;
+}
+.ss {
+  background-color: #000077;
+  border: 1px solid #000077;
+  border-radius: 18px;
+  min-height: 65px;
+  max-height: 65px;
+  font-size: 20px;
+  color: #fff;
+  margin-left: 20px;
+}
+
+.bg {
+  background-color: #f3f3ff;
+  padding: 15px;
+  margin: 25px;
+}
+
+.help {
+  font-size: 12px;
+  font-style: italic;
+  color: #7ca9d8;
+  text-decoration: none;
+}
+.btns {
+  padding: 20px;
+}
+.label {
+  font-weight: bold;
+  font-size: 18 px;
+}
+.seperator {
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.356);
+}
+@media (min-width: 1354px) {
+  .ss {
+    background-color: #000077;
+    border: 1px solid #000077;
+    border-radius: 18px;
+    min-height: 65px;
+    max-height: 65px;
+    padding-top: 15px;
+    font-size: 20px;
+    color: #fff;
+    margin-left: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .step4 {
+    width: 6rem;
+    padding-top: 15px;
+  }
+  .step4D {
+    width: 24rem;
+  }
+  .step6 {
+    width: 6rem;
+    padding-top: 15px;
+  }
+  .step6D {
+    width: 24rem;
+  }
+  .mergeBtn {
+    max-width: 14rem;
+  }
+  .templateBtn {
+    max-width: 15rem;
+  }
+}
+@media (max-width: 945px) {
+  .step4 {
+    width: 6rem;
+    padding-top: 15px;
+  }
+  .step4D {
+    max-width: 25rem;
+  }
+  .step6 {
+    width: 6rem;
+    padding-top: 15px;
+  }
+  .step6D {
+    max-width: 25rem;
+  }
+  .mergeBtn {
+    max-width: 14rem;
+  }
+  .templateBtn {
+    max-width: 15rem;
+  }
+  .triggerBtn {
+    max-width: 11rem;
+  }
+}
+@media (max-width: 999px) {
+  .step4 {
+    width: 6rem;
+    padding-top: 15px;
+  }
+
+  .step6 {
+    width: 6rem;
+    padding-top: 15px;
+  }
+  .mergeBtn {
+    max-width: 14rem;
+  }
+  .templateBtn {
+    max-width: 15rem;
+  }
+  .triggerBtn {
+    max-width: 11rem;
+  }
+}
+@media (min-width: 1000px) {
+  .step4 {
+    width: 6rem;
+    padding-top: 15px;
+  }
+
+  .step6 {
+    width: 6rem;
+    padding-top: 15px;
+  }
+  .mergeBtn {
+    max-width: 14rem;
+  }
+  .templateBtn {
+    max-width: 15rem;
+  }
+  .triggerBtn {
+    max-width: 11rem;
+  }
+}

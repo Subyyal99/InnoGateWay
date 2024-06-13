@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: services/appointments.service.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: services/appointments.service.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>const db = require("../models/index.js");
+
+/**
+ * Class to create a user object
+ */
+class AppointmentsService {
+  constructor() {}
+  /**
+   * function to  calculate the area of a rectangle
+   * @param {number} data - The length of the rectangle
+   * @returns {number} - The area of the rectangle
+   */
+  async createSlot(data) {
+    // upsert(data, { returning: true });
+    return await db.slots.bulkCreate(data, {
+      updateOnDuplicate: [
+        "date",
+        "eventStartTime",
+        "eventEndTime",
+        "recurring",
+        "isDeleted",
+      ],
+    });
+  }
+  /**
+   * function to  calculate the area of a rectangle
+   * @param {number} data - The length of the rectangle
+   * @returns {number} - The area of the rectangle
+   */
+  async bookSlots(data) {
+    return await db.Request.bulkCreate(data);
+  }
+  /**
+   * function to  calculate the area of a rectangle
+   * @param {number} data - The length of the rectangle
+   * @returns {number} - The area of the rectangle
+   */
+  async getSlots(whereClause) {
+    return await db.slots.findAll(whereClause);
+  }
+  /**
+   * function to  calculate the area of a rectangle
+   * @param {number} data - The length of the rectangle
+   * @returns {number} - The area of the rectangle
+   */
+  async getRequests(whereClause) {
+    return await db.Request.findAll(whereClause);
+  }
+  /**
+   * function to  calculate the area of a rectangle
+   * @param {number} data - The length of the rectangle
+   * @returns {number} - The area of the rectangle
+   */
+  async getNotificationCount(whereClause) {
+    return await db.Request.count(whereClause);
+  }
+  /**
+   * function to  calculate the area of a rectangle
+   * @param {number} data - The length of the rectangle
+   * @returns {number} - The area of the rectangle
+   */
+  async getChatCount(whereClause) {
+    return await db.chat.count(whereClause);
+  }
+  /**
+   * function to  calculate the area of a rectangle
+   * @param {number} data - The length of the rectangle
+   * @returns {number} - The area of the rectangle
+   */
+  getFormattedSlots(slots, count) {
+    slots.forEach((slot) => {
+      slot.eventStartTime = new Date(slot.eventStartTime).getHours();
+      let endTime = new Date(slot.eventEndTime).getHours();
+      if (endTime == "0" &amp;&amp; count == 0) {
+        endTime -= 1;
+      }
+      slot.eventEndTime = endTime - count >= 0 ? endTime - count : 23;
+    });
+    return slots;
+  }
+  /**
+   * function to  calculate the area of a rectangle
+   * @param {number} data - The length of the rectangle
+   * @returns {number} - The area of the rectangle
+   */
+  async getAvailableDatesForBooking(whereClause) {
+    return await db.slots.findAll(whereClause);
+  }
+  /**
+   * function to  calculate the area of a rectangle
+   * @param {number} data - The length of the rectangle
+   * @returns {number} - The area of the rectangle
+   */
+  async updateRequests(data) {
+    return await db.Request.update({
+      status: data.status,
+      startUrl: data.startUrl,
+      joinUrl: data.joinUrl,
+      stripeChargeId: data.stripeChargeId,
+      password: data.password,
+    }, {
+      where: {
+        id: data.id,
+      },
+    });
+  }
+  /**
+   * function to  calculate the area of a rectangle
+   * @param {number} data - The length of the rectangle
+   * @returns {number} - The area of the rectangle
+   */
+  async rejectRequests(requestId) {
+    return await db.Request.update({
+      status: "Rejected",
+    }, {
+      where: {
+        id: requestId,
+      },
+    });
+  }
+  /**
+   * function to  calculate the area of a rectangle
+   * @param {number} data - The length of the rectangle
+   * @returns {number} - The area of the rectangle
+   */
+  async getCountRequest(slots, userId) {
+    var result = {
+      countScheduledTutor: 0,
+      countScheduledStudent: 0,
+      countOpenTutoring: 0,
+      countSentRequests: 0,
+    };
+    slots.forEach((slot) => {
+      if (slot.userId == userId) {
+        if (slot.status == "Accepted") {
+          result.countScheduledStudent++;
+        } else if (slot.status == "Pending") {
+          result.countSentRequests++;
+        }
+      } else if (slot.ad.userId == userId) {
+        if (slot.status == "Accepted") {
+          result.countScheduledTutor++;
+        } else if (slot.status == "Pending") {
+          result.countOpenTutoring++;
+        }
+      }
+    });
+
+    return result;
+  }
+  /**
+   * function to  calculate the area of a rectangle
+   * @param {number} data - The length of the rectangle
+   * @returns {number} - The area of the rectangle
+   */
+  async getUserData(whereClause) {
+    return await db.User.findAll(whereClause);
+  }
+  /**
+   * function to  calculate the area of a rectangle
+   * @param {number} data - The length of the rectangle
+   * @returns {number} - The area of the rectangle
+   */
+  async performBulkAction(updateClause, whereClause) {
+    return await db.Request.update(updateClause, whereClause);
+  }
+}
+
+module.exports = AppointmentsService;</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="AppointmentsService.html">AppointmentsService</a></li><li><a href="blackListService.html">blackListService</a></li></ul><h3>Global</h3><ul><li><a href="global.html#info">info</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.11</a> on Wed Jul 27 2022 18:19:03 GMT+0500 (Pakistan Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

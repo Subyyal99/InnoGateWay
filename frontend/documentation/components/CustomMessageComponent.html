@@ -1,0 +1,2150 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>frontend documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css" media="(prefers-color-scheme: dark)">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">frontend documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li
+  >
+  CustomMessageComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li >
+            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/modules/sms-plus/custom-message/custom-message.component.ts</code>
+</p>
+
+
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>specifies which other files are associated with this component and metadata</p>
+
+    </p>
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+    </p>
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-custom-message</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./custom-message.component.css</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./custom-message.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#changeFlag" >changeFlag</a>
+                            </li>
+                            <li>
+                                <a href="#counterInputs" >counterInputs</a>
+                            </li>
+                            <li>
+                                <a href="#customMessage" >customMessage</a>
+                            </li>
+                            <li>
+                                <a href="#data" >data</a>
+                            </li>
+                            <li>
+                                <a href="#inputInfo" >inputInfo</a>
+                            </li>
+                            <li>
+                                <a href="#messageFlag" >messageFlag</a>
+                            </li>
+                            <li>
+                                <a href="#messageInputInfo" >messageInputInfo</a>
+                            </li>
+                            <li>
+                                <a href="#options" >options</a>
+                            </li>
+                            <li>
+                                <a href="#radioBtnData" >radioBtnData</a>
+                            </li>
+                            <li>
+                                <a href="#savedCustomMessage" >savedCustomMessage</a>
+                            </li>
+                            <li>
+                                <a href="#setMessage" >setMessage</a>
+                            </li>
+                            <li>
+                                <a href="#updatedFlag" >updatedFlag</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#addMessages" >addMessages</a>
+                            </li>
+                            <li>
+                                <a href="#createInput" >createInput</a>
+                            </li>
+                            <li>
+                                <a href="#generateFormData" >generateFormData</a>
+                            </li>
+                            <li>
+                                <a href="#getCustomMessage" >getCustomMessage</a>
+                            </li>
+                            <li>
+                                <a href="#getSavedCustomMessages" >getSavedCustomMessages</a>
+                            </li>
+                            <li>
+                                <a href="#handleCustomMessage" >handleCustomMessage</a>
+                            </li>
+                            <li>
+                                <a href="#handleData" >handleData</a>
+                            </li>
+                            <li>
+                                <a href="#handleError" >handleError</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#onSubmit" >onSubmit</a>
+                            </li>
+                            <li>
+                                <a href="#preSubmit" >preSubmit</a>
+                            </li>
+                            <li>
+                                <a href="#updateData" >updateData</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(Jarwis: <a href="../injectables/AuthService.html" target="_self">AuthService</a>, messageService: MessageService)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="78" class="link-to-prism">src/app/modules/sms-plus/custom-message/custom-message.component.ts:78</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>Jarwis</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/AuthService.html" target="_self" >AuthService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <p>is an angular service type variable used to call APIs required for our application</p>
+
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>messageService</td>
+                                                  
+                                                        <td>
+                                                                    <code>MessageService</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <p>is a message type variable created to display messages in our component</p>
+
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="addMessages"></a>
+                    <span class="name">
+                        <span ><b>addMessages</b></span>
+                        <a href="#addMessages"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>addMessages(severity, summary, detail)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="238"
+                            class="link-to-prism">src/app/modules/sms-plus/custom-message/custom-message.component.ts:238</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>this is our function to call the message service to display our required message</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>severity</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>defines the type/severity of the message to be displayed</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>summary</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>defines the summary of the message</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>detail</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>contains the string of the message to be displayed</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="createInput"></a>
+                    <span class="name">
+                        <span ><b>createInput</b></span>
+                        <a href="#createInput"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>createInput(label, placeHolder, modelName, inputType, type, option, data, val, messageBody, validatorsInfo, flag?)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="182"
+                            class="link-to-prism">src/app/modules/sms-plus/custom-message/custom-message.component.ts:182</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>our function that creates data required for our inputs in an inputinfo type array</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>label</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>is the label of the input field</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>placeHolder</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>is the placeholder of the input field</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>modelName</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>is the model name for the data to be stored</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>inputType</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>is input type of any specific i.e sttring,number,date etc</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>type</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>is flag to differentiate between different input types</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>option</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>is a variable to send data to our input field to dislpay (for dropsdowns and multiselect etc)</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>data</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>is a variable to send data to our input field to dislpay (for dropsdowns and multiselect etc)</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>val</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>to stored default value of any input field if any</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>messageBody</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>defaul valur for message body</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>validatorsInfo</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>validation errors and function required for our form</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>flag</td>
+
+                                    <td>
+                                        Yes
+                                    </td>
+
+
+                                    <td>
+                                        <p>optional flag to switch between arrays to store data</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="generateFormData"></a>
+                    <span class="name">
+                        <span ><b>generateFormData</b></span>
+                        <a href="#generateFormData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>generateFormData(shortCode?, reply?, message?)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="115"
+                            class="link-to-prism">src/app/modules/sms-plus/custom-message/custom-message.component.ts:115</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>to generate data for our input fields</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>shortCode</td>
+
+                                    <td>
+                                        Yes
+                                    </td>
+
+
+                                    <td>
+                                        <p>array of short codes to display</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>reply</td>
+
+                                    <td>
+                                        Yes
+                                    </td>
+
+
+                                    <td>
+                                        <p>array of reply to display</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>message</td>
+
+                                    <td>
+                                        Yes
+                                    </td>
+
+
+                                    <td>
+                                        <p>default value for message body</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getCustomMessage"></a>
+                    <span class="name">
+                        <span ><b>getCustomMessage</b></span>
+                        <a href="#getCustomMessage"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getCustomMessage()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="300"
+                            class="link-to-prism">src/app/modules/sms-plus/custom-message/custom-message.component.ts:300</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>our function to Call API to get custom messages according to given shortcode and reply</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getSavedCustomMessages"></a>
+                    <span class="name">
+                        <span ><b>getSavedCustomMessages</b></span>
+                        <a href="#getSavedCustomMessages"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getSavedCustomMessages()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="98"
+                            class="link-to-prism">src/app/modules/sms-plus/custom-message/custom-message.component.ts:98</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>this API call gets our custom messages</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="handleCustomMessage"></a>
+                    <span class="name">
+                        <span ><b>handleCustomMessage</b></span>
+                        <a href="#handleCustomMessage"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>handleCustomMessage(data)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="224"
+                            class="link-to-prism">src/app/modules/sms-plus/custom-message/custom-message.component.ts:224</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>This is the function that recieves the data retrieved by the API call</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>data</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>is the variable that gets the value from the function call send by the function call</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="handleData"></a>
+                    <span class="name">
+                        <span ><b>handleData</b></span>
+                        <a href="#handleData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>handleData(data)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="282"
+                            class="link-to-prism">src/app/modules/sms-plus/custom-message/custom-message.component.ts:282</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>This is the function that recieves the data retrieved by the API call</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>data</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>is the variable that gets the value from the function call send by the function call</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="handleError"></a>
+                    <span class="name">
+                        <span ><b>handleError</b></span>
+                        <a href="#handleError"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>handleError(error)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="293"
+                            class="link-to-prism">src/app/modules/sms-plus/custom-message/custom-message.component.ts:293</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>handle error is our function to handle error given by APi or custom made</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>error</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>is the variable through which we recieve the error to display to the user</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="91"
+                            class="link-to-prism">src/app/modules/sms-plus/custom-message/custom-message.component.ts:91</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>ngOnInIt is an angular lifecycle function that run when we load our component or application</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onSubmit"></a>
+                    <span class="name">
+                        <span ><b>onSubmit</b></span>
+                        <a href="#onSubmit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onSubmit()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="261"
+                            class="link-to-prism">src/app/modules/sms-plus/custom-message/custom-message.component.ts:261</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>our function that get called when user send the final data</p>
+</div>
+
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>an Observable instance that synchronously delivers the values provided as arguments.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="preSubmit"></a>
+                    <span class="name">
+                        <span ><b>preSubmit</b></span>
+                        <a href="#preSubmit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>preSubmit()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="253"
+                            class="link-to-prism">src/app/modules/sms-plus/custom-message/custom-message.component.ts:253</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>This function sends the data gained from user to backend</p>
+</div>
+
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="updateData"></a>
+                    <span class="name">
+                        <span ><b>updateData</b></span>
+                        <a href="#updateData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>updateData(value, label)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="217"
+                            class="link-to-prism">src/app/modules/sms-plus/custom-message/custom-message.component.ts:217</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>our function that is called by our inputs for further data handling</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>value</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>contains the data/value provided by the user via our inouts</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>label</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section>
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="changeFlag"></a>
+                    <span class="name">
+                        <span ><b>changeFlag</b></span>
+                        <a href="#changeFlag"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/app/modules/sms-plus/custom-message/custom-message.component.ts:46</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>this flag is used to check whether the value of input field changed</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="counterInputs"></a>
+                    <span class="name">
+                        <span ><b>counterInputs</b></span>
+                        <a href="#counterInputs"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>0</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/app/modules/sms-plus/custom-message/custom-message.component.ts:58</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>counter to check against lenght of input info on Submit</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="customMessage"></a>
+                    <span class="name">
+                        <span ><b>customMessage</b></span>
+                        <a href="#customMessage"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new MergeSendInfo()</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="70" class="link-to-prism">src/app/modules/sms-plus/custom-message/custom-message.component.ts:70</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>custom message is stored in this variable</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="data"></a>
+                    <span class="name">
+                        <span ><b>data</b></span>
+                        <a href="#data"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>any[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[{ name: &quot;2728&quot; }, { name: &quot;9292&quot; }]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="78" class="link-to-prism">src/app/modules/sms-plus/custom-message/custom-message.component.ts:78</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>data array</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="inputInfo"></a>
+                    <span class="name">
+                        <span ><b>inputInfo</b></span>
+                        <a href="#inputInfo"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../classes/InputInfo.html" target="_self" >InputInfo[]</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/modules/sms-plus/custom-message/custom-message.component.ts:23</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>an inputInfo type array in which we store data for our inputs</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="messageFlag"></a>
+                    <span class="name">
+                        <span ><b>messageFlag</b></span>
+                        <a href="#messageFlag"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/app/modules/sms-plus/custom-message/custom-message.component.ts:54</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>this flag is used to check whether the value of message changed</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="messageInputInfo"></a>
+                    <span class="name">
+                        <span ><b>messageInputInfo</b></span>
+                        <a href="#messageInputInfo"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../classes/InputInfo.html" target="_self" >InputInfo[]</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/modules/sms-plus/custom-message/custom-message.component.ts:27</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>an inputInfo type array in which we store data for our inputs</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="options"></a>
+                    <span class="name">
+                        <span ><b>options</b></span>
+                        <a href="#options"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../classes/OptionInfo.html" target="_self" >OptionInfo[]</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+    {
+      key: &quot;test&quot;,
+      brand: &quot;test&quot;,
+      value: &quot;billing&quot;,
+    },
+    {
+      key: &quot;test2&quot;,
+      brand: &quot;test2&quot;,
+      value: &quot;service api&quot;,
+    },
+  ]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/modules/sms-plus/custom-message/custom-message.component.ts:31</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>radio options to display</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="radioBtnData"></a>
+                    <span class="name">
+                        <span ><b>radioBtnData</b></span>
+                        <a href="#radioBtnData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../classes/OptionInfo.html" target="_self" >OptionInfo[]</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="66" class="link-to-prism">src/app/modules/sms-plus/custom-message/custom-message.component.ts:66</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>radio button data</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="savedCustomMessage"></a>
+                    <span class="name">
+                        <span ><b>savedCustomMessage</b></span>
+                        <a href="#savedCustomMessage"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new MergeSendInfo()</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="74" class="link-to-prism">src/app/modules/sms-plus/custom-message/custom-message.component.ts:74</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>previously saved custom message</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="setMessage"></a>
+                    <span class="name">
+                        <span ><b>setMessage</b></span>
+                        <a href="#setMessage"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new MergeSendInfo()</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="62" class="link-to-prism">src/app/modules/sms-plus/custom-message/custom-message.component.ts:62</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>set message object</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="updatedFlag"></a>
+                    <span class="name">
+                        <span ><b>updatedFlag</b></span>
+                        <a href="#updatedFlag"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/app/modules/sms-plus/custom-message/custom-message.component.ts:50</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>this flag is used to check whether the value of input field changed</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &quot;@angular/core&quot;;
+import { Validators } from &quot;@angular/forms&quot;;
+import { MessageService } from &quot;primeng/api&quot;;
+import { AuthService } from &quot;src/app/auth/auth.service&quot;;
+import { InputInfo } from &quot;src/app/component/componentModel/input-info&quot;;
+import { OptionInfo } from &quot;src/app/component/componentModel/option-info&quot;;
+import { MergeSendInfo } from &quot;src/app/models/mergeSend-info&quot;;
+/**
+ * specifies which other files are associated with this component and metadata
+ */
+@Component({
+  selector: &quot;app-custom-message&quot;,
+  templateUrl: &quot;./custom-message.component.html&quot;,
+  styleUrls: [&quot;./custom-message.component.css&quot;],
+})
+export class CustomMessageComponent implements OnInit {
+  /**
+   * an inputInfo type array in which we store data for our inputs
+   */
+  inputInfo: InputInfo[] &#x3D; [];
+  /**
+   * an inputInfo type array in which we store data for our inputs
+   */
+  messageInputInfo: InputInfo[] &#x3D; [];
+  /**
+   * radio options to display
+   */
+  options: OptionInfo[] &#x3D; [
+    {
+      key: &quot;test&quot;,
+      brand: &quot;test&quot;,
+      value: &quot;billing&quot;,
+    },
+    {
+      key: &quot;test2&quot;,
+      brand: &quot;test2&quot;,
+      value: &quot;service api&quot;,
+    },
+  ];
+  /**
+   * this flag is used to check whether the value of input field changed
+   */
+  changeFlag &#x3D; false;
+  /**
+   * this flag is used to check whether the value of input field changed
+   */
+  updatedFlag &#x3D; false;
+  /**
+   * this flag is used to check whether the value of message changed
+   */
+  messageFlag &#x3D; false;
+  /**
+   * counter to check against lenght of input info on Submit
+   */
+  counterInputs &#x3D; 0;
+  /**
+   * set message object
+   */
+  setMessage &#x3D; new MergeSendInfo();
+  /**
+   * radio button data
+   */
+  radioBtnData: OptionInfo[] &#x3D; [];
+  /**
+   * custom message is stored in this variable
+   */
+  customMessage &#x3D; new MergeSendInfo();
+  /**
+   * previously saved custom message
+   */
+  savedCustomMessage &#x3D; new MergeSendInfo();
+  /**
+   * data array
+   */
+  data: any[] &#x3D; [{ name: &quot;2728&quot; }, { name: &quot;9292&quot; }];
+  /**
+   *
+   * @param messageService is a message type variable created to display messages in our component
+   * @param Jarwis is an angular service type variable used to call APIs required for our application
+   */
+  constructor(
+    private Jarwis: AuthService,
+    private messageService: MessageService
+  ) {}
+  /**
+   * ngOnInIt is an angular lifecycle function that run when we load our component or application
+   */
+  ngOnInit(): void {
+    this.getSavedCustomMessages();
+    this.generateFormData(&quot;&quot;, this.options, &quot;&quot;);
+  }
+  /**
+   * this API call gets our custom messages
+   */
+  getSavedCustomMessages() {
+    // if (this.customMessage.shortCode &amp;&amp; this.customMessage.reply) {
+    //   let data &#x3D; new MergeSendInfo();
+    //   data.shortCode &#x3D; this.customMessage.shortCode;
+    //   data.reply &#x3D; this.customMessage.reply;
+    // this.Jarwis.getAllCustomMessage().subscribe(
+    //   (data) &#x3D;&gt; this.handleCustomMessage(data),
+    //   (error) &#x3D;&gt; this.handleError(error)
+    // );
+    // }
+  }
+  /**
+   * to generate data for our input fields
+   * @param shortCode array of short codes to display
+   * @param reply array of reply to display
+   * @param message default value for message body
+   */
+  generateFormData(shortCode?, reply?, message?) {
+    this.createInput(
+      &quot;shortCode&quot;,
+      &quot;Please select from here&quot;,
+      &quot;shortCode&quot;,
+      &quot;string&quot;,
+      &quot;dropDown&quot;,
+      &quot;&quot;,
+      this.data,
+      { name: shortCode },
+      &quot;&quot;,
+      [
+        {
+          type: Validators.required,
+          msg: &quot;You must select number&quot;,
+        },
+      ]
+    );
+    this.createInput(
+      &quot;reply&quot;,
+      &quot;&quot;,
+      &quot;reply&quot;,
+      &quot;&quot;,
+      &quot;radioButton&quot;,
+      reply,
+      &quot;&quot;,
+      reply,
+      &quot;&quot;,
+      [
+        {
+          type: Validators.required,
+          msg: &quot;You must select Payment Method&quot;,
+        },
+      ]
+    );
+    this.createInput(
+      &quot;message&quot;,
+      &quot;Please enter the body of your message here&quot;,
+      &quot;message&quot;,
+      &quot;string&quot;,
+      &quot;textArea&quot;,
+      &quot;&quot;,
+      &quot;&quot;,
+      message,
+      message,
+      [
+        {
+          type: Validators.required,
+          msg: &quot;Message body cannot be empty&quot;,
+        },
+      ]
+    );
+  }
+  /**
+   * our function that creates data required for our inputs in an inputinfo type array
+   * @param label is the label of the input field
+   * @param placeHolder is the placeholder of the input field
+   * @param modelName is the model name for the data to be stored
+   * @param inputType is input type of any specific i.e sttring,number,date etc
+   * @param type is flag to differentiate between different input types
+   * @param option is a variable to send data to our input field to dislpay (for dropsdowns and multiselect etc)
+   * @param messageBody defaul valur for message body
+   * @param val to stored default value of any input field if any
+   * @param data is a variable to send data to our input field to dislpay (for dropsdowns and multiselect etc)
+   * @param validatorsInfo validation errors and function required for our form
+   * @param flag optional flag to switch between arrays to store data
+   */
+  createInput(
+    label,
+    placeHolder,
+    modelName,
+    inputType,
+    type,
+    option,
+    data,
+    val,
+    messageBody,
+    validatorsInfo,
+    flag?
+  ) {
+    let inputObj &#x3D; new InputInfo();
+    inputObj.label &#x3D; label;
+    inputObj.placeHolder &#x3D; placeHolder;
+    inputObj.modelName &#x3D; modelName;
+    inputObj.inputType &#x3D; inputType;
+    inputObj.type &#x3D; type;
+    inputObj.option &#x3D; option;
+    inputObj.data &#x3D; data;
+    inputObj.val &#x3D; val;
+    inputObj.messageBody &#x3D; messageBody;
+    inputObj.validatorsInfo &#x3D; validatorsInfo;
+    if (flag &#x3D;&#x3D; true) {
+      this.messageInputInfo.push(inputObj);
+    } else if (!flag) {
+      this.inputInfo.push(inputObj);
+    }
+  }
+  /**
+   *our function that is called by our inputs for further data handling
+   * @param value contains the data/value provided by the user via our inouts
+   * @param modelName name of the model variable for the data to be stored in
+   */
+  updateData(value, label) {
+    this.customMessage[label] &#x3D; value;
+  }
+  /**
+   * This is the function that recieves the data retrieved by the API call
+   * @param data is the variable that gets the value from the function call send by the function call
+   */
+  handleCustomMessage(data) {
+    this.savedCustomMessage &#x3D; data.messageData;
+    this.updatedFlag &#x3D; !this.updatedFlag;
+    this.inputInfo[2].val &#x3D; this.savedCustomMessage.message;
+    if (this.savedCustomMessage.id) {
+      this.customMessage.id &#x3D; this.savedCustomMessage.id;
+    }
+  }
+  /**
+   * this is our function to call the message service to display our required message
+   * @param severity defines the type/severity of the message to be displayed
+   * @param summary defines the summary of the message
+   * @param detail contains the string of the message to be displayed
+   */
+  addMessages(severity, summary, detail) {
+    this.messageService.add({
+      severity: severity,
+      summary: summary,
+      detail: detail,
+      sticky: true,
+    });
+    setTimeout(() &#x3D;&gt; {
+      this.messageService.clear();
+    }, 3000);
+  }
+  /**
+   * This function sends the data gained from user to backend
+   * @returns
+   */
+  preSubmit() {
+    this.counterInputs &#x3D; 0;
+    this.changeFlag &#x3D; !this.changeFlag;
+  }
+  /**
+   * our function that get called when user send the final data
+   * @returns an Observable instance that synchronously delivers the values provided as arguments.
+   */
+  onSubmit() {
+    this.counterInputs++;
+
+    if (this.counterInputs &lt; this.inputInfo.length) {
+      return;
+    }
+    let errorFlag &#x3D; this.inputInfo.find((item) &#x3D;&gt; item.errorFlag &#x3D;&#x3D; true);
+    if (errorFlag) {
+      return;
+    }
+    this.messageService.clear();
+    this.addMessages(&quot;info&quot;, &quot;Info&quot;, &quot;Please Wait...&quot;);
+    this.Jarwis.customMessage(this.customMessage).subscribe(
+      (data) &#x3D;&gt; this.handleData(data),
+      (error) &#x3D;&gt; this.handleError(error)
+    );
+  }
+  /**
+   * This is the function that recieves the data retrieved by the API call
+   * @param data is the variable that gets the value from the function call send by the function call
+   */
+  handleData(data) {
+    this.messageService.clear();
+    this.addMessages(&quot;success&quot;, &quot;Success&quot;, data.message);
+    setTimeout(() &#x3D;&gt; {
+      window.location.reload();
+    }, 1000);
+  }
+  /**
+   * handle error is our function to handle error given by APi or custom made
+   * @param error is the variable through which we recieve the error to display to the user
+   */
+  handleError(error) {
+    this.messageService.clear();
+    this.addMessages(&quot;error&quot;, &quot;Error&quot;, error.message);
+  }
+  /**
+   *our function to Call API to get custom messages according to given shortcode and reply
+   */
+  getCustomMessage() {
+    if (this.customMessage.shortCode &amp;&amp; this.customMessage.reply) {
+      let Obj &#x3D; new MergeSendInfo();
+      Obj.shortCode &#x3D; this.customMessage.shortCode;
+      Obj.reply &#x3D; this.customMessage.reply;
+      this.Jarwis.getCustomMessage(Obj).subscribe(
+        (data) &#x3D;&gt; this.handleCustomMessage(data),
+        (error) &#x3D;&gt; this.handleError(error)
+      );
+    }
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;bg&quot;&gt;
+  &lt;h4 class&#x3D;&quot;mb-3&quot;&gt;Custom Message&lt;/h4&gt;
+  &lt;div class&#x3D;&quot;row&quot; *ngFor&#x3D;&quot;let box of this.inputInfo&quot;&gt;
+    &lt;div class&#x3D;&quot;col-lg-1 label pt-3 mt-3&quot;&gt;
+      {{ box.label | capitalization }}:
+    &lt;/div&gt;
+    &lt;div class&#x3D;&quot;col-lg-10 mt-3&quot;&gt;
+      &lt;app-drop-down
+        [inputInfo]&#x3D;&quot;box&quot;
+        [changeFlag]&#x3D;&quot;this.changeFlag&quot;
+        [scrollHeight]&#x3D;&quot;&#x27;50px&#x27;&quot;
+        *ngIf&#x3D;&quot;box &amp;&amp; box.type &#x3D;&#x3D; &#x27;dropDown&#x27;&quot;
+        [data]&#x3D;&quot;box.data&quot;
+        (updateData)&#x3D;&quot;updateData($event, box.modelName)&quot;
+        (action)&#x3D;&quot;getCustomMessage()&quot;
+        (preSubmit)&#x3D;&quot;preSubmit()&quot;
+        (submit)&#x3D;&quot;onSubmit()&quot;
+      &gt;&lt;/app-drop-down&gt;
+      &lt;app-radio-button
+        [inputInfo]&#x3D;&quot;box&quot;
+        [changeFlag]&#x3D;&quot;this.changeFlag&quot;
+        *ngIf&#x3D;&quot;box &amp;&amp; box.type &#x3D;&#x3D; &#x27;radioButton&#x27;&quot;
+        (updateData)&#x3D;&quot;updateData($event, box.modelName, $event)&quot;
+        (click)&#x3D;&quot;getCustomMessage()&quot;
+        (preSubmit)&#x3D;&quot;preSubmit()&quot;
+        (submit)&#x3D;&quot;onSubmit()&quot;
+      &gt;
+      &lt;/app-radio-button&gt;
+      &lt;app-text-area
+        [inputInfo]&#x3D;&quot;box&quot;
+        [updatedFlag]&#x3D;&quot;this.updatedFlag&quot;
+        [changeFlag]&#x3D;&quot;this.changeFlag&quot;
+        *ngIf&#x3D;&quot;box &amp;&amp; box.type &#x3D;&#x3D; &#x27;textArea&#x27;&quot;
+        (updateData)&#x3D;&quot;updateData($event, box.modelName)&quot;
+        (preSubmit)&#x3D;&quot;preSubmit()&quot;
+        (submit)&#x3D;&quot;onSubmit()&quot;
+      &gt;&lt;/app-text-area&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;!-- &lt;app-radio-button
+    [inputInfo]&#x3D;&quot;this.radioInputInfo[0]&quot;
+    [changeFlag]&#x3D;&quot;this.changeFlag&quot;
+    (updateData)&#x3D;&quot;updateData($event, this.radioInputInfo[0].modelName)&quot;
+    (submit)&#x3D;&quot;preSubmit()&quot;
+  &gt;
+  &lt;/app-radio-button&gt; --&gt;
+  &lt;!-- &lt;div class&#x3D;&quot;row mt-3&quot; *ngIf&#x3D;&quot;this.messageInputInfo[0]&quot;&gt;
+    &lt;div class&#x3D;&quot;col-lg-1 label pt-3&quot;&gt;
+      {{ this.messageInputInfo[0].label | capitalization }}:
+    &lt;/div&gt;
+    &lt;div class&#x3D;&quot;col-lg-10 mt-2&quot;&gt;
+      &lt;app-text-area
+        [inputInfo]&#x3D;&quot;this.messageInputInfo[0]&quot;
+        [changeFlag]&#x3D;&quot;this.changeFlag&quot;
+        *ngIf&#x3D;&quot;
+          this.messageInputInfo[0] &amp;&amp;
+          this.messageInputInfo[0].type &#x3D;&#x3D; &#x27;textArea&#x27;
+        &quot;
+        (updateData)&#x3D;&quot;updateData($event, this.messageInputInfo[0].modelName)&quot;
+        (preSubmit)&#x3D;&quot;preSubmit()&quot;
+        (submit)&#x3D;&quot;onSubmit()&quot;
+      &gt;&lt;/app-text-area&gt;
+    &lt;/div&gt;
+  &lt;/div&gt; --&gt;
+  &lt;div class&#x3D;&quot;row mt-3 justify-content-center&quot;&gt;
+    &lt;div class&#x3D;&quot;col-lg-1 label pt-3&quot;&gt;
+      &lt;app-button
+        [label]&#x3D;&quot;&#x27;Save&#x27;&quot;
+        [type]&#x3D;&quot;&#x27;btn&#x27;&quot;
+        [bgColor]&#x3D;&quot;&#x27;#007ACC&#x27;&quot;
+        [color]&#x3D;&quot;&#x27;#ffff&#x27;&quot;
+        (button)&#x3D;&quot;preSubmit()&quot;
+      &gt;&lt;/app-button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-styleData">
+                <p class="comment">
+                    <code>./custom-message.component.css</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">.bg {
+  background-color: #f3f3ff;
+  padding: 15px;
+  margin: 50px 50px;
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div class="bg">  <h4 class="mb-3">Custom Message</h4>  <div class="row" *ngFor="let box of this.inputInfo">    <div class="col-lg-1 label pt-3 mt-3">      {{ box.label | capitalization }}:    </div>    <div class="col-lg-10 mt-3">      <app-drop-down        [inputInfo]="box"        [changeFlag]="this.changeFlag"        [scrollHeight]="\'50px\'"        *ngIf="box && box.type == \'dropDown\'"        [data]="box.data"        (updateData)="updateData($event, box.modelName)"        (action)="getCustomMessage()"        (preSubmit)="preSubmit()"        (submit)="onSubmit()"      ></app-drop-down>      <app-radio-button        [inputInfo]="box"        [changeFlag]="this.changeFlag"        *ngIf="box && box.type == \'radioButton\'"        (updateData)="updateData($event, box.modelName, $event)"        (click)="getCustomMessage()"        (preSubmit)="preSubmit()"        (submit)="onSubmit()"      >      </app-radio-button>      <app-text-area        [inputInfo]="box"        [updatedFlag]="this.updatedFlag"        [changeFlag]="this.changeFlag"        *ngIf="box && box.type == \'textArea\'"        (updateData)="updateData($event, box.modelName)"        (preSubmit)="preSubmit()"        (submit)="onSubmit()"      ></app-text-area>    </div>  </div>  <!-- <app-radio-button    [inputInfo]="this.radioInputInfo[0]"    [changeFlag]="this.changeFlag"    (updateData)="updateData($event, this.radioInputInfo[0].modelName)"    (submit)="preSubmit()"  >  </app-radio-button> -->  <!-- <div class="row mt-3" *ngIf="this.messageInputInfo[0]">    <div class="col-lg-1 label pt-3">      {{ this.messageInputInfo[0].label | capitalization }}:    </div>    <div class="col-lg-10 mt-2">      <app-text-area        [inputInfo]="this.messageInputInfo[0]"        [changeFlag]="this.changeFlag"        *ngIf="          this.messageInputInfo[0] &&          this.messageInputInfo[0].type == \'textArea\'        "        (updateData)="updateData($event, this.messageInputInfo[0].modelName)"        (preSubmit)="preSubmit()"        (submit)="onSubmit()"      ></app-text-area>    </div>  </div> -->  <div class="row mt-3 justify-content-center">    <div class="col-lg-1 label pt-3">      <app-button        [label]="\'Save\'"        [type]="\'btn\'"        [bgColor]="\'#007ACC\'"        [color]="\'#ffff\'"        (button)="preSubmit()"      ></app-button>    </div>  </div></div></div>'
+    var COMPONENTS = [{'name': 'AddAdminComponent', 'selector': 'app-add-admin'},{'name': 'AddClientComponent', 'selector': 'app-add-client'},{'name': 'AddPartnersComponent', 'selector': 'app-add-partners'},{'name': 'AddServicesComponent', 'selector': 'app-add-services'},{'name': 'AdminNavigationComponent', 'selector': 'app-admin-navigation'},{'name': 'AdminSlideMenuComponent', 'selector': 'app-admin-slide-menu'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'BalanceDeductionComponent', 'selector': 'app-balance-deduction'},{'name': 'BulkSmsComponent', 'selector': 'app-bulk-sms'},{'name': 'BulkSmsReportingComponent', 'selector': 'app-bulk-sms-reporting'},{'name': 'ButtonComponent', 'selector': 'app-button'},{'name': 'ByIpComponent', 'selector': 'app-by-ip'},{'name': 'ByMsisdnComponent', 'selector': 'app-by-msisdn'},{'name': 'CalenderComponent', 'selector': 'app-calender'},{'name': 'CampaignReportingComponent', 'selector': 'app-campaign-reporting'},{'name': 'CampaignWhatComponent', 'selector': 'app-campaign-what'},{'name': 'CampaignWhenComponent', 'selector': 'app-campaign-when'},{'name': 'CampaignWhoComponent', 'selector': 'app-campaign-who'},{'name': 'CheckBoxComponent', 'selector': 'app-check-box'},{'name': 'CheckKeywordComponent', 'selector': 'app-check-keyword'},{'name': 'ClientNavigationComponent', 'selector': 'app-client-navigation'},{'name': 'ClientTieredMenuComponent', 'selector': 'app-client-tiered-menu'},{'name': 'ContactListsComponent', 'selector': 'app-contact-lists'},{'name': 'CreateCampaignComponent', 'selector': 'app-create-campaign'},{'name': 'CreateNewContactListComponent', 'selector': 'app-create-new-contact-list'},{'name': 'CreateNewGroupModalComponent', 'selector': 'app-create-new-group-modal'},{'name': 'CustomMessageComponent', 'selector': 'app-custom-message'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DialogComponent', 'selector': 'app-dialog'},{'name': 'DropDownComponent', 'selector': 'app-drop-down'},{'name': 'EditAdminComponent', 'selector': 'app-edit-admin'},{'name': 'EditClientsComponent', 'selector': 'app-edit-clients'},{'name': 'ForgotPasswordComponent', 'selector': 'app-forgot-password'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'ImportContactModalComponent', 'selector': 'app-import-contact-modal'},{'name': 'InputChipsSpecialComponent', 'selector': 'app-input-chips-special'},{'name': 'InputTableComponent', 'selector': 'app-input-table'},{'name': 'LineChartComponent', 'selector': 'app-line-chart'},{'name': 'LinkButtonComponent', 'selector': 'app-link-button'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'LogsComponent', 'selector': 'app-logs'},{'name': 'ManageAdminComponent', 'selector': 'app-manage-admin'},{'name': 'ManageClientsComponent', 'selector': 'app-manage-clients'},{'name': 'MergeSendComponent', 'selector': 'app-merge-send'},{'name': 'MessageDetailsComponent', 'selector': 'app-message-details'},{'name': 'MessageSuccessComponent', 'selector': 'app-message-success'},{'name': 'MultiSelectComponent', 'selector': 'app-multi-select'},{'name': 'RadioButtonComponent', 'selector': 'app-radio-button'},{'name': 'ReceivedMessageComponent', 'selector': 'app-received-message'},{'name': 'ReceivedMessagesComponent', 'selector': 'app-received-messages'},{'name': 'ResetPasswordComponent', 'selector': 'app-reset-password'},{'name': 'SearchComponent', 'selector': 'app-search'},{'name': 'SelectButtonComponent', 'selector': 'app-select-button'},{'name': 'SentMessageComponent', 'selector': 'app-sent-message'},{'name': 'ServiceModalComponent', 'selector': 'app-service-modal'},{'name': 'ServicesComponent', 'selector': 'app-services'},{'name': 'ShortCodeApprovalComponent', 'selector': 'app-short-code-approval'},{'name': 'ShortCodeApprovalRequestComponent', 'selector': 'app-short-code-approval-request'},{'name': 'ShortCodeRequestDetailsComponent', 'selector': 'app-short-code-request-details'},{'name': 'ShortCodeRequestStatusComponent', 'selector': 'app-short-code-request-status'},{'name': 'SidePanelComponent', 'selector': 'app-side-panel'},{'name': 'SignUpComponent', 'selector': 'app-sign-up'},{'name': 'SingleSmsComponent', 'selector': 'app-single-sms'},{'name': 'SingleSmsReportingComponent', 'selector': 'app-single-sms-reporting'},{'name': 'SmscComponent', 'selector': 'app-smsc'},{'name': 'SmscModalComponent', 'selector': 'app-smsc-modal'},{'name': 'SmsPlusComponent', 'selector': 'app-sms-plus'},{'name': 'SmsPlusDashboardComponent', 'selector': 'app-sms-plus-dashboard'},{'name': 'SmsPlusErrorsComponent', 'selector': 'app-sms-plus-errors'},{'name': 'SplitButtonComponent', 'selector': 'app-split-button'},{'name': 'SpreadsheetDetailsComponent', 'selector': 'app-spreadsheet-details'},{'name': 'StaffNavigationComponent', 'selector': 'app-staff-navigation'},{'name': 'SuperAdminMenuComponent', 'selector': 'app-super-admin-menu'},{'name': 'SuperNavigationComponent', 'selector': 'app-super-navigation'},{'name': 'TableComponent', 'selector': 'app-table'},{'name': 'TBalanceDeductionComponent', 'selector': 'app-t-balance-deduction'},{'name': 'TCheckKeywordComponent', 'selector': 'app-t-check-keyword'},{'name': 'TelevotingComponent', 'selector': 'app-televoting'},{'name': 'TelevotingDashboardComponent', 'selector': 'app-televoting-dashboard'},{'name': 'TelevotingErrorsComponent', 'selector': 'app-televoting-errors'},{'name': 'TestAndConfirmComponent', 'selector': 'app-test-and-confirm'},{'name': 'TextAreaComponent', 'selector': 'app-text-area'},{'name': 'TextBoxComponent', 'selector': 'app-text-box'},{'name': 'TextIconButtonComponent', 'selector': 'app-text-icon-button'},{'name': 'TMessageDetailsComponent', 'selector': 'app-t-message-details'},{'name': 'TMessageSuccessComponent', 'selector': 'app-t-message-success'},{'name': 'TReceivedMessagesComponent', 'selector': 'app-t-received-messages'},{'name': 'TSentMessageComponent', 'selector': 'app-t-sent-message'},{'name': 'UploadFileComponent', 'selector': 'app-upload-file'},{'name': 'VerifyEmailAccountComponent', 'selector': 'app-verify-email-account'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'CustomMessageComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'CustomMessageComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

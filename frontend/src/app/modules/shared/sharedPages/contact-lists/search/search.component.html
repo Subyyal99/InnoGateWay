@@ -1,0 +1,37 @@
+<div class="bg">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-4 col-lg-2 col-xl-2 col-xxl-1 text-center">
+        <app-button
+          [icon]="'fas fa-arrow-left'"
+          [label]="'Back'"
+          [iconPos]="'left'"
+          [type]="'type'"
+          [bgColor]="'#55A8FD'"
+          [color]="'#fff'"
+          (button)="navigate('contact-lists')"
+        ></app-button>
+      </div>
+      <div class="col-md-8 col-lg-6 col-xl-3 col-xxl-2 text-center">
+        <app-button
+          [icon]="' fad fa-book-open'"
+          [label]="'Create New Contact List'"
+          [iconPos]="'left'"
+          [type]="'type'"
+          [bgColor]="'#55A8FD'"
+          [color]="'#fff'"
+          (button)="navigate('create-new-contact-list')"
+        ></app-button>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid table">
+    <app-table
+      [cols]="this.tableHeaders"
+      [col]="this.tableInfo"
+      [type]="'sms-plus'"
+      [action]="'yes'"
+      (updatedData)="onDelete($event)"
+    ></app-table>
+  </div>
+</div>

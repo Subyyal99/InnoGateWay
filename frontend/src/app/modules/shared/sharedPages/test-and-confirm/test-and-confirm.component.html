@@ -1,0 +1,99 @@
+<div class="bg">
+  <div class="row" *ngFor="let box of this.inputInfo; let i = index">
+    <div
+      class="col-md-1 text-left mt-4 label"
+      *ngIf="box && box.type == 'text2' && lessThan(i, 5)"
+    >
+      {{ box.label | capitalization }}
+    </div>
+    <div class="col-md-11 mt-3">
+      <app-text-box
+        [inputInfo]="box"
+        [changeFlag]="this.changeFlag"
+        *ngIf="box && box.type == 'text2' && lessThan(i, 5)"
+        (updateData)="updateData($event, box.label)"
+      ></app-text-box>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3 ml-8">
+      <div class="btn">
+        <app-button
+          [label]="'Calculate Cost'"
+          [bgColor]="'#53A3F6'"
+          [color]="'#ffff'"
+        ></app-button>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mt-5">
+    <div
+      class="col-md-1 text-left mt-2 label"
+      *ngIf="this.inputInfo[5] && this.inputInfo[5].type == 'text2'"
+    >
+      {{ this.inputInfo[5].label | capitalization }}
+    </div>
+    <div class="col-md-10">
+      <app-text-box
+        [inputInfo]="this.inputInfo[5]"
+        [changeFlag]="this.changeFlag"
+        *ngIf="this.inputInfo[5] && this.inputInfo[5].type == 'text2'"
+        (updateData)="updateData($event, this.inputInfo[5].label)"
+      ></app-text-box>
+    </div>
+    <div class="col-md-1">
+      <app-button
+        [icon]="' fas fa-envelope'"
+        [iconPos]="'center'"
+        [type]="'type'"
+        [bgColor]="'#FFFF'"
+        [color]="'#000'"
+      ></app-button>
+    </div>
+  </div>
+
+  <div class="row">
+    <div
+      class="col-md-1 text-left mt-4 label"
+      *ngIf="this.inputInfo[6] && this.inputInfo[6].type == 'text2'"
+    >
+      {{ this.inputInfo[6].label | capitalization }}
+    </div>
+    <div class="col-md-11 mt-4">
+      <app-text-box
+        [inputInfo]="this.inputInfo[6]"
+        [changeFlag]="this.changeFlag"
+        *ngIf="this.inputInfo[6] && this.inputInfo[6].type == 'text2'"
+        (updateData)="updateData($event, this.inputInfo[6].label)"
+      ></app-text-box>
+    </div>
+  </div>
+
+  <div class="row justify-content-center btns">
+    <div class="col-md-1">
+      <app-button
+        [label]="'Back'"
+        [bgColor]="'#2466A9'"
+        [color]="'#ffff'"
+        (button)="back('campaign-when')"
+      ></app-button>
+    </div>
+    <div class="col-md-2">
+      <app-button
+        [label]="'Save for later'"
+        [bgColor]="'#2466A9'"
+        [color]="'#ffff'"
+        (button)="back('create-campaign')"
+      ></app-button>
+    </div>
+    <div class="col-md-1">
+      <app-button
+        [label]="'Finish'"
+        [bgColor]="'#A8A8A8'"
+        [color]="'#ffff'"
+        (button)="finish()"
+      ></app-button>
+    </div>
+  </div>
+</div>

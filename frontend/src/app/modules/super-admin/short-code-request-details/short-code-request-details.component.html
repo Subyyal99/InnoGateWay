@@ -1,0 +1,47 @@
+<div class="container-fluid login-page">
+  <div class="row justify-content-center">
+    <div class="dataBox">
+      <div class="row mt-4">
+        <div class="col-md-6 d-flex" *ngFor="let box of this.inputInfo">
+          <div class="col-md-2 col-lg-4 col-xl-2">
+            <label class="label">{{ box.label | capitalization }}</label>
+          </div>
+          <div class="col-md-10 col-lg-8 col-xl-10">
+            <app-text-box
+              [inputInfo]="box"
+              [changeFlag]="this.changeFlag"
+              *ngIf="box.type == 'text2' || box.type == 'disabled'"
+              (updateData)="updateData($event, box.label)"
+              (preSubmit)="preSubmit()"
+              (submit)="onSubmit()"
+            ></app-text-box>
+            <app-multi-select
+              [inputInfo]="box"
+              [changeFlag]="this.changeFlag"
+              *ngIf="box.type == 'multiSelect'"
+              [data]="box.data"
+              (updateData)="updateData($event, box.label)"
+              (preSubmit)="preSubmit()"
+              (submit)="onSubmit()"
+            ></app-multi-select>
+          </div>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-md-3 mt-4">
+          <app-button
+            [label]="'Submit'"
+            [padding]="'5px 0'"
+            [borderRadius]="'0px'"
+            [color]="'#fff'"
+            [type]="'login'"
+            [bgColor]="'#3283F6'"
+            (button)="preSubmit()"
+            [fontSize]="'14px'"
+          >
+          </app-button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

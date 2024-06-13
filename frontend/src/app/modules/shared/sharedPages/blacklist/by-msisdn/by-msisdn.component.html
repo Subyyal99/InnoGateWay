@@ -1,0 +1,46 @@
+<div class="row text-center">
+  <div class="col-12 ">
+    <h3>
+      Blacklist By Msisdn
+    </h3>
+  </div>
+</div>
+<div class="bg">
+  <div class="row" *ngFor="let box of this.inputInfo">
+    <div class="label col-md-2 col-lg-2 col-xl-1">
+      <p>{{ box.label | titlecase }}</p>
+    </div>
+    <div class="col-md-10 col-lg-10 col-xl-10">
+      <app-text-box
+        [inputInfo]="box"
+        [changeFlag]="this.changeFlag"
+        *ngIf="box.type == 'text2'"
+        (updateData)="updateData($event, box.modelName)"
+        (preSubmit)="preSubmit()"
+        (submit)="onSubmit()"
+      ></app-text-box>
+    </div>
+  </div>
+  <div class="row justify-content-center mt-2">
+    <div class="col-md-2 col-lg-2 col-xl-2">
+      <app-button
+        [label]="'Submit'"
+        [type]="'a'"
+        [color]="'#ffffff'"
+        [bgColor]="'#53a3f6'"
+        (button)="preSubmit()"
+      ></app-button>
+    </div>
+  </div>
+</div>
+<div class="bg" *ngIf="this.tableInfo.length > 0">
+  <div>
+    <app-table
+      [cols]="this.tableHeaders"
+      [col]="this.tableInfo"
+      [type]="'sms-plus'"
+      (updatedData)="onDelete($event)"
+      [action]="'yes'"
+    ></app-table>
+  </div>
+</div>

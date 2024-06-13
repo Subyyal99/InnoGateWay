@@ -1,0 +1,100 @@
+<!-- <div class="container-fluid login-page">
+  <div class="row justify-content-center h-100">
+    <div class="col-md-6 col-lg-6 align-self-center">
+      <h3>
+        Create your free <br />
+        account
+      </h3>
+      <div class="col-md-6 col-lg-6" *ngFor="let box of this.inputInfo">
+        <app-text-box
+          [inputInfo]="box"
+          [changeFlag]="this.changeFlag"
+          *ngIf="box.type == 'text2'"
+          (updateData)="updateData($event, box.label)"
+          (preSubmit)="preSubmit()"
+          (submit)="onSubmit()"
+        ></app-text-box>
+      </div>
+      <div class="align-self-center">
+        <div class="col-md-6 col-lg-6 center align-self-center">
+          <app-button
+            [label]="'Sign Up'"
+            (button)="preSubmit()"
+            [type]="'a'"
+            [color]="'#ffffff'"
+            [bgColor]="'#000000'"
+          ></app-button>
+        </div>
+
+        <div class="col-md-6 col-lg-6 text-center">
+          <app-link-button
+            (button)="login()"
+            [label]="'Have an account?'"
+          ></app-link-button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+<div class="container-fluid login-page">
+  <div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6 col-xl-4 box">
+      <div class="">
+        <div class="text-center w-75 h-75 m-auto">
+          <div class="auth-logo">
+            <a href="#" class="logo logo-dark text-center">
+              <span class="logo-lg">
+                <img src="assets/logo.png" alt="" height="100" width="80" />
+              </span>
+            </a>
+          </div>
+        </div>
+        <div class="col-md-12 mt-4" *ngFor="let box of this.inputInfo">
+          <label class="label" *ngIf="box.type == 'text2'">{{
+            box.label | capitalization
+          }}</label>
+          <app-text-box
+            [inputInfo]="box"
+            [changeFlag]="this.changeFlag"
+            *ngIf="box.type == 'text2'"
+            (updateData)="updateData($event, box.label)"
+            (preSubmit)="preSubmit()"
+            (submit)="onSubmit()"
+          ></app-text-box>
+          <div class="d-flex">
+            <app-check-box
+              [inputInfo]="box"
+              [changeFlag]="changeFlag"
+              (updateData)="updateData($event, box.label)"
+              *ngIf="box.type == 'checkBox'"
+              (preSubmit)="preSubmit()"
+              (submit)="onSubmit()"
+            ></app-check-box>
+            <label class="label ml-2 pt-1" *ngIf="box.type == 'checkBox'"
+              >Remember Me</label
+            >
+          </div>
+        </div>
+
+        <div class="col-md-12 mt-4">
+          <app-button
+            [label]="'Sign Up'"
+            [padding]="'5px 0'"
+            [borderRadius]="'0px'"
+            [color]="'#fff'"
+            [type]="'login'"
+            [bgColor]="'#3283F6'"
+            (button)="preSubmit()"
+            [fontSize]="'14px'"
+          >
+          </app-button>
+          <div class="row">
+            <div class="container-fluid my-3">
+              <a href="#/login">Already have an account? Sign in here</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

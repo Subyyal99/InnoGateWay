@@ -1,0 +1,14 @@
+<div class="container-fluid">
+  <div class="row mt-5">
+    <div class="col-md-12" *ngIf="!this.requestFlag">
+      <h4>No Short Code Approval Request Available.</h4>
+    </div>
+  </div>
+  <div *ngIf="this.tableInfo && this.requestFlag">
+    <app-table
+      [cols]="this.tableHeaders"
+      [col]="this.tableInfo"
+      [type]="'viewShortCodeApprovalRequest'"
+    ></app-table>
+  </div>
+</div>

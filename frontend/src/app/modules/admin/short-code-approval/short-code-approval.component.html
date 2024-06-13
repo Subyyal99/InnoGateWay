@@ -1,0 +1,89 @@
+<div class="container-fluid login-page">
+  <div class="row text-center">
+    <div class="col-12">
+      <h3>Add Short Code</h3>
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <div class="dataBox">
+      <div
+        class="row mb-3"
+        *ngIf="
+          this.radioInputInfo[0] && this.radioInputInfo[0].type == 'radioButton'
+        "
+      >
+        <div class="col-md-2 col-lg-2 col-xl-1 label pt-4">
+          {{ this.radioInputInfo[0].label | capitalization }}:
+        </div>
+        <div class="col-md-10 col-lg-8 col-xl-9 mt-2">
+          <app-radio-button
+            [inputInfo]="this.radioInputInfo[0]"
+            [changeFlag]="this.changeFlag"
+            *ngIf="
+              this.radioInputInfo[0] &&
+              this.radioInputInfo[0].type == 'radioButton'
+            "
+            (updateData)="
+              updateData($event, this.radioInputInfo[0].label, $event)
+            "
+            (preSubmit)="preSubmit()"
+            (submit)="onSubmit()"
+          >
+          </app-radio-button>
+        </div>
+      </div>
+      <div class="row mt-4">
+        <div class="col-md-6 d-flex" *ngFor="let box of this.inputInfo">
+          <div class="col-md-3 col-lg-4 col-xl-2">
+            <label class="label">{{ box.label | capitalization }}</label>
+          </div>
+          <div class="col-md-8 col-lg-8 col-xl-10">
+            <app-text-box
+              [inputInfo]="box"
+              [changeFlag]="this.changeFlag"
+              *ngIf="box.type == 'text2'"
+              (updateData)="updateData($event, box.label)"
+              (preSubmit)="preSubmit()"
+              (submit)="onSubmit()"
+            ></app-text-box>
+            <app-drop-down
+              [inputInfo]="box"
+              [changeFlag]="this.changeFlag"
+              [scrollHeight]="scrollHeight"
+              *ngIf="box.type == 'multiSelect'"
+              [data]="box.data"
+              (updateData)="updateData($event, box.label, this.updateFlag)"
+              (preSubmit)="preSubmit()"
+              (submit)="onSubmit()"
+            ></app-drop-down
+            ><app-drop-down
+              [inputInfo]="box"
+              [changeFlag]="this.changeFlag"
+              [scrollHeight]="scrollHeightBO"
+              *ngIf="box.type == 'multiSelectBo'"
+              [data]="box.data"
+              (updateData)="updateData($event, box.label, this.updateFlag)"
+              (preSubmit)="preSubmit()"
+              (submit)="onSubmit()"
+            ></app-drop-down>
+          </div>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-md-3 mt-4">
+          <app-button
+            [label]="'Submit'"
+            [padding]="'5px 0'"
+            [borderRadius]="'0px'"
+            [color]="'#fff'"
+            [type]="'login'"
+            [bgColor]="'#3283F6'"
+            (button)="preSubmit()"
+            [fontSize]="'14px'"
+          >
+          </app-button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

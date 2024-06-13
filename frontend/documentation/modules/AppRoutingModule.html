@@ -1,0 +1,562 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>frontend documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css" media="(prefers-color-scheme: dark)">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">frontend documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content module">
+                   <div class="content-data">
+
+
+
+<ol class="breadcrumb">
+    <li>Modules</li>
+    <li >AppRoutingModule</li>
+</ol>
+
+
+<ul class="nav nav-tabs" role="tablist">
+    <li  class="active" >
+        <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+    </li>
+    <li >
+        <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+    </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info">
+
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/app/app-routing.module.ts</code>
+        </p>
+
+
+
+
+
+        <div class="container-fluid module">
+            <div class="row">
+            </div>
+        </div>
+
+
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { NgModule } from &quot;@angular/core&quot;;
+import { Routes, RouterModule } from &quot;@angular/router&quot;;
+import { ButtonComponent } from &quot;./component/htmlComponents/button/button.component&quot;;
+import { InputChipsSpecialComponent } from &quot;./component/htmlComponents/input-chips-special/input-chips-special.component&quot;;
+import { LineChartComponent } from &quot;./component/htmlComponents/line-chart/line-chart.component&quot;;
+import { SidePanelComponent } from &quot;./component/htmlComponents/side-panel/side-panel.component&quot;;
+import { TextBoxComponent } from &quot;./component/htmlComponents/text-box/text-box.component&quot;;
+import { AdminGuard } from &quot;./guards/admin.guard&quot;;
+import { AuthGuard } from &quot;./guards/auth.guard&quot;;
+import { ClientGuard } from &quot;./guards/client.guard&quot;;
+import { NotLoggedInGuard } from &quot;./guards/not-logged-in.guard&quot;;
+import { SuperAdminGuard } from &quot;./guards/super-admin.guard&quot;;
+import { AddClientComponent } from &quot;./modules/admin/add-client/add-client.component&quot;;
+import { EditClientsComponent } from &quot;./modules/admin/edit-clients/edit-clients.component&quot;;
+import { LogsComponent } from &quot;./modules/admin/logs/logs.component&quot;;
+import { ManageClientsComponent } from &quot;./modules/admin/manage-clients/manage-clients.component&quot;;
+import { ServicesComponent } from &quot;./modules/admin/services/services.component&quot;;
+import { ShortCodeApprovalComponent } from &quot;./modules/admin/short-code-approval/short-code-approval.component&quot;;
+import { AdminNavigationComponent } from &quot;./modules/navigations/admin-navigation/admin-navigation.component&quot;;
+import { ClientNavigationComponent } from &quot;./modules/navigations/client-navigation/client-navigation.component&quot;;
+import { SuperNavigationComponent } from &quot;./modules/navigations/super-navigation/super-navigation.component&quot;;
+import { ReceivedMessageComponent } from &quot;./modules/received-message/recieved-message/received-message.component&quot;;
+import { AddPartnersComponent } from &quot;./modules/shared/sharedPages/add-partners/add-partners.component&quot;;
+import { AddServicesComponent } from &quot;./modules/shared/sharedPages/add-services/add-services.component&quot;;
+import { ByIpComponent } from &quot;./modules/shared/sharedPages/blacklist/by-ip/by-ip.component&quot;;
+import { ByMsisdnComponent } from &quot;./modules/shared/sharedPages/blacklist/by-msisdn/by-msisdn.component&quot;;
+import { BulkSmsReportingComponent } from &quot;./modules/shared/sharedPages/bulk-sms-reporting/bulk-sms-reporting.component&quot;;
+import { BulkSmsComponent } from &quot;./modules/shared/sharedPages/bulk-sms/bulk-sms.component&quot;;
+import { CampaignReportingComponent } from &quot;./modules/shared/sharedPages/campaign-reporting/campaign-reporting.component&quot;;
+import { CampaignWhatComponent } from &quot;./modules/shared/sharedPages/campaign-what/campaign-what.component&quot;;
+import { CampaignWhenComponent } from &quot;./modules/shared/sharedPages/campaign-when/campaign-when.component&quot;;
+import { CampaignWhoComponent } from &quot;./modules/shared/sharedPages/campaign-who/campaign-who.component&quot;;
+import { ContactListsComponent } from &quot;./modules/shared/sharedPages/contact-lists/contact-lists.component&quot;;
+import { SpreadsheetDetailsComponent } from &quot;./modules/shared/sharedPages/contact-lists/Import/spreadsheet-details/spreadsheet-details.component&quot;;
+import { UploadFileComponent } from &quot;./modules/shared/sharedPages/contact-lists/Import/upload-file/upload-file.component&quot;;
+import { SearchComponent } from &quot;./modules/shared/sharedPages/contact-lists/search/search.component&quot;;
+import { CreateCampaignComponent } from &quot;./modules/shared/sharedPages/create-campaign/create-campaign.component&quot;;
+import { CreateNewContactListComponent } from &quot;./modules/shared/sharedPages/create-new-contact-list/create-new-contact-list.component&quot;;
+import { DashboardComponent } from &quot;./modules/shared/sharedPages/dashboard/dashboard.component&quot;;
+import { ForgotPasswordComponent } from &quot;./modules/shared/sharedPages/forgot-password/forgot-password.component&quot;;
+import { LoginComponent } from &quot;./modules/shared/sharedPages/login/login.component&quot;;
+import { MergeSendComponent } from &quot;./modules/shared/sharedPages/merge-send/merge-send.component&quot;;
+import { ResetPasswordComponent } from &quot;./modules/shared/sharedPages/reset-password/reset-password.component&quot;;
+import { SingleSmsReportingComponent } from &quot;./modules/shared/sharedPages/single-sms-reporting/single-sms-reporting.component&quot;;
+import { SingleSmsComponent } from &quot;./modules/shared/sharedPages/single-sms/single-sms.component&quot;;
+import { TestAndConfirmComponent } from &quot;./modules/shared/sharedPages/test-and-confirm/test-and-confirm.component&quot;;
+import { VerifyEmailAccountComponent } from &quot;./modules/shared/sharedPages/verify-email-account/verify-email-account.component&quot;;
+import { BalanceDeductionComponent } from &quot;./modules/sms-plus/balance-deduction/balance-deduction.component&quot;;
+import { CheckKeywordComponent } from &quot;./modules/sms-plus/check-keyword/check-keyword.component&quot;;
+import { CustomMessageComponent } from &quot;./modules/sms-plus/custom-message/custom-message.component&quot;;
+import { MessageDetailsComponent } from &quot;./modules/sms-plus/message-details/message-details.component&quot;;
+import { MessageSuccessComponent } from &quot;./modules/sms-plus/message-success/message-success.component&quot;;
+import { ReceivedMessagesComponent } from &quot;./modules/sms-plus/received-messages/received-messages.component&quot;;
+import { SentMessageComponent } from &quot;./modules/sms-plus/sent-message/sent-message.component&quot;;
+import { SmsPlusDashboardComponent } from &quot;./modules/sms-plus/sms-plus-dashboard/sms-plus-dashboard.component&quot;;
+import { SmsPlusErrorsComponent } from &quot;./modules/sms-plus/sms-plus-errors/sms-plus-errors.component&quot;;
+import { SmsPlusComponent } from &quot;./modules/sms-plus/sms-plus.component&quot;;
+import { AddAdminComponent } from &quot;./modules/super-admin/add-admin/add-admin.component&quot;;
+import { EditAdminComponent } from &quot;./modules/super-admin/edit-admin/edit-admin.component&quot;;
+import { ManageAdminComponent } from &quot;./modules/super-admin/manage-admin/manage-admin.component&quot;;
+import { ShortCodeApprovalRequestComponent } from &quot;./modules/super-admin/short-code-approval-request/short-code-approval-request.component&quot;;
+import { ShortCodeRequestDetailsComponent } from &quot;./modules/super-admin/short-code-request-details/short-code-request-details.component&quot;;
+import { ShortCodeRequestStatusComponent } from &quot;./modules/super-admin/short-code-request-status/short-code-request-status.component&quot;;
+import { SmscComponent } from &quot;./modules/super-admin/smsc/smsc.component&quot;;
+import { TBalanceDeductionComponent } from &quot;./modules/televoting/t-balance-deduction/t-balance-deduction.component&quot;;
+import { TCheckKeywordComponent } from &quot;./modules/televoting/t-check-keyword/t-check-keyword.component&quot;;
+import { TMessageDetailsComponent } from &quot;./modules/televoting/t-message-details/t-message-details.component&quot;;
+import { TMessageSuccessComponent } from &quot;./modules/televoting/t-message-success/t-message-success.component&quot;;
+import { TReceivedMessagesComponent } from &quot;./modules/televoting/t-received-messages/t-received-messages.component&quot;;
+import { TSentMessageComponent } from &quot;./modules/televoting/t-sent-message/t-sent-message.component&quot;;
+import { TelevotingDashboardComponent } from &quot;./modules/televoting/televoting-dashboard/televoting-dashboard.component&quot;;
+import { TelevotingErrorsComponent } from &quot;./modules/televoting/televoting-errors/televoting-errors.component&quot;;
+import { TelevotingComponent } from &quot;./modules/televoting/televoting.component&quot;;
+
+const routes: Routes &#x3D; [
+  { path: &quot;&quot;, pathMatch: &quot;full&quot;, redirectTo: &quot;login&quot; },
+  { path: &quot;login&quot;, component: LoginComponent, canActivate: [AuthGuard] },
+  { path: &quot;button&quot;, component: ButtonComponent },
+  { path: &quot;ics&quot;, component: InputChipsSpecialComponent },
+  { path: &quot;text-box&quot;, component: TextBoxComponent },
+  { path: &quot;account/verify-email&quot;, component: VerifyEmailAccountComponent },
+  { path: &quot;account/reset-password&quot;, component: ResetPasswordComponent },
+  { path: &quot;account/forgot-password&quot;, component: ForgotPasswordComponent },
+  { path: &quot;add-partners&quot;, component: AddPartnersComponent },
+  { path: &quot;add-services&quot;, component: AddServicesComponent },
+
+  {
+    path: &quot;side-panel&quot;,
+    component: SidePanelComponent,
+    canActivate: [ClientGuard],
+    children: [
+      {
+        path: &quot;mergeSend&quot;,
+        component: MergeSendComponent,
+        canActivate: [ClientGuard],
+      },
+      {
+        path: &quot;sms-dashboard&quot;,
+        component: DashboardComponent,
+        canActivate: [ClientGuard],
+      },
+      {
+        path: &quot;single-sms&quot;,
+        component: SingleSmsComponent,
+        canActivate: [ClientGuard],
+      },
+      {
+        path: &quot;single-sms-reporting&quot;,
+        component: SingleSmsReportingComponent,
+        canActivate: [ClientGuard],
+      },
+      {
+        path: &quot;bulk-sms&quot;,
+        component: BulkSmsComponent,
+        canActivate: [ClientGuard],
+      },
+      {
+        path: &quot;bulk-sms-reporting&quot;,
+        component: BulkSmsReportingComponent,
+        canActivate: [ClientGuard],
+      },
+      {
+        path: &quot;create-campaign&quot;,
+        component: CreateCampaignComponent,
+        canActivate: [ClientGuard],
+      },
+      {
+        path: &quot;campaign-who&quot;,
+        component: CampaignWhoComponent,
+        canActivate: [ClientGuard],
+      },
+      {
+        path: &quot;campaign-what&quot;,
+        component: CampaignWhatComponent,
+        canActivate: [ClientGuard],
+      },
+      {
+        path: &quot;campaign-when&quot;,
+        component: CampaignWhenComponent,
+        canActivate: [ClientGuard],
+      },
+      {
+        path: &quot;test-and-confirm&quot;,
+        component: TestAndConfirmComponent,
+        canActivate: [ClientGuard],
+      },
+      {
+        path: &quot;campaign-reporting&quot;,
+        component: CampaignReportingComponent,
+        canActivate: [ClientGuard],
+      },
+      {
+        path: &quot;contact-lists&quot;,
+        component: ContactListsComponent,
+        canActivate: [ClientGuard],
+      },
+      {
+        path: &quot;dashboard&quot;,
+        component: DashboardComponent,
+        canActivate: [ClientGuard],
+      },
+
+      {
+        path: &quot;upload-file&quot;,
+        component: UploadFileComponent,
+        canActivate: [ClientGuard],
+      },
+      {
+        path: &quot;spreadsheet-preview&quot;,
+        component: SpreadsheetDetailsComponent,
+        canActivate: [ClientGuard],
+      },
+      {
+        path: &quot;search&quot;,
+        component: SearchComponent,
+        canActivate: [ClientGuard],
+      },
+      {
+        path: &quot;sms-plus&quot;,
+        component: SmsPlusComponent,
+        canActivate: [ClientGuard],
+        children: [
+          {
+            path: &quot;&quot;,
+            redirectTo: &quot;smsPlus-dashboard&quot;,
+            pathMatch: &quot;full&quot;,
+          },
+          {
+            path: &quot;smsPlus-dashboard&quot;,
+            component: SmsPlusDashboardComponent,
+            canActivate: [ClientGuard],
+          },
+          {
+            path: &quot;received-messages&quot;,
+            component: ReceivedMessagesComponent,
+            canActivate: [ClientGuard],
+          },
+          {
+            path: &quot;check-keyword&quot;,
+            component: CheckKeywordComponent,
+            canActivate: [ClientGuard],
+          },
+          {
+            path: &quot;graph&quot;,
+            component: LineChartComponent,
+            canActivate: [ClientGuard],
+          },
+          {
+            path: &quot;custom-message&quot;,
+            component: CustomMessageComponent,
+            canActivate: [ClientGuard],
+          },
+          {
+            path: &quot;balance-deduction&quot;,
+            component: BalanceDeductionComponent,
+            canActivate: [ClientGuard],
+          },
+          {
+            path: &quot;successful-message&quot;,
+            component: MessageSuccessComponent,
+            canActivate: [ClientGuard],
+          },
+
+          {
+            path: &quot;sent-message&quot;,
+            component: SentMessageComponent,
+            canActivate: [ClientGuard],
+          },
+          {
+            path: &quot;message-detail&quot;,
+            component: MessageDetailsComponent,
+            canActivate: [ClientGuard],
+          },
+          {
+            path: &quot;error-messages&quot;,
+            component: SmsPlusErrorsComponent,
+            canActivate: [NotLoggedInGuard, ClientGuard],
+          },
+        ],
+      },
+      {
+        path: &quot;televoting&quot;,
+        component: TelevotingComponent,
+        children: [
+          {
+            path: &quot;&quot;,
+            redirectTo: &quot;televoting-dashboard&quot;,
+            pathMatch: &quot;full&quot;,
+          },
+          {
+            path: &quot;televoting-dashboard&quot;,
+            component: TelevotingDashboardComponent,
+            canActivate: [ClientGuard],
+          },
+          {
+            path: &quot;received-messages&quot;,
+            component: TReceivedMessagesComponent,
+            canActivate: [NotLoggedInGuard, ClientGuard],
+          },
+          {
+            path: &quot;check-keyword&quot;,
+            component: TCheckKeywordComponent,
+            canActivate: [NotLoggedInGuard, ClientGuard],
+          },
+          {
+            path: &quot;balance-deduction&quot;,
+            component: TBalanceDeductionComponent,
+            canActivate: [NotLoggedInGuard, ClientGuard],
+          },
+          {
+            path: &quot;successful-message&quot;,
+            component: TMessageSuccessComponent,
+            canActivate: [NotLoggedInGuard, ClientGuard],
+          },
+          {
+            path: &quot;sent-message&quot;,
+            component: TSentMessageComponent,
+            canActivate: [NotLoggedInGuard, ClientGuard],
+          },
+          {
+            path: &quot;message-detail&quot;,
+            component: TMessageDetailsComponent,
+            canActivate: [ClientGuard],
+          },
+          {
+            path: &quot;error-messages&quot;,
+            component: TelevotingErrorsComponent,
+            canActivate: [NotLoggedInGuard, ClientGuard],
+          },
+        ],
+      },
+      {
+        path: &quot;received-message&quot;,
+        component: ReceivedMessageComponent,
+        canActivate: [NotLoggedInGuard, ClientGuard],
+      },
+      {
+        path: &quot;create-new-contact-list&quot;,
+        component: CreateNewContactListComponent,
+        canActivate: [NotLoggedInGuard, ClientGuard],
+      },
+    ],
+  },
+  {
+    path: &quot;super-admin&quot;,
+    component: SuperNavigationComponent,
+    canActivate: [SuperAdminGuard],
+    children: [
+      {
+        path: &quot;&quot;,
+        redirectTo: &quot;add-admin&quot;,
+        pathMatch: &quot;full&quot;,
+      },
+      {
+        path: &quot;add-admin&quot;,
+        component: AddAdminComponent,
+        canActivate: [SuperAdminGuard],
+      },
+      {
+        path: &quot;manage-admin&quot;,
+        component: ManageAdminComponent,
+        canActivate: [SuperAdminGuard],
+      },
+      {
+        path: &quot;edit-admin&quot;,
+        component: EditAdminComponent,
+        canActivate: [SuperAdminGuard],
+      },
+      {
+        path: &quot;edit-smsc&quot;,
+        component: SmscComponent,
+        canActivate: [SuperAdminGuard],
+      },
+      {
+        path: &quot;short-code-approval-requests&quot;,
+        component: ShortCodeApprovalRequestComponent,
+        canActivate: [SuperAdminGuard],
+      },
+      {
+        path: &quot;short-code-request-details&quot;,
+        component: ShortCodeRequestDetailsComponent,
+        canActivate: [SuperAdminGuard],
+      },
+      {
+        path: &quot;short-code-request-status&quot;,
+        component: ShortCodeRequestStatusComponent,
+        canActivate: [SuperAdminGuard],
+      },
+    ],
+  },
+  {
+    path: &quot;admin&quot;,
+    component: AdminNavigationComponent,
+    canActivate: [AdminGuard],
+
+    children: [
+      {
+        path: &quot;&quot;,
+        redirectTo: &quot;add-client&quot;,
+        pathMatch: &quot;full&quot;,
+      },
+      {
+        path: &quot;add-client&quot;,
+        component: AddClientComponent,
+        canActivate: [AdminGuard],
+      },
+      {
+        path: &quot;manage-client&quot;,
+        component: ManageClientsComponent,
+        canActivate: [AdminGuard],
+      },
+      {
+        path: &quot;edit-client&quot;,
+        component: EditClientsComponent,
+        canActivate: [AdminGuard],
+      },
+      {
+        path: &quot;edit-service&quot;,
+        component: ServicesComponent,
+        canActivate: [AdminGuard],
+      },
+      {
+        path: &quot;add-shortCode&quot;,
+        component: ShortCodeApprovalComponent,
+        canActivate: [AdminGuard],
+      },
+      {
+        path: &quot;by-ip&quot;,
+        component: ByIpComponent,
+        canActivate: [AdminGuard],
+      },
+      {
+        path: &quot;by-msisdn&quot;,
+        component: ByMsisdnComponent,
+        canActivate: [AdminGuard],
+      },
+      {
+        path: &quot;logs&quot;,
+        component: LogsComponent,
+        canActivate: [AdminGuard],
+      },
+    ],
+  },
+  {
+    path: &quot;client&quot;,
+    component: ClientNavigationComponent,
+    children: [],
+  },
+];
+
+@NgModule({
+  imports: [
+    RouterModule.forRoot(routes, {
+      relativeLinkResolution: &quot;legacy&quot;,
+      useHash: true,
+    }),
+  ],
+  exports: [RouterModule],
+})
+export class AppRoutingModule {}
+</code></pre>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'module';
+            var COMPODOC_CURRENT_PAGE_URL = 'AppRoutingModule.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

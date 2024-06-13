@@ -1,0 +1,121 @@
+<div class="container-fluid">
+  <div class="row text-left">
+    <div class="row mb-3">
+      <div
+        class="col-md-10 col-lg-4 col-xl-3 mt-0"
+        *ngFor="let box of this.inputInfo"
+      >
+        <app-drop-down
+          [inputInfo]="box"
+          [changeFlag]="this.changeFlag"
+          [scrollHeight]="box.scrollHeight"
+          *ngIf="box && box.type == 'dropDown'"
+          [data]="box.data"
+          (updateData)="updateData($event, box.label)"
+          (preSubmit)="preSubmit()"
+          (submit)="onSubmit()"
+        ></app-drop-down>
+        <p
+          class="dateFilter pt-3"
+          (click)="op.toggle($event); test()"
+          id="dateFilterBtn"
+          *ngIf="box && box.type == 'calender'"
+        >
+          <i class="mr-2 fas fa-info-circle"></i>
+          {{ this.startDate | date: "MMMM" }}
+          {{ this.startDate | date: "dd/MMMM/yyyy" }} -
+          {{ this.endDate | date: "MMMM" }}
+          {{ this.endDate | date: "dd/MMMM/yyyy" }}
+          <i class="ml-5 fas fa-chevron-down"></i>
+        </p>
+        <!-- <i
+          [ngClass]="
+            this.designFlag
+              ? 'pi pi-filter filterBtn'
+              : 'pi pi-filter dateFilterBtn'
+          "
+        ></i> -->
+        <p-overlayPanel #op>
+          <ng-template pTemplate>
+            <div class="col-md-3 mb-2">
+              <app-button
+                [label]="'Clear'"
+                [type]="'inCalender'"
+                [bgColor]="'#53A3F6'"
+                [color]="'#ffff'"
+                (button)="clear()"
+              ></app-button>
+            </div>
+
+            <app-calender
+              [accessFrom]="'campaignReporting'"
+              [selectionMode]="range"
+              [inputInfo]="box"
+              [changeFlag]="this.changeFlag"
+              [maxDate]="this.maxDate"
+              *ngIf="box && box.type == 'calender'"
+              (updateData)="updateData($event, box.modelName)"
+              (outClick)="test()"
+              (preSubmit)="preSubmit()"
+              (submit)="onSubmit()"
+            ></app-calender>
+          </ng-template>
+        </p-overlayPanel>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid mt-5 px-7">
+  <div class="row cd">
+    <div class="col-md-12 bg col-lg-7 col-xl-7">
+      <app-line-chart
+        [chartData]="this.chartData"
+        [chartOptions]="this.chartOptions"
+        [graphLabel]="this.graphLabel"
+      ></app-line-chart>
+    </div>
+    <div class="col-md-12 col-lg-5 col-xl-5">
+      <div
+        class="col-md-12 col-lg-12 col-xl-12 reportBox"
+        *ngFor="let box of this.reportObjectsArray"
+      >
+        <i class="icon {{ box.icon }}"></i>
+        <div
+          class="msgRpt"
+          *ngIf="box.type && box.type.name == 'totalOutGoingMessages'"
+        >
+          <h3>{{ box.type.value }}</h3>
+          <p>Total Outgoing Messages</p>
+        </div>
+        <div class="msgRpt" *ngIf="box.type && box.type.name == 'delivered'">
+          <h3>{{ box.type.value }}</h3>
+          <p>Delivered</p>
+        </div>
+        <div class="msgRpt" *ngIf="box.type2 && box.type2.name == 'sent'">
+          <h3>{{ box.type.value }}</h3>
+          <p>Sent</p>
+        </div>
+        <div class="msgRpt" *ngIf="box.type && box.type.name == 'undelivered'">
+          <h3>{{ box.type.value }}</h3>
+          <p>Undelivered</p>
+        </div>
+        <div
+          class="msgRpt"
+          *ngIf="box.type2 && box.type2.name == 'invalidNumber'"
+        >
+          <h3>{{ box.type.value }}</h3>
+          <p>Invalid Number</p>
+        </div>
+        <div class="msgRpt" *ngIf="box.type3 && box.type3.name == 'rejected'">
+          <h3>{{ box.type.value }}</h3>
+          <p>Rejected</p>
+        </div>
+        <div class="msgRpt" *ngIf="box.type && box.type.name == 'optOut'">
+          <h3>{{ box.type.value }}</h3>
+          <p>Opt Out</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

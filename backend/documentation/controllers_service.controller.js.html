@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: controllers/service.controller.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: controllers/service.controller.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * BlackList_Controller_Functions module
+ * @module BlackList_Controller_Functions
+ */
+/**
+ * All functions for blacklist data are in this file
+ */
+
+/**
+ * service controller object exports functions in the controller file
+ */
+const serviceController = {};
+/**
+ * constant database (db) variable to access models 
+ */
+const db = require("../models/index.js");
+/**
+ * Service Service file import
+ */
+const serviceService = require("../services/service.service.js");
+/**
+ * Service Service class object to access Service services
+ */
+const serviceServiceObj = new serviceService();
+
+/**
+ * function to get all service 
+ * @param req - contains all data required for request
+ * @param res - response returned by the funtion
+ */
+serviceController.getAllServices = async (req, res) => {
+    try {
+        /**
+         * function call to get services
+         */
+        const allServices = await serviceServiceObj.getServices();
+        /**
+         * if operation is successful the res variable carries response with successfull status,data and message 
+         */
+        res.status(200).send({
+            code: 200,
+            message: "All Services Recieved Successfully!",
+            data: allServices,
+
+        });
+    } catch (error) {
+        /**
+         * if operation is unsuccessful the res variable carries error status 
+         */
+        return res.status(500).send(error);
+    }
+};
+/**
+ * function to get user services 
+ * @param req - contains all data required for request
+ * @param res - response returned by the funtion
+ */
+serviceController.getUserServices = async (req, res) => {
+    try {
+        /**
+         * function call to get user services
+         */
+        const userServices = await serviceServiceObj.getUserServices({
+            /**
+             * specific parametres with id and is deleted
+             */
+            where: {
+                userId: req.body.id,
+                isDeleted: "0"
+            },
+            /**
+             * includes associated data with service database table
+             */
+            include: [{
+                model: db.Service,
+                required: true,
+            }, ],
+        });
+        /**
+         * function call to get message data
+         */
+        const messageData = await serviceServiceObj.getMessageData({
+            /**
+             * specific parametres with id 
+             */
+            where: {
+                userId: req.body.id
+            },
+            /**
+             * includes associated data with service database table
+             */
+            include: [{
+                    model: db.Service,
+                    required: true,
+                },
+                /**
+                 * includes associated data with short code database table
+                 */
+                {
+                    model: db.ShortCode,
+                    required: true,
+                },
+            ],
+        });
+        /**
+         * if operation is successful the res variable carries response with successfull status,data and message 
+         */
+        res.status(200).send({
+            code: 200,
+            message: "User Services!",
+            data: userServices,
+            messageData: messageData,
+
+        });
+    } catch (error) {
+        /**
+         * if operation is unsuccessful the res variable carries error status 
+         */
+        return res.status(500).send(error);
+    }
+};
+/**
+ * function to get user services 
+ * @param req - contains all data required for request
+ * @param res - response returned by the funtion
+ */
+serviceController.deleteUserService = async (req, res) => {
+    try {
+        /**
+         * function call to check service allowed to user 
+         */
+        const serviceId = await serviceServiceObj.checkAllowServce({
+            /**
+             * user parameters 
+             */
+            where: {
+                serviceId: req.body.serviceId,
+                userId: req.body.userId
+            }
+        });
+        req.body.id = serviceId.dataValues.id
+        req.body.status = "Not Allowed"
+        req.body.isDeleted = "1"
+        /**
+         * function call to delete user service
+         */
+        const deleteUserService = await serviceServiceObj.deleteUserService(req.body);
+        /**
+         * if operation is successful the res variable carries response with successfull status,data and message 
+         */
+        res.status(200).send({
+            code: 200,
+            message: "User service deleted successfully!",
+            data: deleteUserService,
+
+        });
+    } catch (error) {
+        /**
+         * if operation is unsuccessful the res variable carries error status 
+         */
+        return res.status(500).send(error);
+    }
+};
+/**
+ * function to check user services 
+ * @param req - contains all data required for request
+ * @param res - response returned by the funtion
+ */
+serviceController.checkUserServices = async (req, res) => {
+    try {
+        /**
+         * function call to get services allowed to user
+         */
+        const userServices = await serviceServiceObj.getUserServices({
+            where: {
+                userId: req.userId,
+                isDeleted: "0"
+            },
+            include: [{
+                model: db.Service,
+                required: true,
+            }, ],
+        });
+        /**
+         * if operation is successful the res variable carries response with successfull status,data and message 
+         */
+        res.status(200).send({
+            code: 200,
+            message: "User Services!",
+            data: userServices,
+
+        });
+    } catch (error) {
+        /**
+         * if operation is unsuccessful the res variable carries error status 
+         */
+        return res.status(500).send(error);
+    }
+};
+/**
+ * function to add user services 
+ * @param req - contains all data required for request
+ * @param res - response returned by the funtion
+ */
+serviceController.addUserService = async (req, res) => {
+    try {
+        /**
+         * data important for user service
+         */
+        req.body.status = "Allowed"
+        req.body.isDeleted = "0"
+        req.body.serviceId = req.body.services.id
+        req.body.shortCodeId = req.body.shortCode.id
+        req.body.numberOfMessageAllowed = req.body.noOfMessageAllowed
+        if (req.body.expireAfter) {
+            req.body.expireAfter = req.body.expireAfter.toString() + " Days"
+        }
+        /**
+         * function call to check service allowed to user 
+         */
+        const serviceCheck = await serviceServiceObj.checkAllowServce({
+            where: {
+                serviceId: req.body.serviceId,
+                userId: req.body.userId,
+            }
+        })
+        /**
+         * check to see whether the service being added to user was alloted to user butt was not allowed or deleted so this check reverts it 
+         */
+        if (serviceCheck &amp;&amp; serviceCheck.dataValues.status == "Not Allowed" &amp;&amp; serviceCheck.dataValues.isDeleted == "1") {
+            let obj = {
+                id: serviceCheck.dataValues.id,
+                serviceId: req.body.serviceId,
+                userId: req.body.userId,
+                status: "Allowed",
+                isDeleted: "0"
+            }
+            const serviceUpdate = await serviceServiceObj.allowServce(obj)
+        }
+        /**
+         * service check is true 
+         */
+        if (serviceCheck) {
+            /**
+             * function call to enter data in table for user package and relation between user and short code 
+             */
+            scuRelation = await serviceServiceObj.scuRelation(req.body);
+            /**
+             * if operation is successful the res variable carries response with successfull status,data and message 
+             */
+            res.status(200).send({
+                code: 200,
+                message: "User Service Successfully Added!",
+                scuRelation: scuRelation,
+            });
+            // }
+        }
+        /**
+                service check is false */
+        else if (!serviceCheck) {
+            /**
+             * function call to allow user service
+             */
+            const serviceAllow = await serviceServiceObj.allowServce(req.body);
+            /**
+             * function call to create package and data relation between user and shortcode
+             */
+            const scuRelation = await serviceServiceObj.scuRelation(req.body);
+            /**
+             * if operation is successful the res variable carries response with successfull status,data and message 
+             */
+            res.status(200).send({
+                code: 200,
+                message: "User Service Successfully Added!",
+                serviceAllow: serviceAllow,
+                scuRelation: scuRelation,
+
+            });
+        }
+
+
+    } catch (error) {
+        /**
+         * if operation is unsuccessful the res variable carries error status 
+         */
+        return res.status(500).send(error);
+    }
+};
+/**
+ * function to get message data
+ * @param req - contains all data required for request
+ * @param res - response returned by the funtion
+ */
+serviceController.getMessageData = async (req, res) => {
+    try {
+        /**
+         * function call to get message data
+         */
+        const messageData = await serviceServiceObj.getMessageData({
+            /**
+             * parameter user id so only a specific user's message are retreived
+             */
+            where: {
+                userId: req.body.id
+            },
+            /**
+             * include data associated with service
+             */
+            include: [{
+                    model: db.Service,
+                    required: true,
+                },
+                /**
+                 * include data associated with shortCode
+                 */
+                {
+                    model: db.ShortCode,
+                    required: true,
+                },
+            ],
+        });
+        /**
+         * if operation is successful the res variable carries response with successfull status,data and message 
+         */
+        res.status(200).send({
+            code: 200,
+            message: "All Services Recieved Successfully!",
+            data: messageData,
+
+        });
+    } catch (error) {
+        /**
+         * if operation is unsuccessful the res variable carries error status 
+         */
+        return res.status(500).send(error);
+    }
+};
+/**
+ * function to update service data
+ * @param req - contains all data required for request
+ * @param res - response returned by the funtion
+ */
+serviceController.updateServiceData = async (req, res) => {
+    try {
+        /**
+         * function call to update service data provided
+         */
+        const messageData = await serviceServiceObj.updateServiceData(req.body);
+        /**
+         * if operation is successful the res variable carries response with successfull status,data and message 
+         */
+        res.status(200).send({
+            code: 200,
+            message: "Service Updated Successfully!",
+            data: messageData,
+
+        });
+    } catch (error) {
+        /**
+         * if operation is unsuccessful the res variable carries error status 
+         */
+        return res.status(500).send(error);
+    }
+};
+/**
+ * function to get service id
+ * @param req - contains all data required for request
+ * @param res - response returned by the funtion
+ */
+serviceController.getServiceId = async (req, res) => {
+    try {
+        /**
+         * function all to get service id by name
+         */
+        const serviceId = await serviceServiceObj.getServiceId({
+            /**
+             * parametre name of the service
+             */
+            where: {
+                name: req.body.name
+            }
+        });
+        /**
+         * if operation is successful the res variable carries response with successfull status,data and message 
+         */
+        res.status(200).send({
+            code: 200,
+            message: "Service Id Retrieved Successfully!",
+            data: serviceId,
+
+        });
+    } catch (error) {
+        /**
+         * if operation is unsuccessful the res variable carries error status 
+         */
+        return res.status(500).send(error);
+    }
+};
+/**
+ * function to get service by name
+ * @param req - contains all data required for request
+ * @param res - response returned by the funtion
+ */
+serviceController.getServiceByName = async (req, res) => {
+    try {
+        /**
+         * function all to get service by name
+         */
+        const userServices = await serviceServiceObj.getRequiredServices({
+            /**
+             * parametre name of the service
+             */
+            where: {
+                name: req.body.name
+            },
+        });
+        /**
+         * if operation is successful the res variable carries response with successfull status,data and message 
+         */
+        res.status(200).send({
+            code: 200,
+            message: "User Service!",
+            data: userServices,
+
+        });
+    } catch (error) {
+        /**
+         * if operation is unsuccessful the res variable carries error status 
+         */
+        return res.status(500).send(error);
+    }
+};
+/**
+ * Documentaion for an Controller Object
+ * Service Controller Object is exported to be used in other files
+ * @serviceController
+ */
+module.exports = serviceController;</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-addService_seed.html">addService_seed</a></li><li><a href="module-addShortCode_seed.html">addShortCode_seed</a></li><li><a href="module-addSmsc_seed.html">addSmsc_seed</a></li><li><a href="module-admin_seed.html">admin_seed</a></li><li><a href="module-BlackList_Controller_Functions.html">BlackList_Controller_Functions</a></li><li><a href="module-BlackList_Routes.html">BlackList_Routes</a></li><li><a href="module-config.html">config</a></li><li><a href="module-Contact_Controller_Functions.html">Contact_Controller_Functions</a></li><li><a href="module-Contact_Routes.html">Contact_Routes</a></li><li><a href="module-encryption_key.html">encryption_key</a></li><li><a href="module-Logs_Controller_Functions.html">Logs_Controller_Functions</a></li><li><a href="module-Logs_Routes.html">Logs_Routes</a></li><li><a href="module-Received_Message_Routes.html">Received_Message_Routes</a></li><li><a href="module-Service_Routes.html">Service_Routes</a></li><li><a href="module-Short_Code_Controller_Functions.html">Short_Code_Controller_Functions</a></li><li><a href="module-Short_Code_Routes.html">Short_Code_Routes</a></li><li><a href="module-Sms_Controller_Functions.html">Sms_Controller_Functions</a></li><li><a href="module-SMS_Routes.html">SMS_Routes</a></li><li><a href="module-Smsc_Controller_Functions.html">Smsc_Controller_Functions</a></li><li><a href="module-SmsPlus_Controller_Functions.html">SmsPlus_Controller_Functions</a></li><li><a href="module-superAdmin_seed.html">superAdmin_seed</a></li><li><a href="module-Televoting_Controller_Functions.html">Televoting_Controller_Functions</a></li><li><a href="module-Templates_Controller_Functions.html">Templates_Controller_Functions</a></li><li><a href="module-url.html">url</a></li><li><a href="module-User_Controller_Functions.html">User_Controller_Functions</a></li></ul><h3>Classes</h3><ul><li><a href="blackListIp.html">blackListIp</a></li><li><a href="blackListMsisdn.html">blackListMsisdn</a></li><li><a href="blackListService.html">blackListService</a></li><li><a href="campaigns.html">campaigns</a></li><li><a href="contact.html">contact</a></li><li><a href="contactGroup.html">contactGroup</a></li><li><a href="ContactService.html">ContactService</a></li><li><a href="errorReceivedSms.html">errorReceivedSms</a></li><li><a href="logs.html">logs</a></li><li><a href="LogsService.html">LogsService</a></li><li><a href="RecievedSms.html">RecievedSms</a></li><li><a href="ScuRelation.html">ScuRelation</a></li><li><a href="selectedContactCampaigns.html">selectedContactCampaigns</a></li><li><a href="Service.html">Service</a></li><li><a href="ServiceAllow.html">ServiceAllow</a></li><li><a href="serviceService.html">serviceService</a></li><li><a href="ShortCode.html">ShortCode</a></li><li><a href="ShortCodeApproval.html">ShortCodeApproval</a></li><li><a href="ShortCodeService.html">ShortCodeService</a></li><li><a href="Sms.html">Sms</a></li><li><a href="Smsc.html">Smsc</a></li><li><a href="SmscUserRelation.html">SmscUserRelation</a></li><li><a href="smsPlusBalanceDeduction.html">smsPlusBalanceDeduction</a></li><li><a href="smsPlusCheckKeyword.html">smsPlusCheckKeyword</a></li><li><a href="smsPlusCustomMessage.html">smsPlusCustomMessage</a></li><li><a href="SmsPlusRecievedMessage.html">SmsPlusRecievedMessage</a></li><li><a href="smsPlusSentMessage.html">smsPlusSentMessage</a></li><li><a href="SmsPlusService.html">SmsPlusService</a></li><li><a href="smsPlusSuccessfullMessage.html">smsPlusSuccessfullMessage</a></li><li><a href="SmsService.html">SmsService</a></li><li><a href="teleVotingCheckKeyword.html">teleVotingCheckKeyword</a></li><li><a href="televotingService.html">televotingService</a></li><li><a href="templates.html">templates</a></li><li><a href="templatesService.html">templatesService</a></li><li><a href="User.html">User</a></li><li><a href="UserService.html">UserService</a></li></ul><h3>Global</h3><ul><li><a href="global.html#addressRange">addressRange</a></li><li><a href="global.html#allowedSmscId">allowedSmscId</a></li><li><a href="global.html#altCharset">altCharset</a></li><li><a href="global.html#authJwt">authJwt</a></li><li><a href="global.html#axios">axios</a></li><li><a href="global.html#batchSize">batchSize</a></li><li><a href="global.html#bcrypt">bcrypt</a></li><li><a href="global.html#betweenBatchHour">betweenBatchHour</a></li><li><a href="global.html#betweenBatchMinutes">betweenBatchMinutes</a></li><li><a href="global.html#blackListCheck">blackListCheck</a></li><li><a href="global.html#campaignName">campaignName</a></li><li><a href="global.html#channel">channel</a></li><li><a href="global.html#checkDuplicateEmail">checkDuplicateEmail</a></li><li><a href="global.html#checkIp">checkIp</a></li><li><a href="global.html#checkMsisdn">checkMsisdn</a></li><li><a href="global.html#code">code</a></li><li><a href="global.html#config">config</a></li><li><a href="global.html#contactGroupId">contactGroupId</a></li><li><a href="global.html#country">country</a></li><li><a href="global.html#countryoperator">countryoperator</a></li><li><a href="global.html#creatorId">creatorId</a></li><li><a href="global.html#currency">currency</a></li><li><a href="global.html#db">db</a></li><li><a href="global.html#deniedSmscId">deniedSmscId</a></li><li><a href="global.html#destAddrNpi">destAddrNpi</a></li><li><a href="global.html#destAddrTon">destAddrTon</a></li><li><a href="global.html#destination">destination</a></li><li><a href="global.html#email">email</a></li><li><a href="global.html#endScheduleDate">endScheduleDate</a></li><li><a href="global.html#enquireLinkInterval">enquireLinkInterval</a></li><li><a href="global.html#expireAfter">expireAfter</a></li><li><a href="global.html#expiryDate">expiryDate</a></li><li><a href="global.html#express">express</a></li><li><a href="global.html#filename">filename</a></li><li><a href="global.html#fileStorage">fileStorage</a></li><li><a href="global.html#firstName">firstName</a></li><li><a href="global.html#flowControl">flowControl</a></li><li><a href="global.html#from">from</a></li><li><a href="global.html#fs">fs</a></li><li><a href="global.html#getUserId">getUserId</a></li><li><a href="global.html#host">host</a></li><li><a href="global.html#info">info</a></li><li><a href="global.html#ip">ip</a></li><li><a href="global.html#isDeleted">isDeleted</a></li><li><a href="global.html#jwt">jwt</a></li><li><a href="global.html#keyword">keyword</a></li><li><a href="global.html#lastName">lastName</a></li><li><a href="global.html#logFile">logFile</a></li><li><a href="global.html#maxPendingSubmits">maxPendingSubmits</a></li><li><a href="global.html#message">message</a></li><li><a href="global.html#moment">moment</a></li><li><a href="global.html#msgIdType">msgIdType</a></li><li><a href="global.html#msisdn">msisdn</a></li><li><a href="global.html#multer">multer</a></li><li><a href="global.html#name">name</a></li><li><a href="global.html#numberOfMessageAllowed">numberOfMessageAllowed</a></li><li><a href="global.html#numberOfMessageSent">numberOfMessageSent</a></li><li><a href="global.html#password">password</a></li><li><a href="global.html#phoneNumber">phoneNumber</a></li><li><a href="global.html#port">port</a></li><li><a href="global.html#price">price</a></li><li><a href="global.html#promoCode">promoCode</a></li><li><a href="global.html#reason">reason</a></li><li><a href="global.html#receivePort">receivePort</a></li><li><a href="global.html#recievedSmsId">recievedSmsId</a></li><li><a href="global.html#reconnectDelay">reconnectDelay</a></li><li><a href="global.html#reply">reply</a></li><li><a href="global.html#role">role</a></li><li><a href="global.html#sendType">sendType</a></li><li><a href="global.html#serviceName">serviceName</a></li><li><a href="global.html#serviceType">serviceType</a></li><li><a href="global.html#shortCode">shortCode</a></li><li><a href="global.html#shortCodeId">shortCodeId</a></li><li><a href="global.html#signUpVerify">signUpVerify</a></li><li><a href="global.html#smscId">smscId</a></li><li><a href="global.html#smscPassword">smscPassword</a></li><li><a href="global.html#smscUsername">smscUsername</a></li><li><a href="global.html#sourceAddrNpi">sourceAddrNpi</a></li><li><a href="global.html#sourceAddrTon">sourceAddrTon</a></li><li><a href="global.html#startScheduleDate">startScheduleDate</a></li><li><a href="global.html#status">status</a></li><li><a href="global.html#step">step</a></li><li><a href="global.html#systemType">systemType</a></li><li><a href="global.html#throughput">throughput</a></li><li><a href="global.html#to">to</a></li><li><a href="global.html#type">type</a></li><li><a href="global.html#userId">userId</a></li><li><a href="global.html#UserRoutes">UserRoutes</a></li><li><a href="global.html#verifyToken">verifyToken</a></li><li><a href="global.html#verifyUserRole">verifyUserRole</a></li><li><a href="global.html#waitAck">waitAck</a></li><li><a href="global.html#waitAckExpire">waitAckExpire</a></li><li><a href="global.html#xlsx">xlsx</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.11</a> on Thu Aug 04 2022 16:35:33 GMT+0500 (Pakistan Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

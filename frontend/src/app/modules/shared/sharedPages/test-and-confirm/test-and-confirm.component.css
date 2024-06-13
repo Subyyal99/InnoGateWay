@@ -1,0 +1,13 @@
+.bg {
+  background-color: #f3f3ff;
+  padding: 15px;
+  margin: 25px;
+}
+.label {
+  font-weight: bold;
+  font-size: 18 px;
+}
+.btns {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}

@@ -1,0 +1,72 @@
+<div class="container-fluid">
+  <div class="row mt-5">
+    <div class="col-md-12" *ngIf="!this.serviceFlag">
+      <h4>
+        No Service Added.<span class="txt"
+          >You don't have any service yet.
+        </span>
+      </h4>
+    </div>
+    <div class="col-md-3 col-lg-3 col-xl-2 ml-4">
+      <app-button
+        [label]="'Add Service'"
+        [bgColor]="'#55A8FD'"
+        [color]="'#ffff'"
+        (button)="addService()"
+      ></app-button>
+    </div>
+  </div>
+  <div>
+    <div class="bg d-flex">
+      <h4>User Email:</h4>
+      <p class="ml-4 txt2">{{ this.userData.email }}</p>
+    </div>
+  </div>
+  <div *ngIf="this.serviceFlag">
+    <div class="bg" *ngFor="let box of this.servicesAllowed">
+      <div class="d-flex">
+        <h4>{{ box.Service.name }}</h4>
+      </div>
+
+      <div
+        *ngIf="
+          this.tableInfo &&
+          box.Service.name != 'SMS Plus' &&
+          box.Service.name != 'Televoting'
+        "
+      >
+        <app-table
+          [cols]="this.tableHeaders"
+          [col]="this.tableInfo[box.Service.name]"
+          [type]="'add-service'"
+          [action]="'true'"
+          (saveButton)="updateServiceData($event)"
+        ></app-table>
+      </div>
+      <div
+        *ngIf="
+          this.tableInfo &&
+          (box.Service.name == 'SMS Plus' || box.Service.name == 'Televoting')
+        "
+      >
+        <app-table
+          [cols]="this.tableHeaders2"
+          [col]="this.tableInfo[box.Service.name]"
+          [type]="'add-service'"
+          [action]="'true'"
+          (saveButton)="updateServiceData($event)"
+        ></app-table>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container-fluid" *ngIf="this.modalName != ''">
+  <div class="row">
+    <app-service-modal
+      [name]="this.modalName"
+      [userId]="this.userId"
+      (closed)="recievedData()"
+    >
+    </app-service-modal>
+  </div>
+</div>

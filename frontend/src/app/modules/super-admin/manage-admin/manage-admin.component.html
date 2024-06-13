@@ -1,0 +1,16 @@
+<div class="bg">
+  <h4 class="text-center">Manage Admins</h4>
+  <div *ngIf="this.tableInfo">
+    <app-table
+      [cols]="this.tableHeaders"
+      [col]="this.tableInfo"
+      [type]="'manage-clients'"
+      [action]="'true'"
+      [fileName]="'Admin List.xlsx'"
+      (receiveId)="getDetails($event)"
+      (updatedData)="onDelete($event)"
+      (editUser)="onEdit('edit-admin', $event)"
+      (editService)="onEdit('edit-smsc', $event)"
+    ></app-table>
+  </div>
+</div>

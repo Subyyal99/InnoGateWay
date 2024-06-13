@@ -1,0 +1,40 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12 text-center pb-4">
+      <h3>
+        Campaigns
+      </h3>
+    </div>
+    <div class="col-md-12" *ngIf="!this.campaignFlag">
+      <br />
+      <h4>
+        No Campaigns.<span class="txt">You don't have any campaign yet. </span>
+      </h4>
+    </div>
+    <div class="col-md-4 col-lg-3 col-xl-3">
+      <app-button
+        [label]="'Create Campaign'"
+        [bgColor]="'#55A8FD'"
+        [color]="'#ffff'"
+        (button)="createCampaign()"
+      ></app-button>
+    </div>
+  </div>
+
+  <div
+    class="bg campaignTable"
+    *ngIf="this.tableInfo.length > 0 && this.campaignFlag"
+  >
+    <div>
+      <app-table
+        [cols]="this.tableHeaders"
+        [col]="this.tableInfo"
+        [action]="'yes'"
+        [type]="'campaigns'"
+        (edit)="onEdit($event)"
+        (report)="onReport($event)"
+        (updatedData)="onDelete($event)"
+      ></app-table>
+    </div>
+  </div>
+</div>

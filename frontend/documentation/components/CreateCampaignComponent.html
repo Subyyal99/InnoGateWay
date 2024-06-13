@@ -1,0 +1,1338 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>frontend documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css" media="(prefers-color-scheme: dark)">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">frontend documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li
+  >
+  CreateCampaignComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li >
+            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/modules/shared/sharedPages/create-campaign/create-campaign.component.ts</code>
+</p>
+
+
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>specifies which other files are associated with this component and metadata</p>
+
+    </p>
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+    </p>
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-create-campaign</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./create-campaign.component.css</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./create-campaign.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#campaignFlag" >campaignFlag</a>
+                            </li>
+                            <li>
+                                <a href="#tableHeaders" >tableHeaders</a>
+                            </li>
+                            <li>
+                                <a href="#tableInfo" >tableInfo</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#addMessages" >addMessages</a>
+                            </li>
+                            <li>
+                                <a href="#createCampaign" >createCampaign</a>
+                            </li>
+                            <li>
+                                <a href="#getCampaigns" >getCampaigns</a>
+                            </li>
+                            <li>
+                                <a href="#handleCampaignsData" >handleCampaignsData</a>
+                            </li>
+                            <li>
+                                <a href="#handleError" >handleError</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#onDelete" >onDelete</a>
+                            </li>
+                            <li>
+                                <a href="#onEdit" >onEdit</a>
+                            </li>
+                            <li>
+                                <a href="#onReport" >onReport</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(Jarwis: <a href="../injectables/AuthService.html" target="_self">AuthService</a>, messageService: MessageService, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/app/modules/shared/sharedPages/create-campaign/create-campaign.component.ts:48</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>This is a default method of the class that is executed when the class is
+instantiated and ensures proper initialisation of fields in the class and its subclasses.</p>
+</div>
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>Jarwis</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/AuthService.html" target="_self" >AuthService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <p>This connects Backend with Frontend</p>
+
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>messageService</td>
+                                                  
+                                                        <td>
+                                                                    <code>MessageService</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <p>is a message type variable created to display messages in our component</p>
+
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>router</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/router/Router" target="_blank" >Router</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <p>is a router type variable created to use router functions to navigate within our project</p>
+
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="addMessages"></a>
+                    <span class="name">
+                        <span ><b>addMessages</b></span>
+                        <a href="#addMessages"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>addMessages(severity, summary, detail)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="139"
+                            class="link-to-prism">src/app/modules/shared/sharedPages/create-campaign/create-campaign.component.ts:139</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>this is our function to call the message service to display our required message</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>severity</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>defines the type/severity of the message to be displayed</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>summary</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>defines the summary of the message</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>detail</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>contains the string of the message to be displayed</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="createCampaign"></a>
+                    <span class="name">
+                        <span ><b>createCampaign</b></span>
+                        <a href="#createCampaign"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>createCampaign()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="107"
+                            class="link-to-prism">src/app/modules/shared/sharedPages/create-campaign/create-campaign.component.ts:107</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>this navigates to the creation of campaign page</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getCampaigns"></a>
+                    <span class="name">
+                        <span ><b>getCampaigns</b></span>
+                        <a href="#getCampaigns"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getCampaigns()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="70"
+                            class="link-to-prism">src/app/modules/shared/sharedPages/create-campaign/create-campaign.component.ts:70</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>our function to call the API to get templates</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="handleCampaignsData"></a>
+                    <span class="name">
+                        <span ><b>handleCampaignsData</b></span>
+                        <a href="#handleCampaignsData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>handleCampaignsData(data)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="80"
+                            class="link-to-prism">src/app/modules/shared/sharedPages/create-campaign/create-campaign.component.ts:80</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>This is the function that recieves the data retrieved by the API call</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>data</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>is the variable that gets the value from the function call send by the function call</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="handleError"></a>
+                    <span class="name">
+                        <span ><b>handleError</b></span>
+                        <a href="#handleError"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>handleError(error)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="97"
+                            class="link-to-prism">src/app/modules/shared/sharedPages/create-campaign/create-campaign.component.ts:97</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>handle error is our function to handle error given by APi or custom made</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>error</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>is the variable through which we recieve the error to display to the user</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="64"
+                            class="link-to-prism">src/app/modules/shared/sharedPages/create-campaign/create-campaign.component.ts:64</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>ngOnInIt is an angular lifecycle function that run when we load our component or application</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onDelete"></a>
+                    <span class="name">
+                        <span ><b>onDelete</b></span>
+                        <a href="#onDelete"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onDelete(data)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="132"
+                            class="link-to-prism">src/app/modules/shared/sharedPages/create-campaign/create-campaign.component.ts:132</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>gets called when we delete an entry</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>data</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>data of the row to be deleted</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onEdit"></a>
+                    <span class="name">
+                        <span ><b>onEdit</b></span>
+                        <a href="#onEdit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onEdit(id)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="114"
+                            class="link-to-prism">src/app/modules/shared/sharedPages/create-campaign/create-campaign.component.ts:114</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>gets called on edit of table</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>id</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>this is the id of the row to be editted</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onReport"></a>
+                    <span class="name">
+                        <span ><b>onReport</b></span>
+                        <a href="#onReport"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onReport(data)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="123"
+                            class="link-to-prism">src/app/modules/shared/sharedPages/create-campaign/create-campaign.component.ts:123</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>this navigates us to campaign reporting page</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>data</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>data required in the link for the next page</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section>
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="campaignFlag"></a>
+                    <span class="name">
+                        <span ><b>campaignFlag</b></span>
+                        <a href="#campaignFlag"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/modules/shared/sharedPages/create-campaign/create-campaign.component.ts:18</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>existing campaign flag</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="tableHeaders"></a>
+                    <span class="name">
+                        <span ><b>tableHeaders</b></span>
+                        <a href="#tableHeaders"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+    {
+      field: &quot;name&quot;,
+      header: &quot;Name&quot;,
+      type: &quot;text&quot;,
+      edit: &quot;false&quot;,
+      report: &quot;true&quot;,
+    },
+    {
+      field: &quot;status&quot;,
+      header: &quot;Status &quot;,
+      type: &quot;text&quot;,
+      edit: &quot;false&quot;,
+      justDelete: &quot;false&quot;,
+    },
+    {
+      field: &quot;action&quot;,
+      header: &quot;Action&quot;,
+      type: &quot;editButton&quot;,
+      edit: &quot;false&quot;,
+      justDelete: &quot;false&quot;,
+    },
+  ]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/modules/shared/sharedPages/create-campaign/create-campaign.component.ts:26</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>header of the table</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="tableInfo"></a>
+                    <span class="name">
+                        <span ><b>tableInfo</b></span>
+                        <a href="#tableInfo"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../classes/TableInfo.html" target="_self" >TableInfo[]</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/modules/shared/sharedPages/create-campaign/create-campaign.component.ts:22</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>info to display in table</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &quot;@angular/core&quot;;
+import { Router } from &quot;@angular/router&quot;;
+import { MessageService } from &quot;primeng/api&quot;;
+import { AuthService } from &quot;src/app/auth/auth.service&quot;;
+import { TableInfo } from &quot;src/app/component/componentModel/table-info&quot;;
+/**
+ * specifies which other files are associated with this component and metadata
+ */
+@Component({
+  selector: &quot;app-create-campaign&quot;,
+  templateUrl: &quot;./create-campaign.component.html&quot;,
+  styleUrls: [&quot;./create-campaign.component.css&quot;],
+})
+export class CreateCampaignComponent implements OnInit {
+  /**
+   * existing campaign flag
+   */
+  campaignFlag &#x3D; false;
+  /**
+   * info to display in table
+   */
+  tableInfo: TableInfo[] &#x3D; [];
+  /**
+   * header of the table
+   */
+  tableHeaders &#x3D; [
+    {
+      field: &quot;name&quot;,
+      header: &quot;Name&quot;,
+      type: &quot;text&quot;,
+      edit: &quot;false&quot;,
+      report: &quot;true&quot;,
+    },
+    {
+      field: &quot;status&quot;,
+      header: &quot;Status &quot;,
+      type: &quot;text&quot;,
+      edit: &quot;false&quot;,
+      justDelete: &quot;false&quot;,
+    },
+    {
+      field: &quot;action&quot;,
+      header: &quot;Action&quot;,
+      type: &quot;editButton&quot;,
+      edit: &quot;false&quot;,
+      justDelete: &quot;false&quot;,
+    },
+  ];
+  /**
+   * This is a default method of the class that is executed when the class is
+   * instantiated and ensures proper initialisation of fields in the class and its subclasses.
+   * @param Jarwis This connects Backend with Frontend
+   * @param router is a router type variable created to use router functions to navigate within our project
+   * @param messageService is a message type variable created to display messages in our component
+   */
+  constructor(
+    private Jarwis: AuthService,
+    private messageService: MessageService,
+    private router: Router
+  ) {}
+  /**
+   * ngOnInIt is an angular lifecycle function that run when we load our component or application
+   */
+  ngOnInit(): void {
+    this.getCampaigns();
+  }
+  /**
+   * our function to call the API to get templates
+   */
+  getCampaigns() {
+    this.Jarwis.getCampaigns().subscribe(
+      (data) &#x3D;&gt; this.handleCampaignsData(data),
+      (error) &#x3D;&gt; this.handleError(error)
+    );
+  }
+  /**
+   * This is the function that recieves the data retrieved by the API call
+   * @param data is the variable that gets the value from the function call send by the function call
+   */
+  handleCampaignsData(data) {
+    if (data.data &amp;&amp; data.data.length &gt; 0) {
+      this.campaignFlag &#x3D; true;
+      this.tableInfo &#x3D; [];
+      data.data.forEach((item) &#x3D;&gt; {
+        let obj &#x3D; new TableInfo();
+        obj.name &#x3D; item.campaignName;
+        obj.id &#x3D; item.id;
+        obj.status &#x3D; item.status;
+        this.tableInfo.push(obj);
+      });
+    }
+  }
+  /**
+   * handle error is our function to handle error given by APi or custom made
+   * @param error is the variable through which we recieve the error to display to the user
+   */
+  handleError(error) {
+    this.addMessages(
+      &quot;error&quot;,
+      &quot;Error&quot;,
+      error.error.message ? error.error.message : error.message
+    );
+  }
+  /**
+   * this navigates to the creation of campaign page
+   */
+  createCampaign() {
+    this.router.navigateByUrl(&quot;/side-panel/campaign-who&quot;);
+  }
+  /**
+   * gets called on edit of table
+   * @param id this is the id of the row to be editted
+   */
+  onEdit(id) {
+    this.router.navigate([&quot;/side-panel/campaign-who&quot;], {
+      queryParams: { id: id },
+    });
+  }
+  /**
+   * this navigates us to campaign reporting page
+   * @param data data required in the link for the next page
+   */
+  onReport(data) {
+    this.router.navigate([&quot;/side-panel/campaign-reporting&quot;], {
+      queryParams: { id: data.id, name: data.name },
+    });
+  }
+  /**
+   * gets called when we delete an entry
+   * @param data data of the row to be deleted
+   */
+  onDelete(data) {}
+  /**
+   * this is our function to call the message service to display our required message
+   * @param severity defines the type/severity of the message to be displayed
+   * @param summary defines the summary of the message
+   * @param detail contains the string of the message to be displayed
+   */
+  addMessages(severity, summary, detail) {
+    this.messageService.clear();
+    this.messageService.add({
+      severity: severity,
+      summary: summary,
+      detail: detail,
+      sticky: true,
+    });
+    setTimeout(() &#x3D;&gt; {
+      this.messageService.clear();
+    }, 3000);
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;container-fluid&quot;&gt;
+  &lt;div class&#x3D;&quot;row&quot;&gt;
+    &lt;div class&#x3D;&quot;col-md-12&quot; *ngIf&#x3D;&quot;!this.campaignFlag&quot;&gt;
+      &lt;br /&gt;
+      &lt;h4&gt;
+        No Campaigns.&lt;span class&#x3D;&quot;txt&quot;&gt;You don&#x27;t have any campaign yet. &lt;/span&gt;
+      &lt;/h4&gt;
+    &lt;/div&gt;
+    &lt;div class&#x3D;&quot;col-md-4 col-lg-3 col-xl-3&quot;&gt;
+      &lt;app-button
+        [label]&#x3D;&quot;&#x27;Create Campaign&#x27;&quot;
+        [bgColor]&#x3D;&quot;&#x27;#55A8FD&#x27;&quot;
+        [color]&#x3D;&quot;&#x27;#ffff&#x27;&quot;
+        (button)&#x3D;&quot;createCampaign()&quot;
+      &gt;&lt;/app-button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;div
+    class&#x3D;&quot;bg campaignTable&quot;
+    *ngIf&#x3D;&quot;this.tableInfo.length &gt; 0 &amp;&amp; this.campaignFlag&quot;
+  &gt;
+    &lt;div&gt;
+      &lt;app-table
+        [cols]&#x3D;&quot;this.tableHeaders&quot;
+        [col]&#x3D;&quot;this.tableInfo&quot;
+        [action]&#x3D;&quot;&#x27;yes&#x27;&quot;
+        [type]&#x3D;&quot;&#x27;campaigns&#x27;&quot;
+        (edit)&#x3D;&quot;onEdit($event)&quot;
+        (report)&#x3D;&quot;onReport($event)&quot;
+        (updatedData)&#x3D;&quot;onDelete($event)&quot;
+      &gt;&lt;/app-table&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-styleData">
+                <p class="comment">
+                    <code>./create-campaign.component.css</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">.txt {
+  font-size: 20px;
+  font-weight: 100;
+}
+
+h4 {
+  margin-left: 20px;
+}
+@media (max-width: 768px) {
+  .col-md-4 {
+    margin-left: 22px;
+  }
+}
+@media (max-width: 1024px) {
+  .col-lg-3 {
+    margin-left: 22px;
+    max-width: 11rem;
+  }
+}
+@media (min-width: 1025px) {
+  .col-xl-3 {
+    margin-left: 22px;
+    max-width: 11rem;
+  }
+}
+.campaignTable {
+  padding: 30px;
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div class="container-fluid">  <div class="row">    <div class="col-md-12" *ngIf="!this.campaignFlag">      <br />      <h4>        No Campaigns.<span class="txt">You don\'t have any campaign yet. </span>      </h4>    </div>    <div class="col-md-4 col-lg-3 col-xl-3">      <app-button        [label]="\'Create Campaign\'"        [bgColor]="\'#55A8FD\'"        [color]="\'#ffff\'"        (button)="createCampaign()"      ></app-button>    </div>  </div>  <div    class="bg campaignTable"    *ngIf="this.tableInfo.length > 0 && this.campaignFlag"  >    <div>      <app-table        [cols]="this.tableHeaders"        [col]="this.tableInfo"        [action]="\'yes\'"        [type]="\'campaigns\'"        (edit)="onEdit($event)"        (report)="onReport($event)"        (updatedData)="onDelete($event)"      ></app-table>    </div>  </div></div></div>'
+    var COMPONENTS = [{'name': 'AddAdminComponent', 'selector': 'app-add-admin'},{'name': 'AddClientComponent', 'selector': 'app-add-client'},{'name': 'AddPartnersComponent', 'selector': 'app-add-partners'},{'name': 'AddServicesComponent', 'selector': 'app-add-services'},{'name': 'AdminNavigationComponent', 'selector': 'app-admin-navigation'},{'name': 'AdminSlideMenuComponent', 'selector': 'app-admin-slide-menu'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'BalanceDeductionComponent', 'selector': 'app-balance-deduction'},{'name': 'BulkSmsComponent', 'selector': 'app-bulk-sms'},{'name': 'BulkSmsReportingComponent', 'selector': 'app-bulk-sms-reporting'},{'name': 'ButtonComponent', 'selector': 'app-button'},{'name': 'ByIpComponent', 'selector': 'app-by-ip'},{'name': 'ByMsisdnComponent', 'selector': 'app-by-msisdn'},{'name': 'CalenderComponent', 'selector': 'app-calender'},{'name': 'CampaignReportingComponent', 'selector': 'app-campaign-reporting'},{'name': 'CampaignWhatComponent', 'selector': 'app-campaign-what'},{'name': 'CampaignWhenComponent', 'selector': 'app-campaign-when'},{'name': 'CampaignWhoComponent', 'selector': 'app-campaign-who'},{'name': 'CheckBoxComponent', 'selector': 'app-check-box'},{'name': 'CheckKeywordComponent', 'selector': 'app-check-keyword'},{'name': 'ClientNavigationComponent', 'selector': 'app-client-navigation'},{'name': 'ClientTieredMenuComponent', 'selector': 'app-client-tiered-menu'},{'name': 'ContactListsComponent', 'selector': 'app-contact-lists'},{'name': 'CreateCampaignComponent', 'selector': 'app-create-campaign'},{'name': 'CreateNewContactListComponent', 'selector': 'app-create-new-contact-list'},{'name': 'CreateNewGroupModalComponent', 'selector': 'app-create-new-group-modal'},{'name': 'CustomMessageComponent', 'selector': 'app-custom-message'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DialogComponent', 'selector': 'app-dialog'},{'name': 'DropDownComponent', 'selector': 'app-drop-down'},{'name': 'EditAdminComponent', 'selector': 'app-edit-admin'},{'name': 'EditClientsComponent', 'selector': 'app-edit-clients'},{'name': 'ForgotPasswordComponent', 'selector': 'app-forgot-password'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'ImportContactModalComponent', 'selector': 'app-import-contact-modal'},{'name': 'InputChipsSpecialComponent', 'selector': 'app-input-chips-special'},{'name': 'InputTableComponent', 'selector': 'app-input-table'},{'name': 'LineChartComponent', 'selector': 'app-line-chart'},{'name': 'LinkButtonComponent', 'selector': 'app-link-button'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'LogsComponent', 'selector': 'app-logs'},{'name': 'ManageAdminComponent', 'selector': 'app-manage-admin'},{'name': 'ManageClientsComponent', 'selector': 'app-manage-clients'},{'name': 'MergeSendComponent', 'selector': 'app-merge-send'},{'name': 'MessageDetailsComponent', 'selector': 'app-message-details'},{'name': 'MessageSuccessComponent', 'selector': 'app-message-success'},{'name': 'MultiSelectComponent', 'selector': 'app-multi-select'},{'name': 'RadioButtonComponent', 'selector': 'app-radio-button'},{'name': 'ReceivedMessageComponent', 'selector': 'app-received-message'},{'name': 'ReceivedMessagesComponent', 'selector': 'app-received-messages'},{'name': 'ResetPasswordComponent', 'selector': 'app-reset-password'},{'name': 'SearchComponent', 'selector': 'app-search'},{'name': 'SelectButtonComponent', 'selector': 'app-select-button'},{'name': 'SentMessageComponent', 'selector': 'app-sent-message'},{'name': 'ServiceModalComponent', 'selector': 'app-service-modal'},{'name': 'ServicesComponent', 'selector': 'app-services'},{'name': 'ShortCodeApprovalComponent', 'selector': 'app-short-code-approval'},{'name': 'ShortCodeApprovalRequestComponent', 'selector': 'app-short-code-approval-request'},{'name': 'ShortCodeRequestDetailsComponent', 'selector': 'app-short-code-request-details'},{'name': 'ShortCodeRequestStatusComponent', 'selector': 'app-short-code-request-status'},{'name': 'SidePanelComponent', 'selector': 'app-side-panel'},{'name': 'SignUpComponent', 'selector': 'app-sign-up'},{'name': 'SingleSmsComponent', 'selector': 'app-single-sms'},{'name': 'SingleSmsReportingComponent', 'selector': 'app-single-sms-reporting'},{'name': 'SmscComponent', 'selector': 'app-smsc'},{'name': 'SmscModalComponent', 'selector': 'app-smsc-modal'},{'name': 'SmsPlusComponent', 'selector': 'app-sms-plus'},{'name': 'SmsPlusDashboardComponent', 'selector': 'app-sms-plus-dashboard'},{'name': 'SmsPlusErrorsComponent', 'selector': 'app-sms-plus-errors'},{'name': 'SplitButtonComponent', 'selector': 'app-split-button'},{'name': 'SpreadsheetDetailsComponent', 'selector': 'app-spreadsheet-details'},{'name': 'StaffNavigationComponent', 'selector': 'app-staff-navigation'},{'name': 'SuperAdminMenuComponent', 'selector': 'app-super-admin-menu'},{'name': 'SuperNavigationComponent', 'selector': 'app-super-navigation'},{'name': 'TableComponent', 'selector': 'app-table'},{'name': 'TBalanceDeductionComponent', 'selector': 'app-t-balance-deduction'},{'name': 'TCheckKeywordComponent', 'selector': 'app-t-check-keyword'},{'name': 'TelevotingComponent', 'selector': 'app-televoting'},{'name': 'TelevotingDashboardComponent', 'selector': 'app-televoting-dashboard'},{'name': 'TelevotingErrorsComponent', 'selector': 'app-televoting-errors'},{'name': 'TestAndConfirmComponent', 'selector': 'app-test-and-confirm'},{'name': 'TextAreaComponent', 'selector': 'app-text-area'},{'name': 'TextBoxComponent', 'selector': 'app-text-box'},{'name': 'TextIconButtonComponent', 'selector': 'app-text-icon-button'},{'name': 'TMessageDetailsComponent', 'selector': 'app-t-message-details'},{'name': 'TMessageSuccessComponent', 'selector': 'app-t-message-success'},{'name': 'TReceivedMessagesComponent', 'selector': 'app-t-received-messages'},{'name': 'TSentMessageComponent', 'selector': 'app-t-sent-message'},{'name': 'UploadFileComponent', 'selector': 'app-upload-file'},{'name': 'VerifyEmailAccountComponent', 'selector': 'app-verify-email-account'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'CreateCampaignComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'CreateCampaignComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

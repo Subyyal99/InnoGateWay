@@ -1,0 +1,9 @@
+::ng-deep p-tieredMenu *,
+p-tieredMenu-wrapper,
+p-tieredMenu-content,
+p-menu-list,
+p-menuitem {
+  border: none !important;
+  background-color: #f2f2f2 !important;
+  color: #000 !important;
+}

@@ -1,0 +1,351 @@
+<!-- <div class="row">
+        <div class="col-md-12">
+            <h3 class="ml-5">Dashboard</h3>
+            <div class="row">
+            <div class="card col-md-3 cd ml-6" style="width: 18rem;">
+                <div class="card-body">
+                   <i class="fas fa-box fa-2x "></i>
+                   <h6 class="card-title ">Total SMPP Port</h6>
+                  <h6 class="card-subtitle ml-6 st">1</h6>
+                </div>
+              </div>
+
+              <div class="card col-md-3 ml-6 cd" style="width: 18rem;">
+                <div class="card-body">
+                  <h6 class="card-title"> <i class="fas fa-box"></i>Total SMPP User's</h6>
+                  <h6 class="card-subtitle mb-2 ml-6 st">Card subtitle</h6>
+                </div>
+              </div>
+
+              <div class="card col-md-3 ml-6 cd" style="width: 18rem;">
+                <div class="card-body">
+                  <h6 class="card-title"> <i class="fas fa-box"></i>Total SMPP Port</h6>
+                  <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+                </div>
+              </div>
+
+              <div class="card col-md-3 ml-6 cd" style="width: 18rem;">
+                <div class="card-body">
+                  <h6 class="card-title"> <i class="fas fa-box"></i>Total SMPP Port</h6>
+                  <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+                </div>
+              </div>
+        </div>
+    </div> -->
+
+<div class="container-fluid">
+  <div class="row text-center">
+    <div class="col-md-12">
+      <h3 class="ml-5 pb-3 pt-2">Sms Dashboard</h3>
+      <h5 class="ml-5 pb-2 pt-4 text-left">Sms Available</h5>
+      <div class="row text-left">
+        <div
+          class="card col-md-12 ml-6 mt-2 cd hov"
+          (click)="route('single-sms')"
+          style="width: 18rem"
+        >
+          <div class="card-horizontal">
+            <div class="img-square-wrapper">
+              <i class="fas fa-sms fa-3x"></i>
+            </div>
+            <div class="card-body">
+              <h6 class="card-title">Single Sms</h6>
+              <p class="card-text">
+                {{
+                  this.smsDashboardInfo.singleSms.available -
+                    this.smsDashboardInfo.singleSms.sent
+                }}
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="card col-md-12 ml-6 mt-2 cd hov"
+          (click)="route('bulk-sms')"
+          style="width: 18rem"
+        >
+          <div class="card-horizontal">
+            <div class="img-square-wrapper">
+              <i class="fas fa-sms fa-3x"></i>
+            </div>
+            <div class="card-body">
+              <h6 class="card-title">Bulk Sms</h6>
+              <p class="card-text">
+                {{
+                  this.smsDashboardInfo.bulkSms.available -
+                    this.smsDashboardInfo.bulkSms.sent
+                }}
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="card col-md-12 ml-6 mt-2 cd hov"
+          (click)="route('create-campaign')"
+          style="width: 18rem"
+        >
+          <div class="card-horizontal">
+            <div class="img-square-wrapper">
+              <i class="fas fa-sms fa-3x"></i>
+            </div>
+            <div class="card-body">
+              <h6 class="card-title">Campaign Sms</h6>
+              <p class="card-text">
+                {{
+                  this.smsDashboardInfo.campaigns.available -
+                    this.smsDashboardInfo.campaigns.sent
+                }}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h5 class="ml-5 pb-2 pt-4 text-left">Sms Sent</h5>
+      <div class="row text-left">
+        <div
+          class="card col-md-12 ml-6 mt-2 cd hov"
+          (click)="route('single-sms-reporting')"
+          style="width: 18rem"
+        >
+          <div class="card-horizontal">
+            <div class="img-square-wrapper">
+              <i class="fas fa-sms fa-3x"></i>
+            </div>
+            <div class="card-body">
+              <h6 class="card-title">Single Sms</h6>
+              <p class="card-text">
+                {{ this.smsDashboardInfo.singleSms.sent }}
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="card col-md-12 ml-6 mt-2 cd hov"
+          (click)="route('bulk-sms-reporting')"
+          style="width: 18rem"
+        >
+          <div class="card-horizontal">
+            <div class="img-square-wrapper">
+              <i class="fas fa-sms fa-3x"></i>
+            </div>
+            <div class="card-body">
+              <h6 class="card-title">Bulk Sms</h6>
+              <p class="card-text">{{ this.smsDashboardInfo.bulkSms.sent }}</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card col-md-12 ml-6 mt-2 cd hov" style="width: 18rem">
+          <div class="card-horizontal">
+            <div class="img-square-wrapper">
+              <i class="fas fa-sms fa-3x"></i>
+            </div>
+            <div class="card-body">
+              <h6 class="card-title">Campaign Sms</h6>
+              <p class="card-text">
+                {{ this.smsDashboardInfo.campaigns.sent }}
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- <div
+          class="card col-md-12 ml-6 mt-md-4 cd hov"
+          (click)="route('smpp-sms-queue')"
+          style="width: 18rem"
+        >
+          <div class="card-horizontal">
+            <div class="img-square-wrapper">
+              <i class="fas fa-map-signs fa-3x"></i>
+            </div>
+            <div class="card-body">
+              <h6 class="card-title">SMPP SMS Queue</h6>
+              <p class="card-text">0</p>
+            </div>
+          </div>
+        </div> -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- could be used later -->
+<!--<div class="container-fluid">
+  <div class="row text-left">
+    <div class="col-md-12">
+      <h5 class="ml-5 mt-5">Send By Portal Information</h5>
+      <div class="row text-left">
+        <div class="card col-md-12 ml-6 mt-4 cd hov" style="width: 18rem">
+          <div class="card-horizontal">
+            <div class="img-square-wrapper">
+              <i class="fas fa-sms fa-3x"></i>
+            </div>
+            <div class="card-body">
+              <h6 class="card-title">Total SMS</h6>
+              <p class="card-text">0</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card col-md-12 ml-6 mt-4 cd hov" style="width: 18rem">
+          <div class="card-horizontal">
+            <div class="img-square-wrapper">
+              <i class="fas fa-random fa-3x"></i>
+            </div>
+            <div class="card-body">
+              <h6 class="card-title">Multipart sends</h6>
+              <p class="card-text">0</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card col-md-12 ml-6 mt-4 cd hov" style="width: 18rem">
+          <div class="card-horizontal">
+            <div class="img-square-wrapper">
+              <i class="fas fa-thumbs-down fa-3x"></i>
+            </div>
+            <div class="card-body">
+              <h6 class="card-title">Rejected</h6>
+              <p class="card-text">0</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card col-md-12 ml-6 mt-4 cd hov" style="width: 18rem">
+          <div class="card-horizontal">
+            <div class="img-square-wrapper">
+              <i class="fas fa-hand-holding-usd fa-3x"></i>
+            </div>
+            <div class="card-body">
+              <h6 class="card-title">FREE</h6>
+              <p class="card-text"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid">
+  <div class="row text-left">
+    <div class="col-md-12">
+      <h5 class="ml-5 mt-5">Remaining SMS Information</h5>
+      <div class="row text-left">
+        <div class="card col-md-12 ml-6 mt-4 cd hov" style="width: 18rem">
+          <div class="card-horizontal">
+            <div class="img-square-wrapper">
+              <i class="fas fa-ban fa-3x"></i>
+            </div>
+            <div class="card-body">
+              <h6 class="card-title">Portal Block SMS</h6>
+              <p class="card-text"></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card col-md-12 ml-6 mt-4 cd hov" style="width: 18rem">
+          <div class="card-horizontal">
+            <div class="img-square-wrapper">
+              <i class="fas fa-satellite-dish fa-3x"></i>
+            </div>
+            <div class="card-body">
+              <h6 class="card-title">Total SMPP SMS</h6>
+              <p class="card-text">0</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid">
+  <div class="row text-left">
+    <div class="col-md-12">
+      <h5 class="ml-5 mt-5">Script Process</h5>
+      <div class="row text-left">
+        <div class="card ml-6 cd hov" style="width: 18rem">
+          <div class="card-horizontal">
+            <div class="img-square-wrapper">
+              <i class="fas fab fa-pinterest fa-3x"></i>
+            </div>
+            <div class="card-body">
+              <h6 class="card-title">Script Process Status</h6>
+              <p class="card-text lst">All Process Running Fine</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+ <h4 class="ml-5 pb-4 pt-2 text-left">Sms Sent</h4>
+      <div class="row text-left">
+        <div
+          class="card col-md-12 ml-6 mt-md-4 cd hov"
+          (click)="route('smpp-port')"
+          style="width: 18rem"
+        >
+          <div class="card-horizontal">
+            <div class="img-square-wrapper">
+              <i class="fas fa-box fa-3x"></i>
+            </div>
+            <div class="card-body">
+              <h6 class="card-title">Total SMPP Port</h6>
+              <p class="card-text">1</p>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="card col-md-12 ml-6 mt-md-4 cd hov"
+          (click)="route('smpp-user')"
+          style="width: 18rem"
+        >
+          <div class="card-horizontal">
+            <div class="img-square-wrapper">
+              <i class="fas fa-users fa-3x"></i>
+            </div>
+            <div class="card-body">
+              <h6 class="card-title">Total SMPP User's</h6>
+              <p class="card-text">1</p>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="card col-md-12 ml-6 mt-md-4 cd hov"
+          (click)="route('sent')"
+          style="width: 18rem"
+        >
+          <div class="card-horizontal">
+            <div class="img-square-wrapper">
+              <i class="fas fa-dollar-sign fa-3x pl-5 pr-4"></i>
+            </div>
+            <div class="card-body">
+              <h6 class="card-title">Today Sent</h6>
+              <p class="card-text">0</p>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="card col-md-12 ml-6 mt-md-4 cd hov"
+          (click)="route('smpp-sms-queue')"
+          style="width: 18rem"
+        >
+          <div class="card-horizontal">
+            <div class="img-square-wrapper">
+              <i class="fas fa-map-signs fa-3x"></i>
+            </div>
+            <div class="card-body">
+              <h6 class="card-title">SMPP SMS Queue</h6>
+              <p class="card-text">0</p>
+            </div>
+          </div>
+        </div>
+      </div> -->

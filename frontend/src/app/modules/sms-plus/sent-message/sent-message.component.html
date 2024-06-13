@@ -1,0 +1,12 @@
+<div class="bg">
+  <h4 class="text-center" >Sent Message</h4>
+  <div *ngIf="this.tableInfo">
+    <app-table
+      [cols]="this.tableHeaders"
+      [col]="this.tableInfo"
+      [type]="'sms-plus'"
+      [fileName]="'Sent Messages.xlsx'"
+      (receiveId)="getDetails($event)"
+    ></app-table>
+  </div>
+</div>

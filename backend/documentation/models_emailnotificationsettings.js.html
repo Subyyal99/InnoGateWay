@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: models/emailnotificationsettings.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: models/emailnotificationsettings.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>"use strict";
+const { Model } = require("sequelize");
+module.exports = (sequelize, DataTypes) => {
+  class EmailNotificationSettings extends Model {
+    /**
+     * Helper method for defining associations.
+     * This method is not a part of Sequelize lifecycle.
+     * The `models/index` file will call this method automatically.
+     */
+    static associate(models) {
+      // define association here
+      EmailNotificationSettings.belongsTo(models.User, {
+        foreignKey: "userId",
+        onDelete: "CASCADE",
+      });
+    }
+  }
+  EmailNotificationSettings.init(
+    {
+      emailNotification: {
+        type: DataTypes.ENUM,
+        values: ["Yes", "No"],
+        defaultValue: "No",
+      },
+      dontFollow: {
+        type: DataTypes.ENUM,
+        values: ["Yes", "No"],
+        defaultValue: "No",
+      },
+      dontFollowYou: {
+        type: DataTypes.ENUM,
+        values: ["Yes", "No"],
+        defaultValue: "No",
+      },
+      newAccount: {
+        type: DataTypes.ENUM,
+        values: ["Yes", "No"],
+        defaultValue: "No",
+      },
+      noProfilePic: {
+        type: DataTypes.ENUM,
+        values: ["Yes", "No"],
+        defaultValue: "No",
+      },
+      noConfirmEmail: {
+        type: DataTypes.ENUM,
+        values: ["Yes", "No"],
+        defaultValue: "No",
+      },
+      userId: {
+        type: DataTypes.INTEGER,
+        onDelete: "CASCADE",
+        allowNull: false,
+        references: {
+          model: "Users",
+          key: "id",
+        },
+      },
+    },
+    {
+      sequelize,
+      modelName: "EmailNotificationSettings",
+    }
+  );
+  return EmailNotificationSettings;
+};
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-BlackList_Controller_Functions.html">BlackList_Controller_Functions</a></li><li><a href="module-BlackList_Routes.html">BlackList_Routes</a></li><li><a href="module-config.html">config</a></li><li><a href="module-Contact_Controller_Functions.html">Contact_Controller_Functions</a></li><li><a href="module-Contact_Routes.html">Contact_Routes</a></li><li><a href="module-encryption_key.html">encryption_key</a></li><li><a href="module-Logs_Controller_Functions.html">Logs_Controller_Functions</a></li><li><a href="module-Logs_Routes.html">Logs_Routes</a></li><li><a href="module-Received_Message_Routes.html">Received_Message_Routes</a></li><li><a href="module-Service_Routes.html">Service_Routes</a></li><li><a href="module-Short_Code_Controller_Functions.html">Short_Code_Controller_Functions</a></li><li><a href="module-Short_Code_Routes.html">Short_Code_Routes</a></li><li><a href="module-Sms_Controller_Functions.html">Sms_Controller_Functions</a></li><li><a href="module-SMS_Routes.html">SMS_Routes</a></li><li><a href="module-Smsc_Controller_Functions.html">Smsc_Controller_Functions</a></li><li><a href="module-SmsPlus_Controller_Functions.html">SmsPlus_Controller_Functions</a></li><li><a href="module-Televoting_Controller_Functions.html">Televoting_Controller_Functions</a></li><li><a href="module-Templates_Controller_Functions.html">Templates_Controller_Functions</a></li><li><a href="module-url.html">url</a></li><li><a href="module-User_Controller_Functions.html">User_Controller_Functions</a></li></ul><h3>Classes</h3><ul><li><a href="blackListService.html">blackListService</a></li><li><a href="ContactService.html">ContactService</a></li><li><a href="LogsService.html">LogsService</a></li><li><a href="serviceService.html">serviceService</a></li><li><a href="ShortCodeService.html">ShortCodeService</a></li><li><a href="SmsPlusService.html">SmsPlusService</a></li><li><a href="SmsService.html">SmsService</a></li><li><a href="televotingService.html">televotingService</a></li><li><a href="templatesService.html">templatesService</a></li><li><a href="UserService.html">UserService</a></li></ul><h3>Global</h3><ul><li><a href="global.html#authJwt">authJwt</a></li><li><a href="global.html#axios">axios</a></li><li><a href="global.html#bcrypt">bcrypt</a></li><li><a href="global.html#blackListCheck">blackListCheck</a></li><li><a href="global.html#checkDuplicateEmail">checkDuplicateEmail</a></li><li><a href="global.html#checkIp">checkIp</a></li><li><a href="global.html#checkMsisdn">checkMsisdn</a></li><li><a href="global.html#config">config</a></li><li><a href="global.html#db">db</a></li><li><a href="global.html#destination">destination</a></li><li><a href="global.html#filename">filename</a></li><li><a href="global.html#fileStorage">fileStorage</a></li><li><a href="global.html#getUserId">getUserId</a></li><li><a href="global.html#info">info</a></li><li><a href="global.html#jwt">jwt</a></li><li><a href="global.html#moment">moment</a></li><li><a href="global.html#multer">multer</a></li><li><a href="global.html#signUpVerify">signUpVerify</a></li><li><a href="global.html#verifyToken">verifyToken</a></li><li><a href="global.html#verifyUserRole">verifyUserRole</a></li><li><a href="global.html#xlsx">xlsx</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.11</a> on Thu Aug 04 2022 15:07:28 GMT+0500 (Pakistan Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

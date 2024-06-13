@@ -1,0 +1,146 @@
+<div class="mt-5 mb-5 container-fluid" *ngIf="this.stepFlag == 'step4'">
+  <div class="row">
+    <div class="col-md-1 ss text-center step4">Step 04</div>
+    <div class="col-md-10 step4D">
+      <p class="para ml-2">
+        The content of the message is the most important step! if you would like
+        to use a piece of information from your Contact List please click
+        "Insert Merge Field" and select which data you would like.Remember SMS
+        can only be 160 characters long and even less if Unicode has been
+        entered.<br />
+        Please ensure to look at the indicator below the box to understand if
+        your message has split into multiple parts
+      </p>
+    </div>
+    <div class="col-md-11 text-end">
+      <a href="#" class="help"
+        ><i class="fas fa-info-circle"></i>Still Need Help?</a
+      >
+    </div>
+  </div>
+</div>
+<div class="mt-5 mb-5 container-fluid" *ngIf="this.stepFlag == 'step6'">
+  <div class="row">
+    <div class="col-md-1 ss text-center step6">Step 06</div>
+    <div class="col-md-10 step6D">
+      <p class="para ml-2">
+        Triggers can be used to create a SMS workflow in each of your Sends.By
+        selecting a word that you expect in your Contact's responses you can
+        select a number of automatic actions if that word is sent back you
+        following the Campaign.<br />"Send a Response" This option will
+        automatically send back an SMS to the contact with the content you
+        specify<br />"Send a delayed response" This option will allow you to
+        automatically send a delayed SMS to the contact with the content you
+        specify. This option is great if you are doing a prize draw and would
+        like to send a call to action at a specific time i.e the prize draw.<br />"Opt
+        Out Recipient" This option will allow you to designate the keyword you
+        enter as an Opt Out Keyword. If the customer responds using this keyword
+        the SMS will be considered an Opt Out like the default "STOP" and you
+        will no longer be able to send this Campaign to this contact. Please
+        note that "Stop","STOP","stop" are Opt Out defaults and do not need to
+        be entered here.
+      </p>
+    </div>
+    <div class="col-md-11 text-end">
+      <a href="#" class="help"
+        ><i class="fas fa-info-circle"></i>Still Need Help?</a
+      >
+    </div>
+  </div>
+</div>
+<div class="bg">
+  <div class="row" *ngFor="let box of this.inputInfo">
+    <div class="col-md-2 col-lg-2 col-xl-1 text-left mt-3 label">
+      {{ box.label | capitalization }}
+    </div>
+    <div class="col-md-10 col-lg-10 col-xl-11">
+      <app-text-area
+        [inputInfo]="box"
+        [insertField]="this.messageInfo"
+        [changeFlag]="this.changeFlag"
+        (click)="this.stepFlag = 'step4'"
+        [value]="this.characterCountPercentage"
+        *ngIf="box && box.type == 'textArea'"
+        (updateData)="updateData($event, box.label)"
+        (preSubmit)="preSubmit()"
+        (submit)="onSubmit()"
+      ></app-text-area>
+    </div>
+  </div>
+
+  <div class="row justify-content-end">
+    <div class="col-md-6 mt-2 col-lg-4 col-xl-3 mergeBtn">
+      <app-split-button
+        [label]="'Insert Merge Field'"
+        [items]="this.items"
+        [bgColor]="'#fff'"
+      ></app-split-button>
+    </div>
+    <div class="col-md-6 col-lg-4 col-xl-3 templateBtn">
+      <app-button
+        [label]="'Save the Template'"
+        [type]="'A'"
+        [bgColor]="'#AFAEAE'"
+        [icon]="'pr-2 fas fa-save'"
+        [iconPos]="'left'"
+        [color]="'#ffff'"
+        (button)="createTemplate()"
+      ></app-button>
+    </div>
+  </div>
+
+  <div class="row text-left">
+    <div class="col-md-2 col-lg-2 col-xl-1 text-left mt-3">
+      <p class="rp label">Reply Rules</p>
+    </div>
+    <div class="col-md-10 col-lg-10 col-xl-11 mt-3">
+      <h6>When someone replies with:</h6>
+      <ul>
+        <li>
+          Please not that all keywords must be totally unique.E.g Keywords
+          "Apple" and "Apple1" would both be activated by a response of
+          "Apple"-(i)-KB <br />active link.
+        </li>
+        <li>
+          The replies "Stop", "STOP" and "stop" are considered opt-out
+          responses.
+        </li>
+      </ul>
+      <div class="col-md-6 col-lg-4 col-xl-3 triggerBtn">
+        <app-button
+          [label]="'Create Reply Triggers'"
+          [bgColor]="'#53A3F6'"
+          [color]="'#ffff'"
+          (click)="this.stepFlag = 'step6'"
+        ></app-button>
+      </div>
+    </div>
+  </div>
+
+  <div class="row justify-content-end">
+    <div class="col-md-2 col-lg-2 col-xl-1">
+      <app-button
+        [label]="'Back'"
+        [bgColor]="'#2466A9'"
+        [color]="'#ffff'"
+        (button)="back()"
+      ></app-button>
+    </div>
+
+    <div class="col-md-2 col-lg-2 col-xl-1">
+      <app-button
+        [label]="'Next'"
+        [bgColor]="'#2466A9'"
+        [color]="'#ffff'"
+        (button)="preSubmit()"
+      ></app-button>
+    </div>
+  </div>
+</div>
+<app-dialog
+  [inputInfo]="this.templateInputInfo"
+  [openDialog]="this.openDialog"
+  [type]="'sms'"
+  (close)="this.openDialog = false"
+  (updateData)="saveTemplate($event, 'name')"
+></app-dialog>

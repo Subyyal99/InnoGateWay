@@ -1,0 +1,118 @@
+<div class="container-fluid">
+  <div class="row justify-content-center">
+    <div class="col-lg-11">
+      <div class="bg">
+        <div class="row" style="padding:20px ;">
+          <div class="col-lg-2 text-left label ml-2" style="flex-basis: fit-content">
+            <p class="pt-2">Numbers:</p>
+          </div>
+          <div class="col-lg-8 nameBox">
+            <p class="mt-3">
+              <i class="mr-2 fas fa-file" *ngIf="this.fileName"></i
+              >{{ this.fileName }}
+            </p>
+          </div>
+          <div class="col-xl-1 col-lg-11 mt-2 text-end" *ngIf="!this.fileName">
+            <!-- <app-button [label]=></app-button> -->
+            <p-fileUpload
+              #form
+              name="myfile"
+              customUpload="true"
+              (uploadHandler)="uploader($event, form, 'contacts')"
+              [auto]="true"
+              [mode]="'basic'"
+              [chooseLabel]="'Import'"
+              [chooseIcon]="'pi pi-upload'"
+            >
+            </p-fileUpload>
+          </div>
+          <div class="col-lg-2" *ngIf="this.fileName">
+            <div class="row">
+              <div class="col-lg-6 mt-2">
+                <p-fileUpload
+                  #form
+                  name="myfile"
+                  customUpload="true"
+                  (uploadHandler)="uploader($event, form, 'contacts')"
+                  [auto]="true"
+                  [mode]="'basic'"
+                  [chooseLabel]="'Change'"
+                  [chooseIcon]="'pi pi-upload'"
+                >
+                </p-fileUpload>
+              </div>
+              <div class="col-lg-6">
+                <app-button
+                  [label]="'Remove'"
+                  [padding]="'9px 2px'"
+                  [borderRadius]="'10px'"
+                  [color]="'#fff'"
+                  [type]="'yes'"
+                  [bgColor]="'#D96464'"
+                  [fontSize]="'16px'"
+                  [fontWeight]="'500'"
+                  (button)="remove(form)"
+                ></app-button>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-12">
+            <p class="text-left mt-3 label">
+              File should be of Excel spreadsheet format and contains only 1
+              valid phone number each row, e.g. files' name ends with .xlsx
+              Files should be less than 2MB <br />Data format should be followed
+              (Mobile Number/Given Name)
+            </p>
+          </div>
+        </div>
+        <div
+          class="row justify-content-start sr" style="padding:30px ;"
+          *ngFor="let box of this.inputInfo"
+        >
+          <div
+            class="col-md-2 text-left label pr-0"
+            *ngIf="box.type == 'dropDown'"
+            style="flex-basis: fit-content"
+          >
+            <p class="mt-4">{{ box.label | capitalization }}:</p>
+          </div>
+          <div class="col-md-8 txt-box pl-0" *ngIf="this.data">
+            <!-- <app-check-box
+            [inputInfo]="box"
+            [changeFlag]="changeFlag"
+            (updateData)="updateData($event, box.label)"
+            *ngIf="box.type == 'checkBox'"
+            (preSubmit)="preSubmit()"
+            (submit)="onSubmit()"
+          ></app-check-box> -->
+            <app-drop-down
+              [inputInfo]="box"
+              [changeFlag]="this.changeFlag"
+              [scrollHeight]="'100px'"
+              *ngIf="box.type == 'dropDown'"
+              [data]="box.data"
+              (updateData)="updateData($event, box.label)"
+              (preSubmit)="preSubmit()"
+              (submit)="onSubmit()"
+            ></app-drop-down>
+          </div>
+        </div>
+        <div class="row justify-content-center pb-4">
+          <div class="col-lg-1">
+            <app-button
+              [label]="'Submit'"
+              [padding]="'9px 2px'"
+              [borderRadius]="'10px'"
+              [color]="'#fff'"
+              [type]="'yes'"
+              [bgColor]="'#53a3f6'"
+              [fontSize]="'16px'"
+              [fontWeight]="'500'"
+              (button)="preSubmit()"
+            ></app-button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

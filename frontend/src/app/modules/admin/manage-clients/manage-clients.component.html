@@ -1,0 +1,17 @@
+<div class="bg">
+  <h4 class="text-center">Manage Clients</h4>
+  <div *ngIf="this.tableInfo">
+    <app-table
+      [cols]="this.tableHeaders"
+      [col]="this.tableInfo"
+      [type]="'manage-clients'"
+      [action]="'true'"
+      [fileName]="'Client List.xlsx'"
+      (receiveId)="getDetails($event)"
+      (updatedData)="onDelete($event)"
+      (edit)="onEdit('edit-client', $event)"
+      (editService)="onEdit('edit-service', $event)"
+      (editUser)="onEdit('edit-client', $event)"
+    ></app-table>
+  </div>
+</div>

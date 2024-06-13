@@ -1,0 +1,188 @@
+.bg {
+  background-color: #f3f3ff;
+  padding: 15px;
+  margin: 25px;
+  border-radius: 15px;
+}
+.txt {
+  font-size: 12px;
+}
+.label {
+  font-weight: bold;
+  font-size: 18 px;
+}
+.ss1 {
+  background-color: #000077;
+  border: 1px solid #000077;
+  border-radius: 18px;
+  padding: 10px 0px;
+  padding-top: 15px;
+  margin-left: 40px;
+  /* padding-bottom: 8px; */
+  font-size: 20px;
+  color: #fff;
+}
+.ss2 {
+  background-color: #000077;
+  border: 1px solid #000077;
+  border-radius: 18px;
+  padding: 10px 0px;
+  padding-top: 15px;
+  /* padding-bottom: 8px; */
+  font-size: 20px;
+  color: #fff;
+  margin-left: 40px;
+}
+
+.ss3 {
+  background-color: #000077;
+  border: 1px solid #000077;
+  border-radius: 18px;
+  padding: 10px 0px;
+  font-size: 20px;
+  color: #fff;
+  margin-left: 40px;
+}
+.para {
+  font-weight: bold;
+}
+.help {
+  font-size: 12px;
+  font-style: italic;
+  color: #7ca9d8;
+}
+.icon {
+  color: #0000;
+}
+.custom-marker {
+  display: flex;
+  width: 2rem;
+  height: 2rem;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  border-radius: 50%;
+  z-index: 1;
+}
+@media (max-width: 768px) {
+  .step {
+    width: 6rem;
+  }
+  .stepD {
+    max-width: 23rem;
+  }
+  .step2 {
+    width: 6rem;
+  }
+  .step2D {
+    max-width: 23rem;
+  }
+  .step3 {
+    width: 6rem;
+  }
+  .step3D {
+    max-width: 23rem;
+  }
+  .groupBtn {
+    max-width: 20rem;
+  }
+  .importBtn {
+    max-width: 20rem;
+  }
+}
+@media (max-width: 945px) {
+  .step {
+    width: 6rem;
+  }
+  .stepD {
+    max-width: 34rem;
+  }
+  .step2 {
+    max-width: 6rem;
+  }
+  .step2D {
+    max-width: 34rem;
+  }
+  .step3 {
+    max-width: 6rem;
+  }
+  .step3D {
+    max-width: 34rem;
+  }
+  .groupBtn {
+    max-width: 20rem;
+  }
+  .importBtn {
+    max-width: 20rem;
+  }
+}
+@media (max-width: 999px) {
+  .step {
+    width: 6rem;
+  }
+  .stepD {
+    max-width: 23rem;
+  }
+  .step2 {
+    width: 6rem;
+  }
+  .step2D {
+    max-width: 23rem;
+  }
+  .step3 {
+    width: 6rem;
+  }
+  .step3D {
+    max-width: 23rem;
+  }
+  .groupBtn {
+    max-width: 21rem;
+  }
+  .importBtn {
+    max-width: 21rem;
+  }
+}
+@media (min-width: 1000px) {
+  .step {
+    max-width: 6rem;
+  }
+  .stepD {
+    max-width: 60rem !important;
+  }
+  .step2 {
+    max-width: 6rem;
+  }
+  .step2D {
+    max-width: 60rem !important;
+  }
+  .step3 {
+    max-width: 6rem;
+  }
+  .step3D {
+    max-width: 70rem !important;
+  }
+  .groupBtn {
+    max-width: 20rem;
+  }
+  .importBtn {
+    max-width: 20rem;
+  }
+}
+@media (max-width: 1024px) {
+}
+@media (min-width: 1025px) {
+}
+
+::ng-deep .groupButton.p-button-label{
+  font-size:12px !important; 
+}
+
+::ng-deep.p-inputtext {
+  border-radius: 8px;
+}
+::ng-deep.p-dropdown {
+  border-radius: 8px;
+}
+::ng-deep.p-multiselect {
+  border-radius: 8px;
+}

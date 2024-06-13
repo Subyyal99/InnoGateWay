@@ -1,0 +1,1191 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>frontend documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css" media="(prefers-color-scheme: dark)">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">frontend documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li
+  >
+  DashboardComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li >
+            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/modules/shared/sharedPages/dashboard/dashboard.component.ts</code>
+</p>
+
+
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>specifies which other files are associated with this component and metadata</p>
+
+    </p>
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+    </p>
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-dashboard</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./dashboard.component.css</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./dashboard.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#smsDashboardInfo" >smsDashboardInfo</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#getAllMessageCounts" >getAllMessageCounts</a>
+                            </li>
+                            <li>
+                                <a href="#handleData" >handleData</a>
+                            </li>
+                            <li>
+                                <a href="#handleError" >handleError</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#route" >route</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>, messageService: MessageService, Jarwis: <a href="../injectables/AuthService.html" target="_self">AuthService</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/modules/shared/sharedPages/dashboard/dashboard.component.ts:18</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>This is a default method of the class that is executed when the class is
+instantiated and ensures proper initialisation of fields in the class and its subclasses.</p>
+</div>
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>router</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/router/Router" target="_blank" >Router</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <p>is a router type variable created to use router functions to navigate within our project</p>
+
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>messageService</td>
+                                                  
+                                                        <td>
+                                                                    <code>MessageService</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <p>is a message type variable created to display messages in our component</p>
+
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>Jarwis</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/AuthService.html" target="_self" >AuthService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <p>This connects Backend with Frontend</p>
+
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getAllMessageCounts"></a>
+                    <span class="name">
+                        <span ><b>getAllMessageCounts</b></span>
+                        <a href="#getAllMessageCounts"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getAllMessageCounts()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="40"
+                            class="link-to-prism">src/app/modules/shared/sharedPages/dashboard/dashboard.component.ts:40</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>our function to call the API to get templates</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="handleData"></a>
+                    <span class="name">
+                        <span ><b>handleData</b></span>
+                        <a href="#handleData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>handleData(data)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="50"
+                            class="link-to-prism">src/app/modules/shared/sharedPages/dashboard/dashboard.component.ts:50</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>This is the function that recieves the data retrieved by the API call</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>data</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>is the variable that gets the value from the function call send by the function call</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="handleError"></a>
+                    <span class="name">
+                        <span ><b>handleError</b></span>
+                        <a href="#handleError"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>handleError(error)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="65"
+                            class="link-to-prism">src/app/modules/shared/sharedPages/dashboard/dashboard.component.ts:65</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>handle error is our function to handle error given by APi or custom made</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>error</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>is the variable through which we recieve the error to display to the user</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="34"
+                            class="link-to-prism">src/app/modules/shared/sharedPages/dashboard/dashboard.component.ts:34</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>ngOnInIt is an angular lifecycle function that run when we load our component or application</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="route"></a>
+                    <span class="name">
+                        <span ><b>route</b></span>
+                        <a href="#route"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>route(data)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="70"
+                            class="link-to-prism">src/app/modules/shared/sharedPages/dashboard/dashboard.component.ts:70</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>this function is used to navigate among the page</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>data</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>path to navigate to</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section>
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="smsDashboardInfo"></a>
+                    <span class="name">
+                        <span ><b>smsDashboardInfo</b></span>
+                        <a href="#smsDashboardInfo"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new SmsDashboardInfo()</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/modules/shared/sharedPages/dashboard/dashboard.component.ts:18</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>this SmsDashboardInfo type object stores values required for dashboard</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &quot;@angular/core&quot;;
+import { Router } from &quot;@angular/router&quot;;
+import { MessageService } from &quot;primeng/api&quot;;
+import { AuthService } from &quot;src/app/auth/auth.service&quot;;
+import { SmsDashboardInfo } from &quot;src/app/models/sms-dashboard-info&quot;;
+/**
+ * specifies which other files are associated with this component and metadata
+ */
+@Component({
+  selector: &quot;app-dashboard&quot;,
+  templateUrl: &quot;./dashboard.component.html&quot;,
+  styleUrls: [&quot;./dashboard.component.css&quot;],
+})
+export class DashboardComponent implements OnInit {
+  /**
+   * this SmsDashboardInfo type object stores values required for dashboard
+   */
+  smsDashboardInfo &#x3D; new SmsDashboardInfo();
+  /**
+   * This is a default method of the class that is executed when the class is
+   * instantiated and ensures proper initialisation of fields in the class and its subclasses.
+   * @param Jarwis This connects Backend with Frontend
+   * @param router is a router type variable created to use router functions to navigate within our project
+   * @param messageService is a message type variable created to display messages in our component
+   */
+  constructor(
+    private router: Router,
+    private messageService: MessageService,
+    private Jarwis: AuthService
+  ) {}
+  /**
+   * ngOnInIt is an angular lifecycle function that run when we load our component or application
+   */
+  ngOnInit(): void {
+    this.getAllMessageCounts();
+  }
+  /**
+   * our function to call the API to get templates
+   */
+  getAllMessageCounts() {
+    this.Jarwis.getMessageCounts().subscribe(
+      (data) &#x3D;&gt; this.handleData(data),
+      (error) &#x3D;&gt; this.handleError(error)
+    );
+  }
+  /**
+   * This is the function that recieves the data retrieved by the API call
+   * @param data is the variable that gets the value from the function call send by the function call
+   */
+  handleData(data) {
+    console.log(data);
+    data.data.forEach((element) &#x3D;&gt; {
+      if (element.type &#x3D;&#x3D; &quot;available&quot;) {
+        this.smsDashboardInfo[element.name][element.type] &#x3D; element.value;
+      } else if (element.type &#x3D;&#x3D; &quot;sent&quot;) {
+        this.smsDashboardInfo[element.name][element.type] &#x3D; element.value;
+      }
+    });
+    console.log(this.smsDashboardInfo);
+  }
+  /**
+   * handle error is our function to handle error given by APi or custom made
+   * @param error is the variable through which we recieve the error to display to the user
+   */
+  handleError(error) {}
+  /**
+   * this function is used to navigate among the page
+   * @param data path to navigate to
+   */
+  route(data) {
+    this.router.navigateByUrl(&quot;/side-panel/&quot; + data);
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;!-- &lt;div class&#x3D;&quot;row&quot;&gt;
+        &lt;div class&#x3D;&quot;col-md-12&quot;&gt;
+            &lt;h3 class&#x3D;&quot;ml-5&quot;&gt;Dashboard&lt;/h3&gt;
+            &lt;div class&#x3D;&quot;row&quot;&gt;
+            &lt;div class&#x3D;&quot;card col-md-3 cd ml-6&quot; style&#x3D;&quot;width: 18rem;&quot;&gt;
+                &lt;div class&#x3D;&quot;card-body&quot;&gt;
+                   &lt;i class&#x3D;&quot;fas fa-box fa-2x &quot;&gt;&lt;/i&gt;
+                   &lt;h6 class&#x3D;&quot;card-title &quot;&gt;Total SMPP Port&lt;/h6&gt;
+                  &lt;h6 class&#x3D;&quot;card-subtitle ml-6 st&quot;&gt;1&lt;/h6&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+
+              &lt;div class&#x3D;&quot;card col-md-3 ml-6 cd&quot; style&#x3D;&quot;width: 18rem;&quot;&gt;
+                &lt;div class&#x3D;&quot;card-body&quot;&gt;
+                  &lt;h6 class&#x3D;&quot;card-title&quot;&gt; &lt;i class&#x3D;&quot;fas fa-box&quot;&gt;&lt;/i&gt;Total SMPP User&#x27;s&lt;/h6&gt;
+                  &lt;h6 class&#x3D;&quot;card-subtitle mb-2 ml-6 st&quot;&gt;Card subtitle&lt;/h6&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+            
+              &lt;div class&#x3D;&quot;card col-md-3 ml-6 cd&quot; style&#x3D;&quot;width: 18rem;&quot;&gt;
+                &lt;div class&#x3D;&quot;card-body&quot;&gt;
+                  &lt;h6 class&#x3D;&quot;card-title&quot;&gt; &lt;i class&#x3D;&quot;fas fa-box&quot;&gt;&lt;/i&gt;Total SMPP Port&lt;/h6&gt;
+                  &lt;h6 class&#x3D;&quot;card-subtitle mb-2 text-muted&quot;&gt;Card subtitle&lt;/h6&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+
+              &lt;div class&#x3D;&quot;card col-md-3 ml-6 cd&quot; style&#x3D;&quot;width: 18rem;&quot;&gt;
+                &lt;div class&#x3D;&quot;card-body&quot;&gt;
+                  &lt;h6 class&#x3D;&quot;card-title&quot;&gt; &lt;i class&#x3D;&quot;fas fa-box&quot;&gt;&lt;/i&gt;Total SMPP Port&lt;/h6&gt;
+                  &lt;h6 class&#x3D;&quot;card-subtitle mb-2 text-muted&quot;&gt;Card subtitle&lt;/h6&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt; --&gt;
+
+&lt;div class&#x3D;&quot;container-fluid&quot;&gt;
+  &lt;div class&#x3D;&quot;row text-center&quot;&gt;
+    &lt;div class&#x3D;&quot;col-md-12&quot;&gt;
+      &lt;h3 class&#x3D;&quot;ml-5 pb-3 pt-2&quot;&gt;Sms Dashboard&lt;/h3&gt;
+      &lt;h5 class&#x3D;&quot;ml-5 pb-2 pt-4 text-left&quot;&gt;Sms Available&lt;/h5&gt;
+      &lt;div class&#x3D;&quot;row text-left&quot;&gt;
+        &lt;div
+          class&#x3D;&quot;card col-md-12 ml-6 mt-md-4 cd hov&quot;
+          (click)&#x3D;&quot;route(&#x27;single-sms&#x27;)&quot;
+          style&#x3D;&quot;width: 18rem&quot;
+        &gt;
+          &lt;div class&#x3D;&quot;card-horizontal&quot;&gt;
+            &lt;div class&#x3D;&quot;img-square-wrapper&quot;&gt;
+              &lt;i class&#x3D;&quot;fas fa-sms fa-3x&quot;&gt;&lt;/i&gt;
+            &lt;/div&gt;
+            &lt;div class&#x3D;&quot;card-body&quot;&gt;
+              &lt;h6 class&#x3D;&quot;card-title&quot;&gt;Single Sms&lt;/h6&gt;
+              &lt;p class&#x3D;&quot;card-text&quot;&gt;
+                {{
+                  this.smsDashboardInfo.singleSms.available -
+                    this.smsDashboardInfo.singleSms.sent
+                }}
+              &lt;/p&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;div
+          class&#x3D;&quot;card col-md-12 ml-6 mt-4 cd hov&quot;
+          (click)&#x3D;&quot;route(&#x27;bulk-sms&#x27;)&quot;
+          style&#x3D;&quot;width: 18rem&quot;
+        &gt;
+          &lt;div class&#x3D;&quot;card-horizontal&quot;&gt;
+            &lt;div class&#x3D;&quot;img-square-wrapper&quot;&gt;
+              &lt;i class&#x3D;&quot;fas fa-sms fa-3x&quot;&gt;&lt;/i&gt;
+            &lt;/div&gt;
+            &lt;div class&#x3D;&quot;card-body&quot;&gt;
+              &lt;h6 class&#x3D;&quot;card-title&quot;&gt;Bulk Sms&lt;/h6&gt;
+              &lt;p class&#x3D;&quot;card-text&quot;&gt;
+                {{
+                  this.smsDashboardInfo.bulkSms.available -
+                    this.smsDashboardInfo.bulkSms.sent
+                }}
+              &lt;/p&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;div
+          class&#x3D;&quot;card col-md-12 ml-6 mt-4 cd hov&quot;
+          (click)&#x3D;&quot;route(&#x27;create-campaign&#x27;)&quot;
+          style&#x3D;&quot;width: 18rem&quot;
+        &gt;
+          &lt;div class&#x3D;&quot;card-horizontal&quot;&gt;
+            &lt;div class&#x3D;&quot;img-square-wrapper&quot;&gt;
+              &lt;i class&#x3D;&quot;fas fa-sms fa-3x&quot;&gt;&lt;/i&gt;
+            &lt;/div&gt;
+            &lt;div class&#x3D;&quot;card-body&quot;&gt;
+              &lt;h6 class&#x3D;&quot;card-title&quot;&gt;Campaign Sms&lt;/h6&gt;
+              &lt;p class&#x3D;&quot;card-text&quot;&gt;
+                {{
+                  this.smsDashboardInfo.campaigns.available -
+                    this.smsDashboardInfo.campaigns.sent
+                }}
+              &lt;/p&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;h5 class&#x3D;&quot;ml-5 pb-2 pt-4 text-left&quot;&gt;Sms Sent&lt;/h5&gt;
+      &lt;div class&#x3D;&quot;row text-left&quot;&gt;
+        &lt;div
+          class&#x3D;&quot;card col-md-12 ml-6 mt-4 cd hov&quot;
+          (click)&#x3D;&quot;route(&#x27;single-sms&#x27;)&quot;
+          style&#x3D;&quot;width: 18rem&quot;
+        &gt;
+          &lt;div class&#x3D;&quot;card-horizontal&quot;&gt;
+            &lt;div class&#x3D;&quot;img-square-wrapper&quot;&gt;
+              &lt;i class&#x3D;&quot;fas fa-sms fa-3x&quot;&gt;&lt;/i&gt;
+            &lt;/div&gt;
+            &lt;div class&#x3D;&quot;card-body&quot;&gt;
+              &lt;h6 class&#x3D;&quot;card-title&quot;&gt;Single Sms&lt;/h6&gt;
+              &lt;p class&#x3D;&quot;card-text&quot;&gt;
+                {{ this.smsDashboardInfo.singleSms.sent }}
+              &lt;/p&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;div
+          class&#x3D;&quot;card col-md-12 ml-6 mt-4 cd hov&quot;
+          (click)&#x3D;&quot;route(&#x27;bulk-sms&#x27;)&quot;
+          style&#x3D;&quot;width: 18rem&quot;
+        &gt;
+          &lt;div class&#x3D;&quot;card-horizontal&quot;&gt;
+            &lt;div class&#x3D;&quot;img-square-wrapper&quot;&gt;
+              &lt;i class&#x3D;&quot;fas fa-sms fa-3x&quot;&gt;&lt;/i&gt;
+            &lt;/div&gt;
+            &lt;div class&#x3D;&quot;card-body&quot;&gt;
+              &lt;h6 class&#x3D;&quot;card-title&quot;&gt;Bulk Sms&lt;/h6&gt;
+              &lt;p class&#x3D;&quot;card-text&quot;&gt;{{ this.smsDashboardInfo.bulkSms.sent }}&lt;/p&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;div
+          class&#x3D;&quot;card col-md-12 ml-6 mt-4 cd hov&quot;
+          (click)&#x3D;&quot;route(&#x27;create-campaign&#x27;)&quot;
+          style&#x3D;&quot;width: 18rem&quot;
+        &gt;
+          &lt;div class&#x3D;&quot;card-horizontal&quot;&gt;
+            &lt;div class&#x3D;&quot;img-square-wrapper&quot;&gt;
+              &lt;i class&#x3D;&quot;fas fa-sms fa-3x&quot;&gt;&lt;/i&gt;
+            &lt;/div&gt;
+            &lt;div class&#x3D;&quot;card-body&quot;&gt;
+              &lt;h6 class&#x3D;&quot;card-title&quot;&gt;Campaign Sms&lt;/h6&gt;
+              &lt;p class&#x3D;&quot;card-text&quot;&gt;
+                {{ this.smsDashboardInfo.campaigns.sent }}
+              &lt;/p&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;!-- &lt;div
+          class&#x3D;&quot;card col-md-12 ml-6 mt-md-4 cd hov&quot;
+          (click)&#x3D;&quot;route(&#x27;smpp-sms-queue&#x27;)&quot;
+          style&#x3D;&quot;width: 18rem&quot;
+        &gt;
+          &lt;div class&#x3D;&quot;card-horizontal&quot;&gt;
+            &lt;div class&#x3D;&quot;img-square-wrapper&quot;&gt;
+              &lt;i class&#x3D;&quot;fas fa-map-signs fa-3x&quot;&gt;&lt;/i&gt;
+            &lt;/div&gt;
+            &lt;div class&#x3D;&quot;card-body&quot;&gt;
+              &lt;h6 class&#x3D;&quot;card-title&quot;&gt;SMPP SMS Queue&lt;/h6&gt;
+              &lt;p class&#x3D;&quot;card-text&quot;&gt;0&lt;/p&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt; --&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class&#x3D;&quot;container-fluid&quot;&gt;
+  &lt;div class&#x3D;&quot;row text-left&quot;&gt;
+    &lt;div class&#x3D;&quot;col-md-12&quot;&gt;
+      &lt;h5 class&#x3D;&quot;ml-5 mt-5&quot;&gt;Send By Portal Information&lt;/h5&gt;
+      &lt;div class&#x3D;&quot;row text-left&quot;&gt;
+        &lt;div class&#x3D;&quot;card col-md-12 ml-6 mt-4 cd hov&quot; style&#x3D;&quot;width: 18rem&quot;&gt;
+          &lt;div class&#x3D;&quot;card-horizontal&quot;&gt;
+            &lt;div class&#x3D;&quot;img-square-wrapper&quot;&gt;
+              &lt;i class&#x3D;&quot;fas fa-sms fa-3x&quot;&gt;&lt;/i&gt;
+            &lt;/div&gt;
+            &lt;div class&#x3D;&quot;card-body&quot;&gt;
+              &lt;h6 class&#x3D;&quot;card-title&quot;&gt;Total SMS&lt;/h6&gt;
+              &lt;p class&#x3D;&quot;card-text&quot;&gt;0&lt;/p&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;div class&#x3D;&quot;card col-md-12 ml-6 mt-4 cd hov&quot; style&#x3D;&quot;width: 18rem&quot;&gt;
+          &lt;div class&#x3D;&quot;card-horizontal&quot;&gt;
+            &lt;div class&#x3D;&quot;img-square-wrapper&quot;&gt;
+              &lt;i class&#x3D;&quot;fas fa-random fa-3x&quot;&gt;&lt;/i&gt;
+            &lt;/div&gt;
+            &lt;div class&#x3D;&quot;card-body&quot;&gt;
+              &lt;h6 class&#x3D;&quot;card-title&quot;&gt;Multipart sends&lt;/h6&gt;
+              &lt;p class&#x3D;&quot;card-text&quot;&gt;0&lt;/p&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;div class&#x3D;&quot;card col-md-12 ml-6 mt-4 cd hov&quot; style&#x3D;&quot;width: 18rem&quot;&gt;
+          &lt;div class&#x3D;&quot;card-horizontal&quot;&gt;
+            &lt;div class&#x3D;&quot;img-square-wrapper&quot;&gt;
+              &lt;i class&#x3D;&quot;fas fa-thumbs-down fa-3x&quot;&gt;&lt;/i&gt;
+            &lt;/div&gt;
+            &lt;div class&#x3D;&quot;card-body&quot;&gt;
+              &lt;h6 class&#x3D;&quot;card-title&quot;&gt;Rejected&lt;/h6&gt;
+              &lt;p class&#x3D;&quot;card-text&quot;&gt;0&lt;/p&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;div class&#x3D;&quot;card col-md-12 ml-6 mt-4 cd hov&quot; style&#x3D;&quot;width: 18rem&quot;&gt;
+          &lt;div class&#x3D;&quot;card-horizontal&quot;&gt;
+            &lt;div class&#x3D;&quot;img-square-wrapper&quot;&gt;
+              &lt;i class&#x3D;&quot;fas fa-hand-holding-usd fa-3x&quot;&gt;&lt;/i&gt;
+            &lt;/div&gt;
+            &lt;div class&#x3D;&quot;card-body&quot;&gt;
+              &lt;h6 class&#x3D;&quot;card-title&quot;&gt;FREE&lt;/h6&gt;
+              &lt;p class&#x3D;&quot;card-text&quot;&gt;&lt;/p&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class&#x3D;&quot;container-fluid&quot;&gt;
+  &lt;div class&#x3D;&quot;row text-left&quot;&gt;
+    &lt;div class&#x3D;&quot;col-md-12&quot;&gt;
+      &lt;h5 class&#x3D;&quot;ml-5 mt-5&quot;&gt;Remaining SMS Information&lt;/h5&gt;
+      &lt;div class&#x3D;&quot;row text-left&quot;&gt;
+        &lt;div class&#x3D;&quot;card col-md-12 ml-6 mt-4 cd hov&quot; style&#x3D;&quot;width: 18rem&quot;&gt;
+          &lt;div class&#x3D;&quot;card-horizontal&quot;&gt;
+            &lt;div class&#x3D;&quot;img-square-wrapper&quot;&gt;
+              &lt;i class&#x3D;&quot;fas fa-ban fa-3x&quot;&gt;&lt;/i&gt;
+            &lt;/div&gt;
+            &lt;div class&#x3D;&quot;card-body&quot;&gt;
+              &lt;h6 class&#x3D;&quot;card-title&quot;&gt;Portal Block SMS&lt;/h6&gt;
+              &lt;p class&#x3D;&quot;card-text&quot;&gt;&lt;/p&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;div class&#x3D;&quot;card col-md-12 ml-6 mt-4 cd hov&quot; style&#x3D;&quot;width: 18rem&quot;&gt;
+          &lt;div class&#x3D;&quot;card-horizontal&quot;&gt;
+            &lt;div class&#x3D;&quot;img-square-wrapper&quot;&gt;
+              &lt;i class&#x3D;&quot;fas fa-satellite-dish fa-3x&quot;&gt;&lt;/i&gt;
+            &lt;/div&gt;
+            &lt;div class&#x3D;&quot;card-body&quot;&gt;
+              &lt;h6 class&#x3D;&quot;card-title&quot;&gt;Total SMPP SMS&lt;/h6&gt;
+              &lt;p class&#x3D;&quot;card-text&quot;&gt;0&lt;/p&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class&#x3D;&quot;container-fluid&quot;&gt;
+  &lt;div class&#x3D;&quot;row text-left&quot;&gt;
+    &lt;div class&#x3D;&quot;col-md-12&quot;&gt;
+      &lt;h5 class&#x3D;&quot;ml-5 mt-5&quot;&gt;Script Process&lt;/h5&gt;
+      &lt;div class&#x3D;&quot;row text-left&quot;&gt;
+        &lt;div class&#x3D;&quot;card ml-6 cd hov&quot; style&#x3D;&quot;width: 18rem&quot;&gt;
+          &lt;div class&#x3D;&quot;card-horizontal&quot;&gt;
+            &lt;div class&#x3D;&quot;img-square-wrapper&quot;&gt;
+              &lt;i class&#x3D;&quot;fas fab fa-pinterest fa-3x&quot;&gt;&lt;/i&gt;
+            &lt;/div&gt;
+            &lt;div class&#x3D;&quot;card-body&quot;&gt;
+              &lt;h6 class&#x3D;&quot;card-title&quot;&gt;Script Process Status&lt;/h6&gt;
+              &lt;p class&#x3D;&quot;card-text lst&quot;&gt;All Process Running Fine&lt;/p&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- could be used later --&gt;
+&lt;!-- &lt;h4 class&#x3D;&quot;ml-5 pb-4 pt-2 text-left&quot;&gt;Sms Sent&lt;/h4&gt;
+      &lt;div class&#x3D;&quot;row text-left&quot;&gt;
+        &lt;div
+          class&#x3D;&quot;card col-md-12 ml-6 mt-md-4 cd hov&quot;
+          (click)&#x3D;&quot;route(&#x27;smpp-port&#x27;)&quot;
+          style&#x3D;&quot;width: 18rem&quot;
+        &gt;
+          &lt;div class&#x3D;&quot;card-horizontal&quot;&gt;
+            &lt;div class&#x3D;&quot;img-square-wrapper&quot;&gt;
+              &lt;i class&#x3D;&quot;fas fa-box fa-3x&quot;&gt;&lt;/i&gt;
+            &lt;/div&gt;
+            &lt;div class&#x3D;&quot;card-body&quot;&gt;
+              &lt;h6 class&#x3D;&quot;card-title&quot;&gt;Total SMPP Port&lt;/h6&gt;
+              &lt;p class&#x3D;&quot;card-text&quot;&gt;1&lt;/p&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;div
+          class&#x3D;&quot;card col-md-12 ml-6 mt-md-4 cd hov&quot;
+          (click)&#x3D;&quot;route(&#x27;smpp-user&#x27;)&quot;
+          style&#x3D;&quot;width: 18rem&quot;
+        &gt;
+          &lt;div class&#x3D;&quot;card-horizontal&quot;&gt;
+            &lt;div class&#x3D;&quot;img-square-wrapper&quot;&gt;
+              &lt;i class&#x3D;&quot;fas fa-users fa-3x&quot;&gt;&lt;/i&gt;
+            &lt;/div&gt;
+            &lt;div class&#x3D;&quot;card-body&quot;&gt;
+              &lt;h6 class&#x3D;&quot;card-title&quot;&gt;Total SMPP User&#x27;s&lt;/h6&gt;
+              &lt;p class&#x3D;&quot;card-text&quot;&gt;1&lt;/p&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;div
+          class&#x3D;&quot;card col-md-12 ml-6 mt-md-4 cd hov&quot;
+          (click)&#x3D;&quot;route(&#x27;sent&#x27;)&quot;
+          style&#x3D;&quot;width: 18rem&quot;
+        &gt;
+          &lt;div class&#x3D;&quot;card-horizontal&quot;&gt;
+            &lt;div class&#x3D;&quot;img-square-wrapper&quot;&gt;
+              &lt;i class&#x3D;&quot;fas fa-dollar-sign fa-3x pl-5 pr-4&quot;&gt;&lt;/i&gt;
+            &lt;/div&gt;
+            &lt;div class&#x3D;&quot;card-body&quot;&gt;
+              &lt;h6 class&#x3D;&quot;card-title&quot;&gt;Today Sent&lt;/h6&gt;
+              &lt;p class&#x3D;&quot;card-text&quot;&gt;0&lt;/p&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;div
+          class&#x3D;&quot;card col-md-12 ml-6 mt-md-4 cd hov&quot;
+          (click)&#x3D;&quot;route(&#x27;smpp-sms-queue&#x27;)&quot;
+          style&#x3D;&quot;width: 18rem&quot;
+        &gt;
+          &lt;div class&#x3D;&quot;card-horizontal&quot;&gt;
+            &lt;div class&#x3D;&quot;img-square-wrapper&quot;&gt;
+              &lt;i class&#x3D;&quot;fas fa-map-signs fa-3x&quot;&gt;&lt;/i&gt;
+            &lt;/div&gt;
+            &lt;div class&#x3D;&quot;card-body&quot;&gt;
+              &lt;h6 class&#x3D;&quot;card-title&quot;&gt;SMPP SMS Queue&lt;/h6&gt;
+              &lt;p class&#x3D;&quot;card-text&quot;&gt;0&lt;/p&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt; --&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-styleData">
+                <p class="comment">
+                    <code>./dashboard.component.css</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">.cd {
+  background-color: #f3f3ff;
+}
+
+.fa,
+.fas {
+  border: 1px solid;
+  padding: 15px;
+  border-radius: 10px;
+  background-color: #39394f;
+  color: #fff;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+.card-horizontal {
+  display: flex;
+  flex: 1 1 auto;
+}
+
+.lst {
+  font-size: 12.5px;
+  font-weight: bold;
+}
+
+.hov {
+  cursor: pointer;
+}
+
+.hov:hover {
+  box-shadow: 5px 10px 18px #888888;
+  box-sizing: border-box;
+  background-color: #dadaff;
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><!-- <div class="row">        <div class="col-md-12">            <h3 class="ml-5">Dashboard</h3>            <div class="row">            <div class="card col-md-3 cd ml-6" style="width: 18rem;">                <div class="card-body">                   <i class="fas fa-box fa-2x "></i>                   <h6 class="card-title ">Total SMPP Port</h6>                  <h6 class="card-subtitle ml-6 st">1</h6>                </div>              </div>              <div class="card col-md-3 ml-6 cd" style="width: 18rem;">                <div class="card-body">                  <h6 class="card-title"> <i class="fas fa-box"></i>Total SMPP User\'s</h6>                  <h6 class="card-subtitle mb-2 ml-6 st">Card subtitle</h6>                </div>              </div>                          <div class="card col-md-3 ml-6 cd" style="width: 18rem;">                <div class="card-body">                  <h6 class="card-title"> <i class="fas fa-box"></i>Total SMPP Port</h6>                  <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>                </div>              </div>              <div class="card col-md-3 ml-6 cd" style="width: 18rem;">                <div class="card-body">                  <h6 class="card-title"> <i class="fas fa-box"></i>Total SMPP Port</h6>                  <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>                </div>              </div>        </div>    </div> --><div class="container-fluid">  <div class="row text-center">    <div class="col-md-12">      <h3 class="ml-5 pb-3 pt-2">Sms Dashboard</h3>      <h5 class="ml-5 pb-2 pt-4 text-left">Sms Available</h5>      <div class="row text-left">        <div          class="card col-md-12 ml-6 mt-md-4 cd hov"          (click)="route(\'single-sms\')"          style="width: 18rem"        >          <div class="card-horizontal">            <div class="img-square-wrapper">              <i class="fas fa-sms fa-3x"></i>            </div>            <div class="card-body">              <h6 class="card-title">Single Sms</h6>              <p class="card-text">                {{                  this.smsDashboardInfo.singleSms.available -                    this.smsDashboardInfo.singleSms.sent                }}              </p>            </div>          </div>        </div>        <div          class="card col-md-12 ml-6 mt-4 cd hov"          (click)="route(\'bulk-sms\')"          style="width: 18rem"        >          <div class="card-horizontal">            <div class="img-square-wrapper">              <i class="fas fa-sms fa-3x"></i>            </div>            <div class="card-body">              <h6 class="card-title">Bulk Sms</h6>              <p class="card-text">                {{                  this.smsDashboardInfo.bulkSms.available -                    this.smsDashboardInfo.bulkSms.sent                }}              </p>            </div>          </div>        </div>        <div          class="card col-md-12 ml-6 mt-4 cd hov"          (click)="route(\'create-campaign\')"          style="width: 18rem"        >          <div class="card-horizontal">            <div class="img-square-wrapper">              <i class="fas fa-sms fa-3x"></i>            </div>            <div class="card-body">              <h6 class="card-title">Campaign Sms</h6>              <p class="card-text">                {{                  this.smsDashboardInfo.campaigns.available -                    this.smsDashboardInfo.campaigns.sent                }}              </p>            </div>          </div>        </div>      </div>      <h5 class="ml-5 pb-2 pt-4 text-left">Sms Sent</h5>      <div class="row text-left">        <div          class="card col-md-12 ml-6 mt-4 cd hov"          (click)="route(\'single-sms\')"          style="width: 18rem"        >          <div class="card-horizontal">            <div class="img-square-wrapper">              <i class="fas fa-sms fa-3x"></i>            </div>            <div class="card-body">              <h6 class="card-title">Single Sms</h6>              <p class="card-text">                {{ this.smsDashboardInfo.singleSms.sent }}              </p>            </div>          </div>        </div>        <div          class="card col-md-12 ml-6 mt-4 cd hov"          (click)="route(\'bulk-sms\')"          style="width: 18rem"        >          <div class="card-horizontal">            <div class="img-square-wrapper">              <i class="fas fa-sms fa-3x"></i>            </div>            <div class="card-body">              <h6 class="card-title">Bulk Sms</h6>              <p class="card-text">{{ this.smsDashboardInfo.bulkSms.sent }}</p>            </div>          </div>        </div>        <div          class="card col-md-12 ml-6 mt-4 cd hov"          (click)="route(\'create-campaign\')"          style="width: 18rem"        >          <div class="card-horizontal">            <div class="img-square-wrapper">              <i class="fas fa-sms fa-3x"></i>            </div>            <div class="card-body">              <h6 class="card-title">Campaign Sms</h6>              <p class="card-text">                {{ this.smsDashboardInfo.campaigns.sent }}              </p>            </div>          </div>        </div>        <!-- <div          class="card col-md-12 ml-6 mt-md-4 cd hov"          (click)="route(\'smpp-sms-queue\')"          style="width: 18rem"        >          <div class="card-horizontal">            <div class="img-square-wrapper">              <i class="fas fa-map-signs fa-3x"></i>            </div>            <div class="card-body">              <h6 class="card-title">SMPP SMS Queue</h6>              <p class="card-text">0</p>            </div>          </div>        </div> -->      </div>    </div>  </div></div><div class="container-fluid">  <div class="row text-left">    <div class="col-md-12">      <h5 class="ml-5 mt-5">Send By Portal Information</h5>      <div class="row text-left">        <div class="card col-md-12 ml-6 mt-4 cd hov" style="width: 18rem">          <div class="card-horizontal">            <div class="img-square-wrapper">              <i class="fas fa-sms fa-3x"></i>            </div>            <div class="card-body">              <h6 class="card-title">Total SMS</h6>              <p class="card-text">0</p>            </div>          </div>        </div>        <div class="card col-md-12 ml-6 mt-4 cd hov" style="width: 18rem">          <div class="card-horizontal">            <div class="img-square-wrapper">              <i class="fas fa-random fa-3x"></i>            </div>            <div class="card-body">              <h6 class="card-title">Multipart sends</h6>              <p class="card-text">0</p>            </div>          </div>        </div>        <div class="card col-md-12 ml-6 mt-4 cd hov" style="width: 18rem">          <div class="card-horizontal">            <div class="img-square-wrapper">              <i class="fas fa-thumbs-down fa-3x"></i>            </div>            <div class="card-body">              <h6 class="card-title">Rejected</h6>              <p class="card-text">0</p>            </div>          </div>        </div>        <div class="card col-md-12 ml-6 mt-4 cd hov" style="width: 18rem">          <div class="card-horizontal">            <div class="img-square-wrapper">              <i class="fas fa-hand-holding-usd fa-3x"></i>            </div>            <div class="card-body">              <h6 class="card-title">FREE</h6>              <p class="card-text"></p>            </div>          </div>        </div>      </div>    </div>  </div></div><div class="container-fluid">  <div class="row text-left">    <div class="col-md-12">      <h5 class="ml-5 mt-5">Remaining SMS Information</h5>      <div class="row text-left">        <div class="card col-md-12 ml-6 mt-4 cd hov" style="width: 18rem">          <div class="card-horizontal">            <div class="img-square-wrapper">              <i class="fas fa-ban fa-3x"></i>            </div>            <div class="card-body">              <h6 class="card-title">Portal Block SMS</h6>              <p class="card-text"></p>            </div>          </div>        </div>        <div class="card col-md-12 ml-6 mt-4 cd hov" style="width: 18rem">          <div class="card-horizontal">            <div class="img-square-wrapper">              <i class="fas fa-satellite-dish fa-3x"></i>            </div>            <div class="card-body">              <h6 class="card-title">Total SMPP SMS</h6>              <p class="card-text">0</p>            </div>          </div>        </div>      </div>    </div>  </div></div><div class="container-fluid">  <div class="row text-left">    <div class="col-md-12">      <h5 class="ml-5 mt-5">Script Process</h5>      <div class="row text-left">        <div class="card ml-6 cd hov" style="width: 18rem">          <div class="card-horizontal">            <div class="img-square-wrapper">              <i class="fas fab fa-pinterest fa-3x"></i>            </div>            <div class="card-body">              <h6 class="card-title">Script Process Status</h6>              <p class="card-text lst">All Process Running Fine</p>            </div>          </div>        </div>      </div>    </div>  </div></div><!-- could be used later --><!-- <h4 class="ml-5 pb-4 pt-2 text-left">Sms Sent</h4>      <div class="row text-left">        <div          class="card col-md-12 ml-6 mt-md-4 cd hov"          (click)="route(\'smpp-port\')"          style="width: 18rem"        >          <div class="card-horizontal">            <div class="img-square-wrapper">              <i class="fas fa-box fa-3x"></i>            </div>            <div class="card-body">              <h6 class="card-title">Total SMPP Port</h6>              <p class="card-text">1</p>            </div>          </div>        </div>        <div          class="card col-md-12 ml-6 mt-md-4 cd hov"          (click)="route(\'smpp-user\')"          style="width: 18rem"        >          <div class="card-horizontal">            <div class="img-square-wrapper">              <i class="fas fa-users fa-3x"></i>            </div>            <div class="card-body">              <h6 class="card-title">Total SMPP User\'s</h6>              <p class="card-text">1</p>            </div>          </div>        </div>        <div          class="card col-md-12 ml-6 mt-md-4 cd hov"          (click)="route(\'sent\')"          style="width: 18rem"        >          <div class="card-horizontal">            <div class="img-square-wrapper">              <i class="fas fa-dollar-sign fa-3x pl-5 pr-4"></i>            </div>            <div class="card-body">              <h6 class="card-title">Today Sent</h6>              <p class="card-text">0</p>            </div>          </div>        </div>        <div          class="card col-md-12 ml-6 mt-md-4 cd hov"          (click)="route(\'smpp-sms-queue\')"          style="width: 18rem"        >          <div class="card-horizontal">            <div class="img-square-wrapper">              <i class="fas fa-map-signs fa-3x"></i>            </div>            <div class="card-body">              <h6 class="card-title">SMPP SMS Queue</h6>              <p class="card-text">0</p>            </div>          </div>        </div>      </div> --></div>'
+    var COMPONENTS = [{'name': 'AddAdminComponent', 'selector': 'app-add-admin'},{'name': 'AddClientComponent', 'selector': 'app-add-client'},{'name': 'AddPartnersComponent', 'selector': 'app-add-partners'},{'name': 'AddServicesComponent', 'selector': 'app-add-services'},{'name': 'AdminNavigationComponent', 'selector': 'app-admin-navigation'},{'name': 'AdminSlideMenuComponent', 'selector': 'app-admin-slide-menu'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'BalanceDeductionComponent', 'selector': 'app-balance-deduction'},{'name': 'BulkSmsComponent', 'selector': 'app-bulk-sms'},{'name': 'BulkSmsReportingComponent', 'selector': 'app-bulk-sms-reporting'},{'name': 'ButtonComponent', 'selector': 'app-button'},{'name': 'ByIpComponent', 'selector': 'app-by-ip'},{'name': 'ByMsisdnComponent', 'selector': 'app-by-msisdn'},{'name': 'CalenderComponent', 'selector': 'app-calender'},{'name': 'CampaignReportingComponent', 'selector': 'app-campaign-reporting'},{'name': 'CampaignWhatComponent', 'selector': 'app-campaign-what'},{'name': 'CampaignWhenComponent', 'selector': 'app-campaign-when'},{'name': 'CampaignWhoComponent', 'selector': 'app-campaign-who'},{'name': 'CheckBoxComponent', 'selector': 'app-check-box'},{'name': 'CheckKeywordComponent', 'selector': 'app-check-keyword'},{'name': 'ClientNavigationComponent', 'selector': 'app-client-navigation'},{'name': 'ClientTieredMenuComponent', 'selector': 'app-client-tiered-menu'},{'name': 'ContactListsComponent', 'selector': 'app-contact-lists'},{'name': 'CreateCampaignComponent', 'selector': 'app-create-campaign'},{'name': 'CreateNewContactListComponent', 'selector': 'app-create-new-contact-list'},{'name': 'CreateNewGroupModalComponent', 'selector': 'app-create-new-group-modal'},{'name': 'CustomMessageComponent', 'selector': 'app-custom-message'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DialogComponent', 'selector': 'app-dialog'},{'name': 'DropDownComponent', 'selector': 'app-drop-down'},{'name': 'EditAdminComponent', 'selector': 'app-edit-admin'},{'name': 'EditClientsComponent', 'selector': 'app-edit-clients'},{'name': 'ForgotPasswordComponent', 'selector': 'app-forgot-password'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'ImportContactModalComponent', 'selector': 'app-import-contact-modal'},{'name': 'InputChipsSpecialComponent', 'selector': 'app-input-chips-special'},{'name': 'InputTableComponent', 'selector': 'app-input-table'},{'name': 'LineChartComponent', 'selector': 'app-line-chart'},{'name': 'LinkButtonComponent', 'selector': 'app-link-button'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'LogsComponent', 'selector': 'app-logs'},{'name': 'ManageAdminComponent', 'selector': 'app-manage-admin'},{'name': 'ManageClientsComponent', 'selector': 'app-manage-clients'},{'name': 'MergeSendComponent', 'selector': 'app-merge-send'},{'name': 'MessageDetailsComponent', 'selector': 'app-message-details'},{'name': 'MessageSuccessComponent', 'selector': 'app-message-success'},{'name': 'MultiSelectComponent', 'selector': 'app-multi-select'},{'name': 'RadioButtonComponent', 'selector': 'app-radio-button'},{'name': 'ReceivedMessageComponent', 'selector': 'app-received-message'},{'name': 'ReceivedMessagesComponent', 'selector': 'app-received-messages'},{'name': 'ResetPasswordComponent', 'selector': 'app-reset-password'},{'name': 'SearchComponent', 'selector': 'app-search'},{'name': 'SelectButtonComponent', 'selector': 'app-select-button'},{'name': 'SentMessageComponent', 'selector': 'app-sent-message'},{'name': 'ServiceModalComponent', 'selector': 'app-service-modal'},{'name': 'ServicesComponent', 'selector': 'app-services'},{'name': 'ShortCodeApprovalComponent', 'selector': 'app-short-code-approval'},{'name': 'ShortCodeApprovalRequestComponent', 'selector': 'app-short-code-approval-request'},{'name': 'ShortCodeRequestDetailsComponent', 'selector': 'app-short-code-request-details'},{'name': 'ShortCodeRequestStatusComponent', 'selector': 'app-short-code-request-status'},{'name': 'SidePanelComponent', 'selector': 'app-side-panel'},{'name': 'SignUpComponent', 'selector': 'app-sign-up'},{'name': 'SingleSmsComponent', 'selector': 'app-single-sms'},{'name': 'SingleSmsReportingComponent', 'selector': 'app-single-sms-reporting'},{'name': 'SmscComponent', 'selector': 'app-smsc'},{'name': 'SmscModalComponent', 'selector': 'app-smsc-modal'},{'name': 'SmsPlusComponent', 'selector': 'app-sms-plus'},{'name': 'SmsPlusDashboardComponent', 'selector': 'app-sms-plus-dashboard'},{'name': 'SmsPlusErrorsComponent', 'selector': 'app-sms-plus-errors'},{'name': 'SplitButtonComponent', 'selector': 'app-split-button'},{'name': 'SpreadsheetDetailsComponent', 'selector': 'app-spreadsheet-details'},{'name': 'StaffNavigationComponent', 'selector': 'app-staff-navigation'},{'name': 'SuperAdminMenuComponent', 'selector': 'app-super-admin-menu'},{'name': 'SuperNavigationComponent', 'selector': 'app-super-navigation'},{'name': 'TableComponent', 'selector': 'app-table'},{'name': 'TBalanceDeductionComponent', 'selector': 'app-t-balance-deduction'},{'name': 'TCheckKeywordComponent', 'selector': 'app-t-check-keyword'},{'name': 'TelevotingComponent', 'selector': 'app-televoting'},{'name': 'TelevotingDashboardComponent', 'selector': 'app-televoting-dashboard'},{'name': 'TelevotingErrorsComponent', 'selector': 'app-televoting-errors'},{'name': 'TestAndConfirmComponent', 'selector': 'app-test-and-confirm'},{'name': 'TextAreaComponent', 'selector': 'app-text-area'},{'name': 'TextBoxComponent', 'selector': 'app-text-box'},{'name': 'TextIconButtonComponent', 'selector': 'app-text-icon-button'},{'name': 'TMessageDetailsComponent', 'selector': 'app-t-message-details'},{'name': 'TMessageSuccessComponent', 'selector': 'app-t-message-success'},{'name': 'TReceivedMessagesComponent', 'selector': 'app-t-received-messages'},{'name': 'TSentMessageComponent', 'selector': 'app-t-sent-message'},{'name': 'UploadFileComponent', 'selector': 'app-upload-file'},{'name': 'VerifyEmailAccountComponent', 'selector': 'app-verify-email-account'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'DashboardComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'DashboardComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

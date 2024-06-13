@@ -1,0 +1,80 @@
+<div class="container-fluid">
+  <div class="row justify-content-center mt-4">
+    <div class="col-md-12 col-lg-10 col-xl-10 col-xxl-10">
+      <app-table
+        [cols]="this.tableHeaders"
+        [col]="this.tableInfo"
+        [type]="'sms-plus'"
+      ></app-table>
+      <div class="row justify-content-end">
+        <div class="col-md-3 col-lg-2 col-xl-1 col-xl-1">
+          <app-button
+            [label]="'Back'"
+            [padding]="'9px 2px'"
+            [borderRadius]="'10px'"
+            [color]="'#fff'"
+            [type]="'yes'"
+            [bgColor]="'#53a3f6'"
+            [fontSize]="'16px'"
+            [fontWeight]="'500'"
+            (button)="back()"
+          ></app-button>
+        </div>
+        <div class="col-md-3 col-lg-2 col-xl-1 col-xl-1">
+          <app-button
+            [label]="'Import'"
+            [padding]="'9px 2px'"
+            [borderRadius]="'10px'"
+            [color]="'#fff'"
+            [type]="'yes'"
+            [bgColor]="'#53a3f6'"
+            [fontSize]="'16px'"
+            [fontWeight]="'500'"
+            (button)="onSubmit()"
+          ></app-button>
+        </div>
+      </div>
+    </div>
+    <!--<div class="col-lg-10 bg">
+       <div
+        class="row justify-content-start sr mt-5"
+        *ngFor="let box of this.inputInfo"
+      >
+        <div
+          class="col-md-2 text-left label pr-0"
+          *ngIf="box.type == 'dropDown'"
+        >
+          <p class="mt-4">{{ box.label | capitalization }}:</p>
+        </div>
+        <div class="col-md-9 txt-box pl-0" *ngIf="this.data">
+          
+          <app-drop-down
+            [inputInfo]="box"
+            [changeFlag]="this.changeFlag"
+            [scrollHeight]="'100px'"
+            *ngIf="box.type == 'dropDown'"
+            [data]="box.data"
+            (updateData)="updateData($event, box.modelName)"
+            (preSubmit)="preSubmit()"
+            (submit)="onSubmit()"
+          ></app-drop-down>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-lg-1">
+          <app-button
+            [label]="'Submit'"
+            [padding]="'9px 2px'"
+            [borderRadius]="'10px'"
+            [color]="'#fff'"
+            [type]="'yes'"
+            [bgColor]="'#53a3f6'"
+            [fontSize]="'16px'"
+            [fontWeight]="'500'"
+            (button)="preSubmit()"
+          ></app-button>
+        </div>
+      </div>
+    </div> -->
+  </div>
+</div>

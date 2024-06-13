@@ -1,0 +1,2635 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: migrations/1-noname.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: migrations/1-noname.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>'use strict';
+
+var Sequelize = require('sequelize');
+
+/**
+ * Actions summary:
+ *
+ * createTable "contactGroups", deps: []
+ * createTable "jobs", deps: []
+ * createTable "Services", deps: []
+ * createTable "Smscs", deps: []
+ * createTable "smsPlusCustomMessages", deps: []
+ * createTable "templates", deps: []
+ * createTable "Users", deps: []
+ * createTable "AccountVerifies", deps: [Users]
+ * createTable "ads", deps: [Users]
+ * createTable "slots", deps: [Users]
+ * createTable "blackListIps", deps: [Users]
+ * createTable "blackListMsisdns", deps: [Users]
+ * createTable "campaigns", deps: [Users]
+ * createTable "certificates", deps: [Users]
+ * createTable "chats", deps: [Users, Users]
+ * createTable "contacts", deps: [contactGroups]
+ * createTable "EmailNotificationSettings", deps: [Users]
+ * createTable "favourites", deps: [Users, jobs, ads]
+ * createTable "notifications", deps: [Users, Users]
+ * createTable "ShortCodes", deps: [campaigns, Smscs]
+ * createTable "Requests", deps: [Users, ads]
+ * createTable "recievedSms", deps: [ShortCodes]
+ * createTable "selectedContactCampaigns", deps: [contactGroups, campaigns]
+ * createTable "ServiceAllows", deps: [Services, Users]
+ * createTable "ScuRelations", deps: [Users, ShortCodes, Services]
+ * createTable "ShortCodeApprovals", deps: [Users]
+ * createTable "appointments", deps: [slots, Users, ads]
+ * createTable "sms", deps: [ScuRelations, Services, ShortCodes, Users]
+ * createTable "smscUserRelations", deps: [Smscs, Users]
+ * createTable "smsPlusBalanceDeductions", deps: [recievedSms]
+ * createTable "smsPlusCheckKeywords", deps: [recievedSms]
+ * createTable "smsPlusRecievedMessages", deps: [recievedSms]
+ * createTable "smsPlusSentMessages", deps: [recievedSms]
+ * createTable "smsPlusSuccessfullMessages", deps: [recievedSms]
+ * createTable "socials", deps: [Users]
+ * createTable "SocialMedia", deps: [Users]
+ * createTable "teleVotingCheckKeywords", deps: [recievedSms]
+ *
+ **/
+
+var info = {
+    "revision": 1,
+    "name": "noname",
+    "created": "2022-06-18T14:17:48.858Z",
+    "comment": ""
+};
+
+var migrationCommands = [{
+        fn: "createTable",
+        params: [
+            "contactGroups",
+            {
+                "id": {
+                    "type": Sequelize.INTEGER,
+                    "field": "id",
+                    "autoIncrement": true,
+                    "primaryKey": true,
+                    "allowNull": false
+                },
+                "name": {
+                    "type": Sequelize.STRING,
+                    "field": "name",
+                    "allowNull": false
+                },
+                "createdAt": {
+                    "type": Sequelize.DATE,
+                    "field": "createdAt",
+                    "allowNull": false
+                },
+                "updatedAt": {
+                    "type": Sequelize.DATE,
+                    "field": "updatedAt",
+                    "allowNull": false
+                }
+            },
+            {}
+        ]
+    },
+    {
+        fn: "createTable",
+        params: [
+            "jobs",
+            {
+                "id": {
+                    "type": Sequelize.INTEGER,
+                    "field": "id",
+                    "autoIncrement": true,
+                    "primaryKey": true,
+                    "allowNull": false
+                },
+                "title": {
+                    "type": Sequelize.STRING,
+                    "field": "title",
+                    "allowNull": false
+                },
+                "image": {
+                    "type": Sequelize.STRING,
+                    "field": "image",
+                    "allowNull": false
+                },
+                "companyName": {
+                    "type": Sequelize.STRING,
+                    "field": "companyName",
+                    "allowNull": false
+                },
+                "location": {
+                    "type": Sequelize.STRING,
+                    "field": "location",
+                    "allowNull": false
+                },
+                "description": {
+                    "type": Sequelize.TEXT,
+                    "field": "description",
+                    "allowNull": false
+                },
+                "createdAt": {
+                    "type": Sequelize.DATE,
+                    "field": "createdAt",
+                    "allowNull": false
+                },
+                "updatedAt": {
+                    "type": Sequelize.DATE,
+                    "field": "updatedAt",
+                    "allowNull": false
+                }
+            },
+            {}
+        ]
+    },
+    {
+        fn: "createTable",
+        params: [
+            "Services",
+            {
+                "id": {
+                    "type": Sequelize.INTEGER,
+                    "field": "id",
+                    "autoIncrement": true,
+                    "primaryKey": true,
+                    "allowNull": false
+                },
+                "name": {
+                    "type": Sequelize.STRING,
+                    "field": "name",
+                    "allowNull": false
+                },
+                "createdAt": {
+                    "type": Sequelize.DATE,
+                    "field": "createdAt",
+                    "allowNull": false
+                },
+                "updatedAt": {
+                    "type": Sequelize.DATE,
+                    "field": "updatedAt",
+                    "allowNull": false
+                }
+            },
+            {}
+        ]
+    },
+    {
+        fn: "createTable",
+        params: [
+            "Smscs",
+            {
+                "id": {
+                    "type": Sequelize.INTEGER,
+                    "field": "id",
+                    "autoIncrement": true,
+                    "primaryKey": true,
+                    "allowNull": false
+                },
+                "name": {
+                    "type": Sequelize.STRING,
+                    "field": "name",
+                    "allowNull": false
+                },
+                "country": {
+                    "type": Sequelize.STRING,
+                    "field": "country"
+                },
+                "smscId": {
+                    "type": Sequelize.INTEGER,
+                    "field": "smscId",
+                    "allowNull": false
+                },
+                "createdAt": {
+                    "type": Sequelize.DATE,
+                    "field": "createdAt",
+                    "allowNull": false
+                },
+                "updatedAt": {
+                    "type": Sequelize.DATE,
+                    "field": "updatedAt",
+                    "allowNull": false
+                }
+            },
+            {}
+        ]
+    },
+    {
+        fn: "createTable",
+        params: [
+            "smsPlusCustomMessages",
+            {
+                "id": {
+                    "type": Sequelize.INTEGER,
+                    "field": "id",
+                    "autoIncrement": true,
+                    "primaryKey": true,
+                    "allowNull": false
+                },
+                "shortCode": {
+                    "type": Sequelize.STRING,
+                    "field": "shortCode",
+                    "allowNull": false
+                },
+                "reply": {
+                    "type": Sequelize.STRING,
+                    "field": "reply",
+                    "allowNull": false
+                },
+                "message": {
+                    "type": Sequelize.STRING,
+                    "field": "message",
+                    "allowNull": false
+                },
+                "createdAt": {
+                    "type": Sequelize.DATE,
+                    "field": "createdAt",
+                    "allowNull": false
+                },
+                "updatedAt": {
+                    "type": Sequelize.DATE,
+                    "field": "updatedAt",
+                    "allowNull": false
+                }
+            },
+            {}
+        ]
+    },
+    {
+        fn: "createTable",
+        params: [
+            "templates",
+            {
+                "id": {
+                    "type": Sequelize.INTEGER,
+                    "field": "id",
+                    "autoIncrement": true,
+                    "primaryKey": true,
+                    "allowNull": false
+                },
+                "name": {
+                    "type": Sequelize.STRING,
+                    "field": "name",
+                    "allowNull": false
+                },
+                "message": {
+                    "type": Sequelize.STRING,
+                    "field": "message",
+                    "allowNull": false
+                },
+                "from": {
+                    "type": Sequelize.STRING,
+                    "field": "from",
+                    "allowNull": true
+                },
+                "createdAt": {
+                    "type": Sequelize.DATE,
+                    "field": "createdAt",
+                    "allowNull": false
+                },
+                "updatedAt": {
+                    "type": Sequelize.DATE,
+                    "field": "updatedAt",
+                    "allowNull": false
+                }
+            },
+            {}
+        ]
+    },
+    {
+        fn: "createTable",
+        params: [
+            "Users",
+            {
+                "id": {
+                    "type": Sequelize.INTEGER,
+                    "field": "id",
+                    "autoIncrement": true,
+                    "primaryKey": true,
+                    "allowNull": false
+                },
+                "firstName": {
+                    "type": Sequelize.STRING,
+                    "field": "firstName",
+                    "allowNull": false
+                },
+                "lastName": {
+                    "type": Sequelize.STRING,
+                    "field": "lastName",
+                    "allowNull": false
+                },
+                "profileImage": {
+                    "type": Sequelize.STRING,
+                    "field": "profileImage",
+                    "allowNull": true
+                },
+                "email": {
+                    "type": Sequelize.STRING,
+                    "field": "email",
+                    "unique": true,
+                    "allowNull": false
+                },
+                "password": {
+                    "type": Sequelize.STRING,
+                    "field": "password",
+                    "allowNull": false
+                },
+                "DOB": {
+                    "type": Sequelize.STRING,
+                    "field": "DOB",
+                    "allowNull": true
+                },
+                "bio": {
+                    "type": Sequelize.STRING,
+                    "field": "bio",
+                    "allowNull": true
+                },
+                "currentEmployer": {
+                    "type": Sequelize.STRING,
+                    "field": "currentEmployer",
+                    "allowNull": true
+                },
+                "university": {
+                    "type": Sequelize.STRING,
+                    "field": "university",
+                    "allowNull": true
+                },
+                "degree": {
+                    "type": Sequelize.STRING,
+                    "field": "degree",
+                    "allowNull": true
+                },
+                "location": {
+                    "type": Sequelize.STRING,
+                    "field": "location",
+                    "allowNull": true
+                },
+                "verified": {
+                    "type": Sequelize.ENUM('Yes', 'No'),
+                    "field": "verified",
+                    "defaultValue": "No"
+                },
+                "stripeAccountId": {
+                    "type": Sequelize.STRING,
+                    "field": "stripeAccountId",
+                    "allowNull": false
+                },
+                "stripeCustomerId": {
+                    "type": Sequelize.STRING,
+                    "field": "stripeCustomerId",
+                    "allowNull": false
+                },
+                "role": {
+                    "type": Sequelize.ENUM('Client', 'Admin', 'Super Admin'),
+                    "field": "role",
+                    "defaultValue": "Client"
+                },
+                "creatorId": {
+                    "type": Sequelize.INTEGER,
+                    "field": "creatorId",
+                    "allowNull": true
+                },
+                "createdAt": {
+                    "type": Sequelize.DATE,
+                    "field": "createdAt",
+                    "allowNull": false
+                },
+                "updatedAt": {
+                    "type": Sequelize.DATE,
+                    "field": "updatedAt",
+                    "allowNull": false
+                }
+            },
+            {}
+        ]
+    },
+    {
+        fn: "createTable",
+        params: [
+            "AccountVerifies",
+            {
+                "id": {
+                    "type": Sequelize.INTEGER,
+                    "field": "id",
+                    "autoIncrement": true,
+                    "primaryKey": true,
+                    "allowNull": false
+                },
+                "fullName": {
+                    "type": Sequelize.STRING,
+                    "field": "fullName",
+                    "allowNull": false
+                },
+                "DOB": {
+                    "type": Sequelize.STRING,
+                    "field": "DOB",
+                    "allowNull": false
+                },
+                "document": {
+                    "type": Sequelize.STRING,
+                    "field": "document",
+                    "allowNull": false
+                },
+                "status": {
+                    "type": Sequelize.ENUM('Not Verified', 'Verified'),
+                    "field": "status",
+                    "defaultValue": "Not Verified"
+                },
+                "userId": {
+                    "type": Sequelize.INTEGER,
+                    "onUpdate": "CASCADE",
+                    "field": "userId",
+                    "references": {
+                        "model": "Users",
+                        "key": "id"
+                    },
+                    "allowNull": false,
+                    "onDelete": "CASCADE"
+                },
+                "createdAt": {
+                    "type": Sequelize.DATE,
+                    "field": "createdAt",
+                    "allowNull": false
+                },
+                "updatedAt": {
+                    "type": Sequelize.DATE,
+                    "field": "updatedAt",
+                    "allowNull": false
+                }
+            },
+            {}
+        ]
+    },
+    {
+        fn: "createTable",
+        params: [
+            "ads",
+            {
+                "id": {
+                    "type": Sequelize.INTEGER,
+                    "field": "id",
+                    "autoIncrement": true,
+                    "primaryKey": true,
+                    "allowNull": false
+                },
+                "title": {
+                    "type": Sequelize.STRING,
+                    "field": "title",
+                    "allowNull": false
+                },
+                "cover": {
+                    "type": Sequelize.STRING,
+                    "field": "cover",
+                    "allowNull": true
+                },
+                "audience": {
+                    "type": Sequelize.ENUM('University', 'School'),
+                    "field": "audience"
+                },
+                "university": {
+                    "type": Sequelize.STRING,
+                    "field": "university",
+                    "allowNull": false
+                },
+                "major": {
+                    "type": Sequelize.STRING,
+                    "field": "major",
+                    "allowNull": false
+                },
+                "class": {
+                    "type": Sequelize.STRING,
+                    "field": "class",
+                    "allowNull": false
+                },
+                "hashtags": {
+                    "type": Sequelize.STRING,
+                    "field": "hashtags",
+                    "allowNull": false
+                },
+                "description": {
+                    "type": Sequelize.TEXT,
+                    "field": "description",
+                    "allowNull": false
+                },
+                "hourlyRate": {
+                    "type": Sequelize.STRING,
+                    "field": "hourlyRate",
+                    "allowNull": false
+                },
+                "currency": {
+                    "type": Sequelize.STRING,
+                    "field": "currency",
+                    "allowNull": false
+                },
+                "studyNotes": {
+                    "type": Sequelize.ENUM('Yes', 'No'),
+                    "field": "studyNotes",
+                    "defaultValue": "No"
+                },
+                "crashCourse": {
+                    "type": Sequelize.ENUM('Yes', 'No'),
+                    "field": "crashCourse",
+                    "defaultValue": "No"
+                },
+                "verificationDoc": {
+                    "type": Sequelize.STRING,
+                    "field": "verificationDoc",
+                    "allowNull": true
+                },
+                "videoMeeting": {
+                    "type": Sequelize.ENUM('Yes', 'No'),
+                    "field": "videoMeeting",
+                    "defaultValue": "No"
+                },
+                "latitude": {
+                    "type": Sequelize.STRING,
+                    "field": "latitude",
+                    "allowNull": true
+                },
+                "longitude": {
+                    "type": Sequelize.STRING,
+                    "field": "longitude",
+                    "allowNull": true
+                },
+                "meetupSuggestionStudent": {
+                    "type": Sequelize.ENUM('Yes', 'No'),
+                    "field": "meetupSuggestionStudent",
+                    "defaultValue": "No"
+                },
+                "meetupSuggestionTeacher": {
+                    "type": Sequelize.ENUM('Yes', 'No'),
+                    "field": "meetupSuggestionTeacher",
+                    "defaultValue": "No"
+                },
+                "suggestedMeetup": {
+                    "type": Sequelize.STRING,
+                    "field": "suggestedMeetup",
+                    "allowNull": true
+                },
+                "deactivated": {
+                    "type": Sequelize.ENUM('Yes', 'No'),
+                    "field": "deactivated",
+                    "defaultValue": "No"
+                },
+                "hide": {
+                    "type": Sequelize.ENUM('Yes', 'No'),
+                    "field": "hide",
+                    "defaultValue": "No"
+                },
+                "visits": {
+                    "type": Sequelize.INTEGER,
+                    "field": "visits",
+                    "defaultValue": 0
+                },
+                "userId": {
+                    "type": Sequelize.INTEGER,
+                    "onUpdate": "CASCADE",
+                    "field": "userId",
+                    "references": {
+                        "model": "Users",
+                        "key": "id"
+                    },
+                    "allowNull": false,
+                    "onDelete": "CASCADE"
+                },
+                "createdAt": {
+                    "type": Sequelize.DATE,
+                    "field": "createdAt",
+                    "allowNull": false
+                },
+                "updatedAt": {
+                    "type": Sequelize.DATE,
+                    "field": "updatedAt",
+                    "allowNull": false
+                }
+            },
+            {}
+        ]
+    },
+    {
+        fn: "createTable",
+        params: [
+            "slots",
+            {
+                "id": {
+                    "type": Sequelize.INTEGER,
+                    "field": "id",
+                    "autoIncrement": true,
+                    "primaryKey": true,
+                    "allowNull": false
+                },
+                "date": {
+                    "type": Sequelize.STRING,
+                    "field": "date",
+                    "allowNull": false
+                },
+                "eventStartTime": {
+                    "type": Sequelize.STRING,
+                    "field": "eventStartTime",
+                    "allowNull": false
+                },
+                "eventEndTime": {
+                    "type": Sequelize.STRING,
+                    "field": "eventEndTime",
+                    "allowNull": false
+                },
+                "recurring": {
+                    "type": Sequelize.ENUM('Yes', 'No'),
+                    "field": "recurring",
+                    "defaultValue": "No"
+                },
+                "isDeleted": {
+                    "type": Sequelize.ENUM('Yes', 'No'),
+                    "field": "isDeleted",
+                    "defaultValue": "No"
+                },
+                "userId": {
+                    "type": Sequelize.INTEGER,
+                    "onUpdate": "CASCADE",
+                    "field": "userId",
+                    "references": {
+                        "model": "Users",
+                        "key": "id"
+                    },
+                    "allowNull": false,
+                    "onDelete": "CASCADE"
+                },
+                "createdAt": {
+                    "type": Sequelize.DATE,
+                    "field": "createdAt",
+                    "allowNull": false
+                },
+                "updatedAt": {
+                    "type": Sequelize.DATE,
+                    "field": "updatedAt",
+                    "allowNull": false
+                }
+            },
+            {}
+        ]
+    },
+    {
+        fn: "createTable",
+        params: [
+            "blackListIps",
+            {
+                "id": {
+                    "type": Sequelize.INTEGER,
+                    "field": "id",
+                    "autoIncrement": true,
+                    "primaryKey": true,
+                    "allowNull": false
+                },
+                "ip": {
+                    "type": Sequelize.STRING,
+                    "field": "ip",
+                    "allowNull": false
+                },
+                "reason": {
+                    "type": Sequelize.STRING,
+                    "field": "reason",
+                    "allowNull": false
+                },
+                "userId": {
+                    "type": Sequelize.INTEGER,
+                    "onUpdate": "CASCADE",
+                    "field": "userId",
+                    "references": {
+                        "model": "Users",
+                        "key": "id"
+                    },
+                    "allowNull": false,
+                    "onDelete": "CASCADE"
+                },
+                "createdAt": {
+                    "type": Sequelize.DATE,
+                    "field": "createdAt",
+                    "allowNull": false
+                },
+                "updatedAt": {
+                    "type": Sequelize.DATE,
+                    "field": "updatedAt",
+                    "allowNull": false
+                }
+            },
+            {}
+        ]
+    },
+    {
+        fn: "createTable",
+        params: [
+            "blackListMsisdns",
+            {
+                "id": {
+                    "type": Sequelize.INTEGER,
+                    "field": "id",
+                    "autoIncrement": true,
+                    "primaryKey": true,
+                    "allowNull": false
+                },
+                "msisdn": {
+                    "type": Sequelize.STRING,
+                    "field": "msisdn",
+                    "allowNull": false
+                },
+                "reason": {
+                    "type": Sequelize.STRING,
+                    "field": "reason",
+                    "allowNull": false
+                },
+                "userId": {
+                    "type": Sequelize.INTEGER,
+                    "onUpdate": "CASCADE",
+                    "field": "userId",
+                    "references": {
+                        "model": "Users",
+                        "key": "id"
+                    },
+                    "allowNull": false,
+                    "onDelete": "CASCADE"
+                },
+                "createdAt": {
+                    "type": Sequelize.DATE,
+                    "field": "createdAt",
+                    "allowNull": false
+                },
+                "updatedAt": {
+                    "type": Sequelize.DATE,
+                    "field": "updatedAt",
+                    "allowNull": false
+                }
+            },
+            {}
+        ]
+    },
+    {
+        fn: "createTable",
+        params: [
+            "campaigns",
+            {
+                "id": {
+                    "type": Sequelize.INTEGER,
+                    "field": "id",
+                    "autoIncrement": true,
+                    "primaryKey": true,
+                    "allowNull": false
+                },
+                "campaignName": {
+                    "type": Sequelize.STRING,
+                    "field": "campaignName",
+                    "allowNull": false
+                },
+                "from": {
+                    "type": Sequelize.STRING,
+                    "field": "from",
+                    "allowNull": false
+                },
+                "message": {
+                    "type": Sequelize.STRING,
+                    "field": "message",
+                    "allowNull": false
+                },
+                "status": {
+                    "type": Sequelize.ENUM('Draft', 'Completed'),
+                    "field": "status",
+                    "defaultValue": "Draft"
+                },
+                "sendType": {
+                    "type": Sequelize.ENUM('Send It Now', 'Schedule For Later', 'Stagger My Campaign'),
+                    "field": "sendType"
+                },
+                "startScheduleDate": {
+                    "type": Sequelize.DATE,
+                    "field": "startScheduleDate",
+                    "allowNull": true
+                },
+                "endScheduleDate": {
+                    "type": Sequelize.DATE,
+                    "field": "endScheduleDate",
+                    "allowNull": true
+                },
+                "batchSize": {
+                    "type": Sequelize.STRING,
+                    "field": "batchSize",
+                    "allowNull": true
+                },
+                "betweenBatchHour": {
+                    "type": Sequelize.STRING,
+                    "field": "betweenBatchHour",
+                    "allowNull": true
+                },
+                "betweenBatchMinutes": {
+                    "type": Sequelize.STRING,
+                    "field": "betweenBatchMinutes",
+                    "allowNull": true
+                },
+                "shortCodeId": {
+                    "type": Sequelize.STRING,
+                    "field": "shortCodeId",
+                    "allowNull": true
+                },
+                "createdAt": {
+                    "type": Sequelize.DATE,
+                    "field": "createdAt",
+                    "allowNull": false
+                },
+                "updatedAt": {
+                    "type": Sequelize.DATE,
+                    "field": "updatedAt",
+                    "allowNull": false
+                },
+                "userId": {
+                    "type": Sequelize.INTEGER,
+                    "field": "userId",
+                    "onUpdate": "CASCADE",
+                    "onDelete": "SET NULL",
+                    "references": {
+                        "model": "Users",
+                        "key": "id"
+                    },
+                    "allowNull": true
+                }
+            },
+            {}
+        ]
+    },
+    {
+        fn: "createTable",
+        params: [
+            "certificates",
+            {
+                "id": {
+                    "type": Sequelize.INTEGER,
+                    "field": "id",
+                    "autoIncrement": true,
+                    "primaryKey": true,
+                    "allowNull": false
+                },
+                "userId": {
+                    "type": Sequelize.INTEGER,
+                    "onUpdate": "CASCADE",
+                    "field": "userId",
+                    "references": {
+                        "model": "Users",
+                        "key": "id"
+                    },
+                    "allowNull": false,
+                    "onDelete": "CASCADE"
+                },
+                "cv": {
+                    "type": Sequelize.STRING,
+                    "field": "cv",
+                    "allowNull": true
+                },
+                "transcript": {
+                    "type": Sequelize.STRING,
+                    "field": "transcript",
+                    "allowNull": true
+                },
+                "source": {
+                    "type": Sequelize.STRING,
+                    "field": "source",
+                    "allowNull": true
+                },
+                "certificate": {
+                    "type": Sequelize.STRING,
+                    "field": "certificate",
+                    "allowNull": true
+                },
+                "employment": {
+                    "type": Sequelize.STRING,
+                    "field": "employment",
+                    "allowNull": true
+                },
+                "createdAt": {
+                    "type": Sequelize.DATE,
+                    "field": "createdAt",
+                    "allowNull": false
+                },
+                "updatedAt": {
+                    "type": Sequelize.DATE,
+                    "field": "updatedAt",
+                    "allowNull": false
+                }
+            },
+            {}
+        ]
+    },
+    {
+        fn: "createTable",
+        params: [
+            "chats",
+            {
+                "id": {
+                    "type": Sequelize.INTEGER,
+                    "field": "id",
+                    "autoIncrement": true,
+                    "primaryKey": true,
+                    "allowNull": false
+                },
+                "content": {
+                    "type": Sequelize.STRING,
+                    "field": "content",
+                    "allowNull": false
+                },
+                "isDeleted": {
+                    "type": Sequelize.ENUM('Yes', 'No'),
+                    "field": "isDeleted",
+                    "defaultValue": "No"
+                },
+                "read": {
+                    "type": Sequelize.ENUM('Yes', 'No'),
+                    "field": "read",
+                    "defaultValue": "No"
+                },
+                "type": {
+                    "type": Sequelize.ENUM('Text', 'File'),
+                    "field": "type",
+                    "defaultValue": "Text"
+                },
+                "userFrom": {
+                    "type": Sequelize.INTEGER,
+                    "onUpdate": "CASCADE",
+                    "field": "userFrom",
+                    "references": {
+                        "model": "Users",
+                        "key": "id"
+                    },
+                    "allowNull": false,
+                    "onDelete": "CASCADE"
+                },
+                "userTo": {
+                    "type": Sequelize.INTEGER,
+                    "onUpdate": "CASCADE",
+                    "field": "userTo",
+                    "references": {
+                        "model": "Users",
+                        "key": "id"
+                    },
+                    "allowNull": false,
+                    "onDelete": "CASCADE"
+                },
+                "createdAt": {
+                    "type": Sequelize.DATE,
+                    "field": "createdAt",
+                    "allowNull": false
+                },
+                "updatedAt": {
+                    "type": Sequelize.DATE,
+                    "field": "updatedAt",
+                    "allowNull": false
+                }
+            },
+            {}
+        ]
+    },
+    {
+        fn: "createTable",
+        params: [
+            "contacts",
+            {
+                "id": {
+                    "type": Sequelize.INTEGER,
+                    "field": "id",
+                    "autoIncrement": true,
+                    "primaryKey": true,
+                    "allowNull": false
+                },
+                "name": {
+                    "type": Sequelize.STRING,
+                    "field": "name",
+                    "allowNull": false
+                },
+                "phoneNumber": {
+                    "type": Sequelize.STRING,
+                    "field": "phoneNumber",
+                    "allowNull": false
+                },
+                "email": {
+                    "type": Sequelize.STRING,
+                    "field": "email",
+                    "allowNull": true
+                },
+                "contactGroupId": {
+                    "type": Sequelize.INTEGER,
+                    "onUpdate": "CASCADE",
+                    "field": "contactGroupId",
+                    "references": {
+                        "model": "contactGroups",
+                        "key": "id"
+                    },
+                    "allowNull": false,
+                    "onDelete": "CASCADE"
+                },
+                "createdAt": {
+                    "type": Sequelize.DATE,
+                    "field": "createdAt",
+                    "allowNull": false
+                },
+                "updatedAt": {
+                    "type": Sequelize.DATE,
+                    "field": "updatedAt",
+                    "allowNull": false
+                }
+            },
+            {}
+        ]
+    },
+    {
+        fn: "createTable",
+        params: [
+            "EmailNotificationSettings",
+            {
+                "id": {
+                    "type": Sequelize.INTEGER,
+                    "field": "id",
+                    "autoIncrement": true,
+                    "primaryKey": true,
+                    "allowNull": false
+                },
+                "emailNotification": {
+                    "type": Sequelize.ENUM('Yes', 'No'),
+                    "field": "emailNotification",
+                    "defaultValue": "No"
+                },
+                "dontFollow": {
+                    "type": Sequelize.ENUM('Yes', 'No'),
+                    "field": "dontFollow",
+                    "defaultValue": "No"
+                },
+                "dontFollowYou": {
+                    "type": Sequelize.ENUM('Yes', 'No'),
+                    "field": "dontFollowYou",
+                    "defaultValue": "No"
+                },
+                "newAccount": {
+                    "type": Sequelize.ENUM('Yes', 'No'),
+                    "field": "newAccount",
+                    "defaultValue": "No"
+                },
+                "noProfilePic": {
+                    "type": Sequelize.ENUM('Yes', 'No'),
+                    "field": "noProfilePic",
+                    "defaultValue": "No"
+                },
+                "noConfirmEmail": {
+                    "type": Sequelize.ENUM('Yes', 'No'),
+                    "field": "noConfirmEmail",
+                    "defaultValue": "No"
+                },
+                "userId": {
+                    "type": Sequelize.INTEGER,
+                    "onUpdate": "CASCADE",
+                    "field": "userId",
+                    "references": {
+                        "model": "Users",
+                        "key": "id"
+                    },
+                    "allowNull": false,
+                    "onDelete": "CASCADE"
+                },
+                "createdAt": {
+                    "type": Sequelize.DATE,
+                    "field": "createdAt",
+                    "allowNull": false
+                },
+                "updatedAt": {
+                    "type": Sequelize.DATE,
+                    "field": "updatedAt",
+                    "allowNull": false
+                }
+            },
+            {}
+        ]
+    },
+    {
+        fn: "createTable",
+        params: [
+            "favourites",
+            {
+                "id": {
+                    "type": Sequelize.INTEGER,
+                    "field": "id",
+                    "autoIncrement": true,
+                    "primaryKey": true,
+                    "allowNull": false
+                },
+                "userId": {
+                    "type": Sequelize.INTEGER,
+                    "onUpdate": "CASCADE",
+                    "field": "userId",
+                    "references": {
+                        "model": "Users",
+                        "key": "id"
+                    },
+                    "allowNull": false,
+                    "onDelete": "CASCADE"
+                },
+                "jobId": {
+                    "type": Sequelize.INTEGER,
+                    "onUpdate": "CASCADE",
+                    "field": "jobId",
+                    "references": {
+                        "model": "jobs",
+                        "key": "id"
+                    },
+                    "allowNull": true,
+                    "onDelete": "CASCADE"
+                },
+                "adId": {
+                    "type": Sequelize.INTEGER,
+                    "onUpdate": "CASCADE",
+                    "field": "adId",
+                    "references": {
+                        "model": "ads",
+                        "key": "id"
+                    },
+                    "allowNull": true,
+                    "onDelete": "CASCADE"
+                },
+                "type": {
+                    "type": Sequelize.ENUM('Job', 'Ad'),
+                    "field": "type",
+                    "defaultValue": "Ad"
+                },
+                "createdAt": {
+                    "type": Sequelize.DATE,
+                    "field": "createdAt",
+                    "allowNull": false
+                },
+                "updatedAt": {
+                    "type": Sequelize.DATE,
+                    "field": "updatedAt",
+                    "allowNull": false
+                }
+            },
+            {}
+        ]
+    },
+    {
+        fn: "createTable",
+        params: [
+            "notifications",
+            {
+                "id": {
+                    "type": Sequelize.INTEGER,
+                    "field": "id",
+                    "autoIncrement": true,
+                    "primaryKey": true,
+                    "allowNull": false
+                },
+                "content": {
+                    "type": Sequelize.STRING,
+                    "field": "content",
+                    "allowNull": false
+                },
+                "read": {
+                    "type": Sequelize.ENUM('Yes', 'No'),
+                    "field": "read",
+                    "defaultValue": "No"
+                },
+                "userFrom": {
+                    "type": Sequelize.INTEGER,
+                    "onUpdate": "CASCADE",
+                    "field": "userFrom",
+                    "references": {
+                        "model": "Users",
+                        "key": "id"
+                    },
+                    "allowNull": false,
+                    "onDelete": "CASCADE"
+                },
+                "userTo": {
+                    "type": Sequelize.INTEGER,
+                    "onUpdate": "CASCADE",
+                    "field": "userTo",
+                    "references": {
+                        "model": "Users",
+                        "key": "id"
+                    },
+                    "allowNull": false,
+                    "onDelete": "CASCADE"
+                },
+                "createdAt": {
+                    "type": Sequelize.DATE,
+                    "field": "createdAt",
+                    "allowNull": false
+                },
+                "updatedAt": {
+                    "type": Sequelize.DATE,
+                    "field": "updatedAt",
+                    "allowNull": false
+                }
+            },
+            {}
+        ]
+    },
+    {
+        fn: "createTable",
+        params: [
+            "ShortCodes",
+            {
+                "id": {
+                    "type": Sequelize.INTEGER,
+                    "field": "id",
+                    "autoIncrement": true,
+                    "primaryKey": true,
+                    "allowNull": false
+                },
+                "shortCode": {
+                    "type": Sequelize.INTEGER,
+                    "field": "shortCode",
+                    "allowNull": false
+                },
+                "country": {
+                    "type": Sequelize.STRING,
+                    "field": "country",
+                    "allowNull": false
+                },
+                "createdAt": {
+                    "type": Sequelize.DATE,
+                    "field": "createdAt",
+                    "allowNull": false
+                },
+                "updatedAt": {
+                    "type": Sequelize.DATE,
+                    "field": "updatedAt",
+                    "allowNull": false
+                },
+                "shortCodeId": {
+                    "type": Sequelize.INTEGER,
+                    "field": "shortCodeId",
+                    "onUpdate": "CASCADE",
+                    "onDelete": "SET NULL",
+                    "references": {
+                        "model": "campaigns",
+                        "key": "id"
+                    },
+                    "allowNull": true
+                },
+                "smscId": {
+                    "type": Sequelize.INTEGER,
+                    "field": "smscId",
+                    "onUpdate": "CASCADE",
+                    "onDelete": "SET NULL",
+                    "references": {
+                        "model": "Smscs",
+                        "key": "id"
+                    },
+                    "allowNull": true
+                }
+            },
+            {}
+        ]
+    },
+    {
+        fn: "createTable",
+        params: [
+            "Requests",
+            {
+                "id": {
+                    "type": Sequelize.INTEGER,
+                    "field": "id",
+                    "autoIncrement": true,
+                    "primaryKey": true,
+                    "allowNull": false
+                },
+                "price": {
+                    "type": Sequelize.STRING,
+                    "field": "price",
+                    "allowNull": false
+                },
+                "currency": {
+                    "type": Sequelize.STRING,
+                    "field": "currency",
+                    "allowNull": true
+                },
+                "latitude": {
+                    "type": Sequelize.STRING,
+                    "field": "latitude",
+                    "allowNull": true
+                },
+                "longitude": {
+                    "type": Sequelize.STRING,
+                    "field": "longitude",
+                    "allowNull": true
+                },
+                "location": {
+                    "type": Sequelize.STRING,
+                    "field": "location",
+                    "allowNull": true
+                },
+                "time": {
+                    "type": Sequelize.STRING,
+                    "field": "time",
+                    "allowNull": false
+                },
+                "date": {
+                    "type": Sequelize.DATE,
+                    "field": "date",
+                    "allowNull": false
+                },
+                "status": {
+                    "type": Sequelize.ENUM('Accepted', 'Rejected', 'Pending', 'Completed'),
+                    "field": "status",
+                    "defaultValue": "Pending"
+                },
+                "type": {
+                    "type": Sequelize.ENUM('Meeting Student', 'Meeting Teacher', 'Video Meeting'),
+                    "field": "type",
+                    "allowNull": false
+                },
+                "comment": {
+                    "type": Sequelize.STRING,
+                    "field": "comment",
+                    "allowNull": true
+                },
+                "startUrl": {
+                    "type": Sequelize.STRING,
+                    "field": "startUrl",
+                    "allowNull": true
+                },
+                "joinUrl": {
+                    "type": Sequelize.STRING,
+                    "field": "joinUrl",
+                    "allowNull": true
+                },
+                "stripeChargeId": {
+                    "type": Sequelize.STRING,
+                    "field": "stripeChargeId",
+                    "allowNull": true
+                },
+                "paymentMethodId": {
+                    "type": Sequelize.STRING,
+                    "field": "paymentMethodId",
+                    "allowNull": false
+                },
+                "password": {
+                    "type": Sequelize.STRING,
+                    "field": "password",
+                    "allowNull": true
+                },
+                "userId": {
+                    "type": Sequelize.INTEGER,
+                    "onUpdate": "CASCADE",
+                    "field": "userId",
+                    "references": {
+                        "model": "Users",
+                        "key": "id"
+                    },
+                    "allowNull": false,
+                    "onDelete": "CASCADE"
+                },
+                "adId": {
+                    "type": Sequelize.INTEGER,
+                    "onUpdate": "CASCADE",
+                    "field": "adId",
+                    "references": {
+                        "model": "ads",
+                        "key": "id"
+                    },
+                    "allowNull": false,
+                    "onDelete": "CASCADE"
+                },
+                "createdAt": {
+                    "type": Sequelize.DATE,
+                    "field": "createdAt",
+                    "allowNull": false
+                },
+                "updatedAt": {
+                    "type": Sequelize.DATE,
+                    "field": "updatedAt",
+                    "allowNull": false
+                }
+            },
+            {}
+        ]
+    },
+    {
+        fn: "createTable",
+        params: [
+            "recievedSms",
+            {
+                "id": {
+                    "type": Sequelize.INTEGER,
+                    "field": "id",
+                    "autoIncrement": true,
+                    "primaryKey": true,
+                    "allowNull": false
+                },
+                "msisdn": {
+                    "type": Sequelize.STRING,
+                    "field": "msisdn",
+                    "allowNull": false
+                },
+                "type": {
+                    "type": Sequelize.ENUM('SmsPlus', 'Televoting', 'Other'),
+                    "field": "type",
+                    "defaultValue": "Other"
+                },
+                "createdAt": {
+                    "type": Sequelize.DATE,
+                    "field": "createdAt",
+                    "allowNull": false
+                },
+                "updatedAt": {
+                    "type": Sequelize.DATE,
+                    "field": "updatedAt",
+                    "allowNull": false
+                },
+                "shortCodeId": {
+                    "type": Sequelize.INTEGER,
+                    "field": "shortCodeId",
+                    "onUpdate": "CASCADE",
+                    "onDelete": "SET NULL",
+                    "references": {
+                        "model": "ShortCodes",
+                        "key": "id"
+                    },
+                    "allowNull": true
+                }
+            },
+            {}
+        ]
+    },
+    {
+        fn: "createTable",
+        params: [
+            "selectedContactCampaigns",
+            {
+                "id": {
+                    "type": Sequelize.INTEGER,
+                    "field": "id",
+                    "autoIncrement": true,
+                    "primaryKey": true,
+                    "allowNull": false
+                },
+                "createdAt": {
+                    "type": Sequelize.DATE,
+                    "field": "createdAt",
+                    "allowNull": false
+                },
+                "updatedAt": {
+                    "type": Sequelize.DATE,
+                    "field": "updatedAt",
+                    "allowNull": false
+                },
+                "contactGroupId": {
+                    "type": Sequelize.INTEGER,
+                    "field": "contactGroupId",
+                    "onUpdate": "CASCADE",
+                    "onDelete": "CASCADE",
+                    "references": {
+                        "model": "contactGroups",
+                        "key": "id"
+                    },
+                    "allowNull": true
+                },
+                "smsCampaignId": {
+                    "type": Sequelize.INTEGER,
+                    "field": "smsCampaignId",
+                    "onUpdate": "CASCADE",
+                    "onDelete": "CASCADE",
+                    "references": {
+                        "model": "campaigns",
+                        "key": "id"
+                    },
+                    "allowNull": true
+                }
+            },
+            {}
+        ]
+    },
+    {
+        fn: "createTable",
+        params: [
+            "ServiceAllows",
+            {
+                "id": {
+                    "type": Sequelize.INTEGER,
+                    "field": "id",
+                    "autoIncrement": true,
+                    "primaryKey": true,
+                    "allowNull": false
+                },
+                "status": {
+                    "type": Sequelize.ENUM('Not Allowed', 'Allowed'),
+                    "field": "status",
+                    "defaultValue": "Not Allowed"
+                },
+                "isDeleted": {
+                    "type": Sequelize.ENUM('0', '1'),
+                    "field": "isDeleted",
+                    "defaultValue": "0"
+                },
+                "createdAt": {
+                    "type": Sequelize.DATE,
+                    "field": "createdAt",
+                    "allowNull": false
+                },
+                "updatedAt": {
+                    "type": Sequelize.DATE,
+                    "field": "updatedAt",
+                    "allowNull": false
+                },
+                "serviceId": {
+                    "type": Sequelize.INTEGER,
+                    "field": "serviceId",
+                    "onUpdate": "CASCADE",
+                    "onDelete": "SET NULL",
+                    "references": {
+                        "model": "Services",
+                        "key": "id"
+                    },
+                    "allowNull": true
+                },
+                "userId": {
+                    "type": Sequelize.INTEGER,
+                    "field": "userId",
+                    "onUpdate": "CASCADE",
+                    "onDelete": "CASCADE",
+                    "references": {
+                        "model": "Users",
+                        "key": "id"
+                    },
+                    "allowNull": true
+                }
+            },
+            {}
+        ]
+    },
+    {
+        fn: "createTable",
+        params: [
+            "ScuRelations",
+            {
+                "id": {
+                    "type": Sequelize.INTEGER,
+                    "field": "id",
+                    "autoIncrement": true,
+                    "primaryKey": true,
+                    "allowNull": false
+                },
+                "numberOfMessageAllowed": {
+                    "type": Sequelize.INTEGER,
+                    "field": "numberOfMessageAllowed",
+                    "allowNull": true
+                },
+                "numberOfMessageSent": {
+                    "type": Sequelize.INTEGER,
+                    "field": "numberOfMessageSent",
+                    "allowNull": true
+                },
+                "expireAfter": {
+                    "type": Sequelize.STRING,
+                    "field": "expireAfter",
+                    "allowNull": true
+                },
+                "country": {
+                    "type": Sequelize.STRING,
+                    "field": "country",
+                    "allowNull": false
+                },
+                "status": {
+                    "type": Sequelize.ENUM('Not Allowed', 'Allowed'),
+                    "field": "status",
+                    "defaultValue": "Allowed"
+                },
+                "createdAt": {
+                    "type": Sequelize.DATE,
+                    "field": "createdAt",
+                    "allowNull": false
+                },
+                "updatedAt": {
+                    "type": Sequelize.DATE,
+                    "field": "updatedAt",
+                    "allowNull": false
+                },
+                "userId": {
+                    "type": Sequelize.INTEGER,
+                    "field": "userId",
+                    "onUpdate": "CASCADE",
+                    "onDelete": "CASCADE",
+                    "references": {
+                        "model": "Users",
+                        "key": "id"
+                    },
+                    "allowNull": true
+                },
+                "shortCodeId": {
+                    "type": Sequelize.INTEGER,
+                    "field": "shortCodeId",
+                    "onUpdate": "CASCADE",
+                    "onDelete": "CASCADE",
+                    "references": {
+                        "model": "ShortCodes",
+                        "key": "id"
+                    },
+                    "allowNull": true
+                },
+                "serviceId": {
+                    "type": Sequelize.INTEGER,
+                    "field": "serviceId",
+                    "onUpdate": "CASCADE",
+                    "onDelete": "CASCADE",
+                    "references": {
+                        "model": "Services",
+                        "key": "id"
+                    },
+                    "allowNull": true
+                }
+            },
+            {}
+        ]
+    },
+    {
+        fn: "createTable",
+        params: [
+            "ShortCodeApprovals",
+            {
+                "id": {
+                    "type": Sequelize.INTEGER,
+                    "field": "id",
+                    "autoIncrement": true,
+                    "primaryKey": true,
+                    "allowNull": false
+                },
+                "smscId": {
+                    "type": Sequelize.STRING,
+                    "field": "smscId",
+                    "allowNull": true
+                },
+                "msgIdType": {
+                    "type": Sequelize.STRING,
+                    "field": "msgIdType",
+                    "allowNull": false
+                },
+                "host": {
+                    "type": Sequelize.STRING,
+                    "field": "host",
+                    "allowNull": true
+                },
+                "port": {
+                    "type": Sequelize.INTEGER,
+                    "field": "port",
+                    "allowNull": false
+                },
+                "type": {
+                    "type": Sequelize.ENUM('receiver', 'transmitter', 'both'),
+                    "field": "type",
+                    "allowNull": false,
+                    "defaultValue": "receiver"
+                },
+                "receivePort": {
+                    "type": Sequelize.STRING,
+                    "field": "receivePort",
+                    "allowNull": true
+                },
+                "logFile": {
+                    "type": Sequelize.STRING,
+                    "field": "logFile",
+                    "allowNull": true
+                },
+                "smscUsername": {
+                    "type": Sequelize.STRING,
+                    "field": "smscUsername",
+                    "allowNull": true
+                },
+                "smscPassword": {
+                    "type": Sequelize.STRING,
+                    "field": "smscPassword",
+                    "allowNull": true
+                },
+                "systemType": {
+                    "type": Sequelize.STRING,
+                    "field": "systemType",
+                    "allowNull": true
+                },
+                "reconnectDelay": {
+                    "type": Sequelize.INTEGER,
+                    "field": "reconnectDelay",
+                    "allowNull": false,
+                    "defaultValue": 10
+                },
+                "enquireLinkInterval": {
+                    "type": Sequelize.INTEGER,
+                    "field": "enquireLinkInterval",
+                    "allowNull": false,
+                    "defaultValue": 10
+                },
+                "addressRange": {
+                    "type": Sequelize.STRING,
+                    "field": "addressRange",
+                    "allowNull": true
+                },
+                "sourceAddrTon": {
+                    "type": Sequelize.INTEGER,
+                    "field": "sourceAddrTon",
+                    "allowNull": false
+                },
+                "sourceAddrNpi": {
+                    "type": Sequelize.INTEGER,
+                    "field": "sourceAddrNpi",
+                    "allowNull": false
+                },
+                "destAddrTon": {
+                    "type": Sequelize.INTEGER,
+                    "field": "destAddrTon",
+                    "allowNull": false
+                },
+                "destAddrNpi": {
+                    "type": Sequelize.INTEGER,
+                    "field": "destAddrNpi",
+                    "allowNull": false
+                },
+                "serviceType": {
+                    "type": Sequelize.INTEGER,
+                    "field": "serviceType",
+                    "allowNull": false,
+                    "defaultValue": 3138
+                },
+                "altCharset": {
+                    "type": Sequelize.STRING,
+                    "field": "altCharset",
+                    "allowNull": false,
+                    "defaultValue": "LATIN1"
+                },
+                "allowedSmscId": {
+                    "type": Sequelize.INTEGER,
+                    "field": "allowedSmscId",
+                    "allowNull": false
+                },
+                "deniedSmscId": {
+                    "type": Sequelize.INTEGER,
+                    "field": "deniedSmscId",
+                    "allowNull": false
+                },
+                "throughput": {
+                    "type": Sequelize.INTEGER,
+                    "field": "throughput",
+                    "allowNull": false,
+                    "defaultValue": 10
+                },
+                "flowControl": {
+                    "type": Sequelize.INTEGER,
+                    "field": "flowControl",
+                    "allowNull": false,
+                    "defaultValue": 0
+                },
+                "maxPendingSubmits": {
+                    "type": Sequelize.INTEGER,
+                    "field": "maxPendingSubmits",
+                    "allowNull": false,
+                    "defaultValue": 10
+                },
+                "waitAck": {
+                    "type": Sequelize.INTEGER,
+                    "field": "waitAck",
+                    "allowNull": false,
+                    "defaultValue": 1
+                },
+                "waitAckExpire": {
+                    "type": Sequelize.STRING,
+                    "field": "waitAckExpire",
+                    "allowNull": false,
+                    "defaultValue": 2
+                },
+                "userId": {
+                    "type": Sequelize.INTEGER,
+                    "onUpdate": "CASCADE",
+                    "onDelete": "NO ACTION",
+                    "references": {
+                        "model": "Users",
+                        "key": "id"
+                    },
+                    "field": "userId",
+                    "allowNull": false
+                },
+                "status": {
+                    "type": Sequelize.ENUM('Pending Super Admin', 'Pending Configuration', 'Accepted', 'Rejected'),
+                    "field": "status",
+                    "allowNull": false,
+                    "defaultValue": "Pending Super Admin"
+                },
+                "createdAt": {
+                    "type": Sequelize.DATE,
+                    "field": "createdAt",
+                    "allowNull": false
+                },
+                "updatedAt": {
+                    "type": Sequelize.DATE,
+                    "field": "updatedAt",
+                    "allowNull": false
+                }
+            },
+            {}
+        ]
+    },
+    {
+        fn: "createTable",
+        params: [
+            "appointments",
+            {
+                "id": {
+                    "type": Sequelize.INTEGER,
+                    "field": "id",
+                    "autoIncrement": true,
+                    "primaryKey": true,
+                    "allowNull": false
+                },
+                "date": {
+                    "type": Sequelize.STRING,
+                    "field": "date",
+                    "allowNull": false
+                },
+                "cost": {
+                    "type": Sequelize.STRING,
+                    "field": "cost",
+                    "allowNull": false
+                },
+                "meetingoption": {
+                    "type": Sequelize.ENUM('source', 'tutorSuggested', 'studentSuggested'),
+                    "field": "meetingoption",
+                    "allowNull": false
+                },
+                "status": {
+                    "type": Sequelize.ENUM('requeted', 'booked', 'declined'),
+                    "field": "status"
+                },
+                "location": {
+                    "type": Sequelize.STRING,
+                    "field": "location",
+                    "allowNull": true
+                },
+                "message": {
+                    "type": Sequelize.STRING,
+                    "field": "message",
+                    "allowNull": true
+                },
+                "slotId": {
+                    "type": Sequelize.INTEGER,
+                    "onUpdate": "CASCADE",
+                    "field": "slotId",
+                    "references": {
+                        "model": "slots",
+                        "key": "id"
+                    },
+                    "allowNull": false,
+                    "onDelete": "CASCADE"
+                },
+                "userId": {
+                    "type": Sequelize.INTEGER,
+                    "onUpdate": "CASCADE",
+                    "field": "userId",
+                    "references": {
+                        "model": "Users",
+                        "key": "id"
+                    },
+                    "allowNull": false,
+                    "onDelete": "CASCADE"
+                },
+                "adId": {
+                    "type": Sequelize.INTEGER,
+                    "onUpdate": "CASCADE",
+                    "field": "adId",
+                    "references": {
+                        "model": "ads",
+                        "key": "id"
+                    },
+                    "allowNull": false,
+                    "onDelete": "CASCADE"
+                },
+                "isDeleted": {
+                    "type": Sequelize.ENUM('Yes', 'No'),
+                    "field": "isDeleted",
+                    "defaultValue": "No"
+                },
+                "createdAt": {
+                    "type": Sequelize.DATE,
+                    "field": "createdAt",
+                    "allowNull": false
+                },
+                "updatedAt": {
+                    "type": Sequelize.DATE,
+                    "field": "updatedAt",
+                    "allowNull": false
+                }
+            },
+            {}
+        ]
+    },
+    {
+        fn: "createTable",
+        params: [
+            "sms",
+            {
+                "id": {
+                    "type": Sequelize.INTEGER,
+                    "field": "id",
+                    "autoIncrement": true,
+                    "primaryKey": true,
+                    "allowNull": false
+                },
+                "from": {
+                    "type": Sequelize.INTEGER,
+                    "field": "from",
+                    "allowNull": false
+                },
+                "to": {
+                    "type": Sequelize.STRING,
+                    "field": "to",
+                    "allowNull": false
+                },
+                "message": {
+                    "type": Sequelize.STRING,
+                    "field": "message",
+                    "allowNull": false
+                },
+                "status": {
+                    "type": Sequelize.ENUM('Sent', 'Rejected'),
+                    "field": "status",
+                    "defaultValue": "Sent"
+                },
+                "createdAt": {
+                    "type": Sequelize.DATE,
+                    "field": "createdAt",
+                    "allowNull": false
+                },
+                "updatedAt": {
+                    "type": Sequelize.DATE,
+                    "field": "updatedAt",
+                    "allowNull": false
+                },
+                "scuRelationId": {
+                    "type": Sequelize.INTEGER,
+                    "field": "scuRelationId",
+                    "onUpdate": "CASCADE",
+                    "onDelete": "CASCADE",
+                    "references": {
+                        "model": "ScuRelations",
+                        "key": "id"
+                    },
+                    "allowNull": true
+                },
+                "serviceId": {
+                    "type": Sequelize.INTEGER,
+                    "field": "serviceId",
+                    "onUpdate": "CASCADE",
+                    "onDelete": "SET NULL",
+                    "references": {
+                        "model": "Services",
+                        "key": "id"
+                    },
+                    "allowNull": true
+                },
+                "shortCodeId": {
+                    "type": Sequelize.INTEGER,
+                    "field": "shortCodeId",
+                    "onUpdate": "CASCADE",
+                    "onDelete": "SET NULL",
+                    "references": {
+                        "model": "ShortCodes",
+                        "key": "id"
+                    },
+                    "allowNull": true
+                },
+                "userId": {
+                    "type": Sequelize.INTEGER,
+                    "field": "userId",
+                    "onUpdate": "CASCADE",
+                    "onDelete": "SET NULL",
+                    "references": {
+                        "model": "Users",
+                        "key": "id"
+                    },
+                    "allowNull": true
+                }
+            },
+            {}
+        ]
+    },
+    {
+        fn: "createTable",
+        params: [
+            "smscUserRelations",
+            {
+                "id": {
+                    "type": Sequelize.INTEGER,
+                    "field": "id",
+                    "autoIncrement": true,
+                    "primaryKey": true,
+                    "allowNull": false
+                },
+                "status": {
+                    "type": Sequelize.ENUM('Not Allowed', 'Allowed'),
+                    "field": "status",
+                    "defaultValue": "Allowed"
+                },
+                "createdAt": {
+                    "type": Sequelize.DATE,
+                    "field": "createdAt",
+                    "allowNull": false
+                },
+                "updatedAt": {
+                    "type": Sequelize.DATE,
+                    "field": "updatedAt",
+                    "allowNull": false
+                },
+                "smscId": {
+                    "type": Sequelize.INTEGER,
+                    "field": "smscId",
+                    "onUpdate": "CASCADE",
+                    "onDelete": "SET NULL",
+                    "references": {
+                        "model": "Smscs",
+                        "key": "id"
+                    },
+                    "allowNull": true
+                },
+                "userId": {
+                    "type": Sequelize.INTEGER,
+                    "field": "userId",
+                    "onUpdate": "CASCADE",
+                    "onDelete": "CASCADE",
+                    "references": {
+                        "model": "Users",
+                        "key": "id"
+                    },
+                    "allowNull": true
+                }
+            },
+            {}
+        ]
+    },
+    {
+        fn: "createTable",
+        params: [
+            "smsPlusBalanceDeductions",
+            {
+                "id": {
+                    "type": Sequelize.INTEGER,
+                    "field": "id",
+                    "autoIncrement": true,
+                    "primaryKey": true,
+                    "allowNull": false
+                },
+                "shortCode": {
+                    "type": Sequelize.STRING,
+                    "field": "shortCode",
+                    "allowNull": false
+                },
+                "msisdn": {
+                    "type": Sequelize.STRING,
+                    "field": "msisdn",
+                    "allowNull": false
+                },
+                "message": {
+                    "type": Sequelize.STRING,
+                    "field": "message",
+                    "allowNull": false
+                },
+                "status": {
+                    "type": Sequelize.ENUM('Accepted', 'Rejected'),
+                    "field": "status",
+                    "defaultValue": "Accepted"
+                },
+                "recievedSmsId": {
+                    "type": Sequelize.INTEGER,
+                    "onUpdate": "CASCADE",
+                    "field": "recievedSmsId",
+                    "references": {
+                        "model": "recievedSms",
+                        "key": "id"
+                    },
+                    "allowNull": false,
+                    "onDelete": "CASCADE"
+                },
+                "createdAt": {
+                    "type": Sequelize.DATE,
+                    "field": "createdAt",
+                    "allowNull": false
+                },
+                "updatedAt": {
+                    "type": Sequelize.DATE,
+                    "field": "updatedAt",
+                    "allowNull": false
+                }
+            },
+            {}
+        ]
+    },
+    {
+        fn: "createTable",
+        params: [
+            "smsPlusCheckKeywords",
+            {
+                "id": {
+                    "type": Sequelize.INTEGER,
+                    "field": "id",
+                    "autoIncrement": true,
+                    "primaryKey": true,
+                    "allowNull": false
+                },
+                "serviceName": {
+                    "type": Sequelize.STRING,
+                    "field": "serviceName",
+                    "allowNull": false
+                },
+                "keyword": {
+                    "type": Sequelize.STRING,
+                    "field": "keyword",
+                    "allowNull": false
+                },
+                "code": {
+                    "type": Sequelize.STRING,
+                    "field": "code",
+                    "allowNull": false
+                },
+                "shortCode": {
+                    "type": Sequelize.STRING,
+                    "field": "shortCode",
+                    "allowNull": false
+                },
+                "promoCode": {
+                    "type": Sequelize.STRING,
+                    "field": "promoCode",
+                    "allowNull": false
+                },
+                "price": {
+                    "type": Sequelize.STRING,
+                    "field": "price",
+                    "allowNull": false
+                },
+                "currency": {
+                    "type": Sequelize.STRING,
+                    "field": "currency",
+                    "allowNull": false
+                },
+                "expiryDate": {
+                    "type": Sequelize.DATE,
+                    "field": "expiryDate",
+                    "allowNull": false
+                },
+                "countryoperator": {
+                    "type": Sequelize.STRING,
+                    "field": "countryoperator",
+                    "allowNull": false
+                },
+                "msisdn": {
+                    "type": Sequelize.STRING,
+                    "field": "msisdn",
+                    "allowNull": false
+                },
+                "status": {
+                    "type": Sequelize.ENUM('Accepted', 'Rejected'),
+                    "field": "status",
+                    "defaultValue": "Accepted"
+                },
+                "recievedSmsId": {
+                    "type": Sequelize.INTEGER,
+                    "onUpdate": "CASCADE",
+                    "field": "recievedSmsId",
+                    "references": {
+                        "model": "recievedSms",
+                        "key": "id"
+                    },
+                    "allowNull": false,
+                    "onDelete": "CASCADE"
+                },
+                "createdAt": {
+                    "type": Sequelize.DATE,
+                    "field": "createdAt",
+                    "allowNull": false
+                },
+                "updatedAt": {
+                    "type": Sequelize.DATE,
+                    "field": "updatedAt",
+                    "allowNull": false
+                }
+            },
+            {}
+        ]
+    },
+    {
+        fn: "createTable",
+        params: [
+            "smsPlusRecievedMessages",
+            {
+                "id": {
+                    "type": Sequelize.INTEGER,
+                    "field": "id",
+                    "autoIncrement": true,
+                    "primaryKey": true,
+                    "allowNull": false
+                },
+                "shortCode": {
+                    "type": Sequelize.STRING,
+                    "field": "shortCode",
+                    "allowNull": false
+                },
+                "msisdn": {
+                    "type": Sequelize.STRING,
+                    "field": "msisdn",
+                    "allowNull": false
+                },
+                "message": {
+                    "type": Sequelize.STRING,
+                    "field": "message",
+                    "allowNull": false
+                },
+                "status": {
+                    "type": Sequelize.ENUM('Accepted', 'Rejected'),
+                    "field": "status",
+                    "defaultValue": "Accepted"
+                },
+                "recievedSmsId": {
+                    "type": Sequelize.INTEGER,
+                    "onUpdate": "CASCADE",
+                    "field": "recievedSmsId",
+                    "references": {
+                        "model": "recievedSms",
+                        "key": "id"
+                    },
+                    "allowNull": false,
+                    "onDelete": "CASCADE"
+                },
+                "createdAt": {
+                    "type": Sequelize.DATE,
+                    "field": "createdAt",
+                    "allowNull": false
+                },
+                "updatedAt": {
+                    "type": Sequelize.DATE,
+                    "field": "updatedAt",
+                    "allowNull": false
+                }
+            },
+            {}
+        ]
+    },
+    {
+        fn: "createTable",
+        params: [
+            "smsPlusSentMessages",
+            {
+                "id": {
+                    "type": Sequelize.INTEGER,
+                    "field": "id",
+                    "autoIncrement": true,
+                    "primaryKey": true,
+                    "allowNull": false
+                },
+                "shortCode": {
+                    "type": Sequelize.STRING,
+                    "field": "shortCode",
+                    "allowNull": false
+                },
+                "msisdn": {
+                    "type": Sequelize.STRING,
+                    "field": "msisdn",
+                    "allowNull": false
+                },
+                "message": {
+                    "type": Sequelize.STRING,
+                    "field": "message",
+                    "allowNull": false
+                },
+                "status": {
+                    "type": Sequelize.ENUM('Accepted', 'Rejected'),
+                    "field": "status",
+                    "defaultValue": "Accepted"
+                },
+                "recievedSmsId": {
+                    "type": Sequelize.INTEGER,
+                    "onUpdate": "CASCADE",
+                    "field": "recievedSmsId",
+                    "references": {
+                        "model": "recievedSms",
+                        "key": "id"
+                    },
+                    "allowNull": false,
+                    "onDelete": "CASCADE"
+                },
+                "createdAt": {
+                    "type": Sequelize.DATE,
+                    "field": "createdAt",
+                    "allowNull": false
+                },
+                "updatedAt": {
+                    "type": Sequelize.DATE,
+                    "field": "updatedAt",
+                    "allowNull": false
+                }
+            },
+            {}
+        ]
+    },
+    {
+        fn: "createTable",
+        params: [
+            "smsPlusSuccessfullMessages",
+            {
+                "id": {
+                    "type": Sequelize.INTEGER,
+                    "field": "id",
+                    "autoIncrement": true,
+                    "primaryKey": true,
+                    "allowNull": false
+                },
+                "shortCode": {
+                    "type": Sequelize.STRING,
+                    "field": "shortCode",
+                    "allowNull": false
+                },
+                "msisdn": {
+                    "type": Sequelize.STRING,
+                    "field": "msisdn",
+                    "allowNull": false
+                },
+                "message": {
+                    "type": Sequelize.STRING,
+                    "field": "message",
+                    "allowNull": false
+                },
+                "status": {
+                    "type": Sequelize.ENUM('Accepted', 'Rejected'),
+                    "field": "status",
+                    "defaultValue": "Accepted"
+                },
+                "recievedSmsId": {
+                    "type": Sequelize.INTEGER,
+                    "onUpdate": "CASCADE",
+                    "field": "recievedSmsId",
+                    "references": {
+                        "model": "recievedSms",
+                        "key": "id"
+                    },
+                    "allowNull": false,
+                    "onDelete": "CASCADE"
+                },
+                "createdAt": {
+                    "type": Sequelize.DATE,
+                    "field": "createdAt",
+                    "allowNull": false
+                },
+                "updatedAt": {
+                    "type": Sequelize.DATE,
+                    "field": "updatedAt",
+                    "allowNull": false
+                }
+            },
+            {}
+        ]
+    },
+    {
+        fn: "createTable",
+        params: [
+            "socials",
+            {
+                "id": {
+                    "type": Sequelize.INTEGER,
+                    "field": "id",
+                    "autoIncrement": true,
+                    "primaryKey": true,
+                    "allowNull": false
+                },
+                "appleLink": {
+                    "type": Sequelize.STRING,
+                    "field": "appleLink"
+                },
+                "googleLink": {
+                    "type": Sequelize.STRING,
+                    "field": "googleLink"
+                },
+                "facebookLink": {
+                    "type": Sequelize.STRING,
+                    "field": "facebookLink"
+                },
+                "linkedLink": {
+                    "type": Sequelize.STRING,
+                    "field": "linkedLink"
+                },
+                "instaLink": {
+                    "type": Sequelize.STRING,
+                    "field": "instaLink"
+                },
+                "userId": {
+                    "type": Sequelize.INTEGER,
+                    "onUpdate": "CASCADE",
+                    "field": "userId",
+                    "references": {
+                        "model": "Users",
+                        "key": "id"
+                    },
+                    "allowNull": false,
+                    "onDelete": "CASCADE"
+                },
+                "createdAt": {
+                    "type": Sequelize.DATE,
+                    "field": "createdAt",
+                    "allowNull": false
+                },
+                "updatedAt": {
+                    "type": Sequelize.DATE,
+                    "field": "updatedAt",
+                    "allowNull": false
+                }
+            },
+            {}
+        ]
+    },
+    {
+        fn: "createTable",
+        params: [
+            "SocialMedia",
+            {
+                "id": {
+                    "type": Sequelize.INTEGER,
+                    "field": "id",
+                    "autoIncrement": true,
+                    "primaryKey": true,
+                    "allowNull": false
+                },
+                "name": {
+                    "type": Sequelize.STRING,
+                    "field": "name",
+                    "allowNull": false
+                },
+                "link": {
+                    "type": Sequelize.STRING,
+                    "field": "link",
+                    "allowNull": false
+                },
+                "userId": {
+                    "type": Sequelize.INTEGER,
+                    "onUpdate": "CASCADE",
+                    "field": "userId",
+                    "references": {
+                        "model": "Users",
+                        "key": "id"
+                    },
+                    "allowNull": false,
+                    "onDelete": "CASCADE"
+                },
+                "createdAt": {
+                    "type": Sequelize.DATE,
+                    "field": "createdAt",
+                    "allowNull": false
+                },
+                "updatedAt": {
+                    "type": Sequelize.DATE,
+                    "field": "updatedAt",
+                    "allowNull": false
+                }
+            },
+            {}
+        ]
+    },
+    {
+        fn: "createTable",
+        params: [
+            "teleVotingCheckKeywords",
+            {
+                "id": {
+                    "type": Sequelize.INTEGER,
+                    "field": "id",
+                    "autoIncrement": true,
+                    "primaryKey": true,
+                    "allowNull": false
+                },
+                "serviceName": {
+                    "type": Sequelize.STRING,
+                    "field": "serviceName",
+                    "allowNull": false
+                },
+                "keyword": {
+                    "type": Sequelize.STRING,
+                    "field": "keyword",
+                    "allowNull": false
+                },
+                "shortCode": {
+                    "type": Sequelize.STRING,
+                    "field": "shortCode",
+                    "allowNull": false
+                },
+                "price": {
+                    "type": Sequelize.STRING,
+                    "field": "price",
+                    "allowNull": false
+                },
+                "currency": {
+                    "type": Sequelize.STRING,
+                    "field": "currency",
+                    "allowNull": false
+                },
+                "countryoperator": {
+                    "type": Sequelize.STRING,
+                    "field": "countryoperator",
+                    "allowNull": false
+                },
+                "msisdn": {
+                    "type": Sequelize.STRING,
+                    "field": "msisdn",
+                    "allowNull": false
+                },
+                "channel": {
+                    "type": Sequelize.STRING,
+                    "field": "channel",
+                    "allowNull": false
+                },
+                "status": {
+                    "type": Sequelize.ENUM('Accepted', 'Rejected'),
+                    "field": "status",
+                    "defaultValue": "Accepted"
+                },
+                "recievedSmsId": {
+                    "type": Sequelize.INTEGER,
+                    "onUpdate": "CASCADE",
+                    "field": "recievedSmsId",
+                    "references": {
+                        "model": "recievedSms",
+                        "key": "id"
+                    },
+                    "allowNull": false,
+                    "onDelete": "CASCADE"
+                },
+                "createdAt": {
+                    "type": Sequelize.DATE,
+                    "field": "createdAt",
+                    "allowNull": false
+                },
+                "updatedAt": {
+                    "type": Sequelize.DATE,
+                    "field": "updatedAt",
+                    "allowNull": false
+                }
+            },
+            {}
+        ]
+    }
+];
+
+module.exports = {
+    pos: 0,
+    up: function(queryInterface, Sequelize)
+    {
+        var index = this.pos;
+        return new Promise(function(resolve, reject) {
+            function next() {
+                if (index &lt; migrationCommands.length)
+                {
+                    let command = migrationCommands[index];
+                    console.log("[#"+index+"] execute: " + command.fn);
+                    index++;
+                    queryInterface[command.fn].apply(queryInterface, command.params).then(next, reject);
+                }
+                else
+                    resolve();
+            }
+            next();
+        });
+    },
+    info: info
+};
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-addService_seed.html">addService_seed</a></li><li><a href="module-addShortCode_seed.html">addShortCode_seed</a></li><li><a href="module-addSmsc_seed.html">addSmsc_seed</a></li><li><a href="module-admin_seed.html">admin_seed</a></li><li><a href="module-BlackList_Controller_Functions.html">BlackList_Controller_Functions</a></li><li><a href="module-BlackList_Routes.html">BlackList_Routes</a></li><li><a href="module-config.html">config</a></li><li><a href="module-Contact_Controller_Functions.html">Contact_Controller_Functions</a></li><li><a href="module-Contact_Routes.html">Contact_Routes</a></li><li><a href="module-encryption_key.html">encryption_key</a></li><li><a href="module-Logs_Controller_Functions.html">Logs_Controller_Functions</a></li><li><a href="module-Logs_Routes.html">Logs_Routes</a></li><li><a href="module-Received_Message_Routes.html">Received_Message_Routes</a></li><li><a href="module-Service_Routes.html">Service_Routes</a></li><li><a href="module-Short_Code_Controller_Functions.html">Short_Code_Controller_Functions</a></li><li><a href="module-Short_Code_Routes.html">Short_Code_Routes</a></li><li><a href="module-Sms_Controller_Functions.html">Sms_Controller_Functions</a></li><li><a href="module-SMS_Routes.html">SMS_Routes</a></li><li><a href="module-Smsc_Controller_Functions.html">Smsc_Controller_Functions</a></li><li><a href="module-SmsPlus_Controller_Functions.html">SmsPlus_Controller_Functions</a></li><li><a href="module-superAdmin_seed.html">superAdmin_seed</a></li><li><a href="module-Televoting_Controller_Functions.html">Televoting_Controller_Functions</a></li><li><a href="module-Templates_Controller_Functions.html">Templates_Controller_Functions</a></li><li><a href="module-url.html">url</a></li><li><a href="module-User_Controller_Functions.html">User_Controller_Functions</a></li></ul><h3>Classes</h3><ul><li><a href="blackListIp.html">blackListIp</a></li><li><a href="blackListMsisdn.html">blackListMsisdn</a></li><li><a href="blackListService.html">blackListService</a></li><li><a href="campaigns.html">campaigns</a></li><li><a href="contact.html">contact</a></li><li><a href="contactGroup.html">contactGroup</a></li><li><a href="ContactService.html">ContactService</a></li><li><a href="errorReceivedSms.html">errorReceivedSms</a></li><li><a href="logs.html">logs</a></li><li><a href="LogsService.html">LogsService</a></li><li><a href="RecievedSms.html">RecievedSms</a></li><li><a href="ScuRelation.html">ScuRelation</a></li><li><a href="selectedContactCampaigns.html">selectedContactCampaigns</a></li><li><a href="Service.html">Service</a></li><li><a href="ServiceAllow.html">ServiceAllow</a></li><li><a href="serviceService.html">serviceService</a></li><li><a href="ShortCode.html">ShortCode</a></li><li><a href="ShortCodeApproval.html">ShortCodeApproval</a></li><li><a href="ShortCodeService.html">ShortCodeService</a></li><li><a href="Sms.html">Sms</a></li><li><a href="Smsc.html">Smsc</a></li><li><a href="SmscUserRelation.html">SmscUserRelation</a></li><li><a href="smsPlusBalanceDeduction.html">smsPlusBalanceDeduction</a></li><li><a href="smsPlusCheckKeyword.html">smsPlusCheckKeyword</a></li><li><a href="smsPlusCustomMessage.html">smsPlusCustomMessage</a></li><li><a href="SmsPlusRecievedMessage.html">SmsPlusRecievedMessage</a></li><li><a href="smsPlusSentMessage.html">smsPlusSentMessage</a></li><li><a href="SmsPlusService.html">SmsPlusService</a></li><li><a href="smsPlusSuccessfullMessage.html">smsPlusSuccessfullMessage</a></li><li><a href="SmsService.html">SmsService</a></li><li><a href="teleVotingCheckKeyword.html">teleVotingCheckKeyword</a></li><li><a href="televotingService.html">televotingService</a></li><li><a href="templates.html">templates</a></li><li><a href="templatesService.html">templatesService</a></li><li><a href="User.html">User</a></li><li><a href="UserService.html">UserService</a></li></ul><h3>Global</h3><ul><li><a href="global.html#addressRange">addressRange</a></li><li><a href="global.html#allowedSmscId">allowedSmscId</a></li><li><a href="global.html#altCharset">altCharset</a></li><li><a href="global.html#authJwt">authJwt</a></li><li><a href="global.html#axios">axios</a></li><li><a href="global.html#batchSize">batchSize</a></li><li><a href="global.html#bcrypt">bcrypt</a></li><li><a href="global.html#betweenBatchHour">betweenBatchHour</a></li><li><a href="global.html#betweenBatchMinutes">betweenBatchMinutes</a></li><li><a href="global.html#blackListCheck">blackListCheck</a></li><li><a href="global.html#campaignName">campaignName</a></li><li><a href="global.html#channel">channel</a></li><li><a href="global.html#checkDuplicateEmail">checkDuplicateEmail</a></li><li><a href="global.html#checkIp">checkIp</a></li><li><a href="global.html#checkMsisdn">checkMsisdn</a></li><li><a href="global.html#code">code</a></li><li><a href="global.html#config">config</a></li><li><a href="global.html#contactGroupId">contactGroupId</a></li><li><a href="global.html#country">country</a></li><li><a href="global.html#countryoperator">countryoperator</a></li><li><a href="global.html#creatorId">creatorId</a></li><li><a href="global.html#currency">currency</a></li><li><a href="global.html#db">db</a></li><li><a href="global.html#deniedSmscId">deniedSmscId</a></li><li><a href="global.html#destAddrNpi">destAddrNpi</a></li><li><a href="global.html#destAddrTon">destAddrTon</a></li><li><a href="global.html#destination">destination</a></li><li><a href="global.html#email">email</a></li><li><a href="global.html#endScheduleDate">endScheduleDate</a></li><li><a href="global.html#enquireLinkInterval">enquireLinkInterval</a></li><li><a href="global.html#expireAfter">expireAfter</a></li><li><a href="global.html#expiryDate">expiryDate</a></li><li><a href="global.html#express">express</a></li><li><a href="global.html#filename">filename</a></li><li><a href="global.html#fileStorage">fileStorage</a></li><li><a href="global.html#firstName">firstName</a></li><li><a href="global.html#flowControl">flowControl</a></li><li><a href="global.html#from">from</a></li><li><a href="global.html#fs">fs</a></li><li><a href="global.html#getUserId">getUserId</a></li><li><a href="global.html#host">host</a></li><li><a href="global.html#info">info</a></li><li><a href="global.html#ip">ip</a></li><li><a href="global.html#isDeleted">isDeleted</a></li><li><a href="global.html#jwt">jwt</a></li><li><a href="global.html#keyword">keyword</a></li><li><a href="global.html#lastName">lastName</a></li><li><a href="global.html#logFile">logFile</a></li><li><a href="global.html#maxPendingSubmits">maxPendingSubmits</a></li><li><a href="global.html#message">message</a></li><li><a href="global.html#moment">moment</a></li><li><a href="global.html#msgIdType">msgIdType</a></li><li><a href="global.html#msisdn">msisdn</a></li><li><a href="global.html#multer">multer</a></li><li><a href="global.html#name">name</a></li><li><a href="global.html#numberOfMessageAllowed">numberOfMessageAllowed</a></li><li><a href="global.html#numberOfMessageSent">numberOfMessageSent</a></li><li><a href="global.html#password">password</a></li><li><a href="global.html#phoneNumber">phoneNumber</a></li><li><a href="global.html#port">port</a></li><li><a href="global.html#price">price</a></li><li><a href="global.html#promoCode">promoCode</a></li><li><a href="global.html#reason">reason</a></li><li><a href="global.html#receivePort">receivePort</a></li><li><a href="global.html#recievedSmsId">recievedSmsId</a></li><li><a href="global.html#reconnectDelay">reconnectDelay</a></li><li><a href="global.html#reply">reply</a></li><li><a href="global.html#role">role</a></li><li><a href="global.html#sendType">sendType</a></li><li><a href="global.html#serviceName">serviceName</a></li><li><a href="global.html#serviceType">serviceType</a></li><li><a href="global.html#shortCode">shortCode</a></li><li><a href="global.html#shortCodeId">shortCodeId</a></li><li><a href="global.html#signUpVerify">signUpVerify</a></li><li><a href="global.html#smscId">smscId</a></li><li><a href="global.html#smscPassword">smscPassword</a></li><li><a href="global.html#smscUsername">smscUsername</a></li><li><a href="global.html#sourceAddrNpi">sourceAddrNpi</a></li><li><a href="global.html#sourceAddrTon">sourceAddrTon</a></li><li><a href="global.html#startScheduleDate">startScheduleDate</a></li><li><a href="global.html#status">status</a></li><li><a href="global.html#step">step</a></li><li><a href="global.html#systemType">systemType</a></li><li><a href="global.html#throughput">throughput</a></li><li><a href="global.html#to">to</a></li><li><a href="global.html#type">type</a></li><li><a href="global.html#userId">userId</a></li><li><a href="global.html#UserRoutes">UserRoutes</a></li><li><a href="global.html#verifyToken">verifyToken</a></li><li><a href="global.html#verifyUserRole">verifyUserRole</a></li><li><a href="global.html#waitAck">waitAck</a></li><li><a href="global.html#waitAckExpire">waitAckExpire</a></li><li><a href="global.html#xlsx">xlsx</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.11</a> on Thu Aug 04 2022 16:35:33 GMT+0500 (Pakistan Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
